@@ -1,0 +1,19 @@
+@import '~/bootstrap/scss/functions';
+@import './helpers/variables';
+@import '~/bootstrap/scss/bootstrap';
+
+@import '~/bootstrap-icons/font/bootstrap-icons.min.css';
+
+// @import '~/@sweetalert2/theme-minimal/minimal.scss';
+// @import '~/@sweetalert2/src/sweetalert2.scss';
+@import '@sweetalert2/theme-minimal/minimal.scss';
+
+.custom-popover {
+    --bs-popover-bg: var(--bs-secondary);
+    --bs-popover-body-color: var(--bs-white);
+    --bs-popover-border-color: var(--bs-secondary);
+}
+// div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus {
+//     /* box-shadow: none; */
+//     box-shadow: 0 0 0 3px rgba(12, 213, 19, 0.5)
+//   }
