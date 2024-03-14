@@ -1,35 +1,42 @@
-<script setup>
-import { inject, ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script>
+import adminAccountStore from '@/stores/adminAccountStore';
+import { mapActions } from 'pinia';
 
-const axios = inject('axios');
-const router = useRouter();
-// data
-const SIGNIN_PATH = `${import.meta.env.VITE_APP_API_URL}/v2/admin/signin`;
-const user = ref({
-  username: '',
-  password: '',
-});
-const errorMessageForLogin = ref('');
-// methods
-function login() {
-  axios.post(SIGNIN_PATH, user.value)
-    .then((res) => {
-      if (res.data.success) {
-        const { token, expired } = res.data;
-        document.cookie = `${import.meta.env.VITE_APP_TokenName}=${token}; expires=${new Date(expired)};`;
-        router.push('productList');
+export default {
+  data() {
+    return {
+      user: {
+        username: '',
+        password: '',
+      },
+      errorMessageForLogin: '',
+      isLoading: false,
+    };
+  },
+  emits: ['showAlert'],
+  methods: {
+    async login() {
+      this.isLoading = true;
+      const res = await this.$adminRequest.login(this.user);
+      if (res.success) {
+        this.$cookie.setAdminCookie(res.data);
+        this.$router.push({ name: 'adminProducts' });
       } else {
-        errorMessageForLogin.value = res.data.message;
+        this.isLoading = false;
+        this.$emit('showAlert', { type: 'Error', title: res.errorMessage });
       }
-    }).catch((e) => {
-      errorMessageForLogin.value = e.response.data.message;
-      user.value.password = '';
-    });
-}
+    },
+    ...mapActions(adminAccountStore, ['checkAccountState', 'setLogoutState']),
+  },
+  mounted() {
+    this.setLogoutState();
+    this.checkAccountState(this);
+  },
+};
 </script>
 
 <template>
+  <loading-view :active="isLoading"/>
   <div class="flex-fill d-flex align-items-center">
     <div class="container">
       <div class="row justify-content-center align-items-center h-100">
@@ -67,7 +74,7 @@ function login() {
                 </div>
                 <button type="submit" class="btn btn-primary w-100">登入</button>
               </v-form>
-              <p class="text-muted mt-3 mb-0">© 2021~∞ - VegetableShop</p>
+              <p class="text-muted mt-3 mb-0">© 2024~∞ - JuiceOasis</p>
             </div>
           </div>
         </div>

@@ -1,11 +1,11 @@
-<script setup>
-defineProps({
-  pagination: Object,
-});
+<script>
+export default {
+  props: ['pagination'],
+};
 </script>
 
 <template>
-  <nav>
+  <nav v-if="pagination.total_pages > 1">
     <ul class="pagination justify-content-center">
         <li class="page-item">
             <a class="page-link"

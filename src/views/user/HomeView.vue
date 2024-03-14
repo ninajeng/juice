@@ -1,8 +1,16 @@
+<script>
+import CheckLogin from '@/mixins/user/CheckLogin.vue';
+
+export default {
+  mixins: [CheckLogin],
+};
+</script>
+
 <template>
-  <div style="min-height: 100vh" class="d-flex justify-content-center align-items-center">
+  <div class="flex-fill d-flex justify-content-center align-items-center">
     <button type="button"
       class="btn btn-primary"
-      @click="$router.push('/dashboard/login')">
+      @click="$router.push({name: 'adminLogin'})">
       前往後台登入
     </button>
   </div>

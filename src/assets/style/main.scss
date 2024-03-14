@@ -1,19 +1,52 @@
 @import '~/bootstrap/scss/functions';
-@import './helpers/variables';
+@import '@/assets/style/helpers/variables';
 @import '~/bootstrap/scss/bootstrap';
 
 @import '~/bootstrap-icons/font/bootstrap-icons.min.css';
 
-// @import '~/@sweetalert2/theme-minimal/minimal.scss';
-// @import '~/@sweetalert2/src/sweetalert2.scss';
+@import 'sweetalert2/src/sweetalert2.scss';
 @import '@sweetalert2/theme-minimal/minimal.scss';
 
-.custom-popover {
-    --bs-popover-bg: var(--bs-secondary);
-    --bs-popover-body-color: var(--bs-white);
-    --bs-popover-border-color: var(--bs-secondary);
+.btn-primary:hover {
+    color: #FFFFFF;
+    background-color: darken($primary, 20%);
 }
-// div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus {
-//     /* box-shadow: none; */
-//     box-shadow: 0 0 0 3px rgba(12, 213, 19, 0.5)
-//   }
+.btn-outline-primary:hover, .btn-outline-gray:hover {
+    color: #FFFFFF;
+}
+
+.text-primary-dark {
+    color: $blue-600;
+}
+
+.swal2-container{
+    z-index: 10000;
+}
+
+.productBadge {
+    border: 1px solid gray;
+    color: gray;
+    font-size: 0.75rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    font-weight: bold;
+    vertical-align: middle;
+    margin: 0px;
+}
+
+.productBadge.secondaryOutlineBadge {
+    border: 1px solid var(--bs-secondary);
+    color: var(--bs-secondary);
+}
+
+.productBadge.secondaryBadge {
+    border: 0px;
+    background-color: var(--bs-secondary);
+    color: var(--bs-white);
+}
+
+.swal2-container.swal2-top-end{
+    padding-top: 80px;
+}
