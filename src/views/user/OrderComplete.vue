@@ -30,6 +30,8 @@ export default {
       if (!res.success) {
         this.toastShow('error', this.$errorMessage);
         this.$router.replace({ name: 'cart' });
+      } else if (!res.data.message.length) {
+        this.$router.replace({ name: 'cart' });
       } else {
         [this.orderInfo] = res.data.message;
       }
@@ -78,7 +80,7 @@ export default {
           <p class="mb-0">{{ orderInfo.contact.message }}</p>
         </div>
       </div>
-      <router-link :to="{name: 'cart'}"
+      <router-link :to="{name: 'products'}"
         class="btn btn-primary my-3">
         查看菜單<i class="bi bi-caret-right-fill ms-1"></i>
       </router-link>

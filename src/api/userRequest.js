@@ -7,7 +7,7 @@ const LOGIN_PATH = `${base.USER_URL}/login`;
 const USER_PATH = `${base.USER_URL}/600/users`;
 const CART_PATH = `${base.USER_URL}/600/carts`;
 const COUPON_PATH = `${base.USER_URL}/coupons`;
-const ORDER_PATH = `${base.USER_URL}/600/order`;
+const FEEDBACK_PATH = `${base.USER_URL}/feedbacks`;
 
 // 產品
 export function getProducts() {
@@ -77,4 +77,8 @@ export function sentOrder(userId, data) {
 
 export function getOrder(userId, orderId) {
   return base.axiosFunction('get', `${USER_PATH}/${userId}/orders?id=${orderId}`, null, cookie.getUserToken());
+}
+// 客戶回饋
+export function getFeedback() {
+  return base.axiosFunction('get', FEEDBACK_PATH);
 }

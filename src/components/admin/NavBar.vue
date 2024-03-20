@@ -48,7 +48,7 @@ export default {
 
 <template>
   <loading-view :active="isLoading" />
-  <nav class="navbar bg-body-tertiary sticky-top" ref="navbar">
+  <nav class="navbar bg-body-tertiary sticky-top" style="min-height: 55px;" ref="navbar">
     <div class="container-fluid justify-content-start">
       <button class="btn me-1" @click="isShowMenu = !isShowMenu" v-if="hasCheckedAuth">
         <i class="bi bi-list"></i>
@@ -72,11 +72,15 @@ export default {
           <div v-if="hasCheckedAuth">
             <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
               to="products">
-              我的產品
+              產品管理
             </RouterLink>
             <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
               to="coupons">
-              優惠券列表
+              優惠券管理
+            </RouterLink>
+            <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
+              to="orders">
+              訂單管理
             </RouterLink>
           </div>
         </div>

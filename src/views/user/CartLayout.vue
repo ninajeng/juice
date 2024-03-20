@@ -34,7 +34,7 @@ export default {
 </script>
 
 <template>
-  <div class="position-relative">
+  <div>
     <img src="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="購物車結帳背景圖"
       style="height: 300px; width: 100%; object-fit: cover; object-position: bottom center;">
   </div>

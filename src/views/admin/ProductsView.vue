@@ -1,6 +1,7 @@
 <script>
 import ProductModal from '@/components/admin/ProductModal.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
+import CheckAccount from '@/mixins/admin/CheckAccount.vue';
 import DeleteAlertWindow from '@/mixins/admin/DeleteAlertWindow.vue';
 import adminAccountStore from '@/stores/adminAccountStore';
 import { mapActions } from 'pinia';
@@ -18,15 +19,18 @@ export default {
     };
   },
   inject: ['alertWindow'],
-  mixins: [DeleteAlertWindow],
+  mixins: [CheckAccount, DeleteAlertWindow],
   components: {
     ProductModal,
     PaginationComponent,
   },
   methods: {
+    init() {
+      this.getData();
+    },
     async getData() {
       this.isLoading = true;
-      const res = await this.$adminRequest.getProducts();
+      const res = await this.$adminRequest.getProducts(this.nowPage);
       if (res.success) {
         this.pagination = res.data.pagination;
         this.products = res.data.products;
@@ -44,11 +48,8 @@ export default {
         });
       }
     },
-    editProduct(data = {}) {
+    editProduct(data) {
       this.tempProduct = { ...data };
-      if (!Array.isArray(this.tempProduct.imagesUrl)) {
-        this.tempProduct.imagesUrl = [];
-      }
       this.$refs.ProductModal.show();
     },
     async updateProduct(data) {
@@ -85,13 +86,6 @@ export default {
     },
     ...mapActions(adminAccountStore, ['checkAccountState']),
   },
-  async mounted() {
-    this.isLoading = true;
-    const result = await this.checkAccountState(this);
-    if (result) {
-      this.getData();
-    }
-  },
 };
 </script>
 
@@ -103,9 +97,9 @@ export default {
         align-items-center flex-wrap
         position-fixed w-100 bg-white"
         style="z-index: 2;">
-      <h2 class="mb-0 me-2 opacity-75">我的產品</h2>
+      <h2 class="mb-0 me-2 opacity-75">產品管理</h2>
       <a href="#" class="link-primary fs-4"
-        @click.prevent="editProduct" title="建立新產品">
+        @click.prevent="editProduct({})" title="建立新產品">
         <i class="bi bi-plus-square-fill"></i>
       </a>
     </div>

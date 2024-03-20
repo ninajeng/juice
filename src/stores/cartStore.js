@@ -112,7 +112,7 @@ export default defineStore('cartStore', {
       }
       let totalPrice = price;
       if (this.cartInfo.coupon?.code) {
-        totalPrice = Math.ceil(totalPrice * this.cartInfo.coupon.discount);
+        totalPrice = Math.ceil(totalPrice * this.cartInfo.coupon.discount * 0.01);
       }
       const res = await updateCart(this.cartInfo.id, {
         list, price, totalPrice, cartItemNum,
@@ -131,11 +131,18 @@ export default defineStore('cartStore', {
       if (!couponInfo.success) {
         return errorMessage;
       }
-      if (!couponInfo.data.message.length) {
+      if (!couponInfo.data.message.length || !couponInfo.data.message[0].isEnabled) {
         return '此優惠卷不存在';
       }
+      if (new Date(couponInfo.data.message[0].dueDate).getTime() < Date.now()) {
+        return '此優惠卷已過期';
+      }
       const coupon = { ...couponInfo.data.message[0] };
-      const totalPrice = Math.ceil(this.cartInfo.totalPrice * coupon.discount);
+      let totalPrice = 0;
+      if (this.cartInfo.list.length > 0) {
+        totalPrice = this.cartInfo.list.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+      }
+      totalPrice = Math.ceil(totalPrice * coupon.discount * 0.01);
       const res = await updateCart(this.cartInfo.id, { coupon, totalPrice });
       if (!res.success) {
         return errorMessage;
@@ -150,7 +157,12 @@ export default defineStore('cartStore', {
       if (!userId) {
         return '請先登入';
       }
-      let res = await sentOrder(userId, data);
+      const order = {
+        ...data,
+        isFinish: false,
+        createTime: new Date().getTime(),
+      };
+      let res = await sentOrder(userId, order);
       if (!res.success) {
         return errorMessage;
       }

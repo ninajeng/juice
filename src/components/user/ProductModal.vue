@@ -190,7 +190,7 @@ export default {
             </button>
           </div>
           <button type="button" class="btn btn-primary mb-2"
-            @click="addItemToCart()">{{ `${isUpdate ? '更新' : '加入'}購物車` }}</button>
+            @click="addItemToCart">{{ `${isUpdate ? '更新' : '加入'}購物車` }}</button>
         </div>
       </div>
     </div>

@@ -81,6 +81,9 @@ export default {
         this.toastShow('error', this.$errorMessage);
       }
     },
+    setQtyOption(qty) {
+      return qty > 10 ? qty : 10;
+    },
     ...mapActions(cartStore, ['removeItem', 'removeAll', 'setItemQty']),
     ...mapActions(productStore, ['setProductData']),
   },
@@ -169,7 +172,9 @@ export default {
             <select class="form-select" :id="'itemQty' + cartItem.cartId"
               :value="cartItem.qty"
               @change="setQuantity(cartItem.cartId, Number($event.target.value))">
-              <option v-for="i in 10" :key="'cartItemQty' + i">{{ i }}</option>
+              <option v-for="i in setQtyOption(cartItem.qty)" :key="'cartItemQty' + i">
+                {{ i }}
+              </option>
             </select>
           </div>
         </div>

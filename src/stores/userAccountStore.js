@@ -9,7 +9,6 @@ export default defineStore('userAccountStore', {
   actions: {
     setUserData(data) {
       this.userData = data;
-      console.log(this.userData);
     },
     async checkAuth() {
       const res = await checkLoginState();

@@ -7,9 +7,12 @@
 @import 'sweetalert2/src/sweetalert2.scss';
 @import '@sweetalert2/theme-minimal/minimal.scss';
 
+@import '@/assets/style/helpers/swiper';
+
 .btn-primary:hover {
     color: #FFFFFF;
     background-color: darken($primary, 20%);
+    border-color: darken($primary, 20%);
 }
 .btn-outline-primary:hover, .btn-outline-gray:hover {
     color: #FFFFFF;

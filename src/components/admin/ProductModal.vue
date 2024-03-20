@@ -1,6 +1,7 @@
 <script>
 import Modal from 'bootstrap/js/dist/modal';
 import Tab from 'bootstrap/js/dist/tab';
+import ToastMessage from '@/mixins/ToastMessage.vue';
 
 export default {
   data() {
@@ -9,15 +10,23 @@ export default {
       productModal: null,
       requiredDataTab: null,
       isAliveForm: false,
+      tempImgUrl: '',
+      isFile: false,
+      isLoading: false,
     };
   },
   props: ['tempProduct'],
+  emits: ['updateProduct'],
+  mixins: [ToastMessage],
   watch: {
     tempProduct(data) {
       this.productData = JSON.parse(JSON.stringify(data));
       const { drinkOptions } = this.$productTemplate;
       if (!this.productData.custom) {
         this.productData.custom = JSON.parse(JSON.stringify(drinkOptions));
+      }
+      if (!this.productData.sugarGramPer100ml) {
+        this.productData.sugarGramPer100ml = this.$productTemplate.sugarGramPer100ml;
       }
     },
   },
@@ -30,6 +39,8 @@ export default {
     hide() {
       this.productModal.hide();
       this.isAliveForm = false;
+      this.tempImgUrl = '';
+      this.isFile = false;
     },
     updateProduct() {
       this.$emit('updateProduct', this.productData);
@@ -58,6 +69,34 @@ export default {
       const result = this.$filters.currency(price + add);
       return result === 'NaN' ? '尚未設定價格' : result;
     },
+    editImageUrl() {
+      this.tempImgUrl = this.productData.imageUrl;
+      this.productData.imageUrl = '';
+    },
+    checkUploadFile() {
+      if (this.$refs.imageFile.files[0]) {
+        this.isFile = true;
+      } else {
+        this.isFile = false;
+      }
+    },
+    async uploadFile() {
+      if (!this.$refs.imageFile.files[0]) {
+        return;
+      }
+      this.isLoading = true;
+      const file = this.$refs.imageFile.files[0];
+      const form = new FormData();
+      form.append('file-to-upload', file);
+      const res = await this.$adminRequest.uploadImage(form);
+      if (!res.success) {
+        this.toastShow('error', this.$errorMessage);
+        this.isLoading = false;
+        return;
+      }
+      this.productData.imageUrl = res.data.imageUrl;
+      this.isLoading = false;
+    },
   },
   mounted() {
     this.productModal = new Modal(this.$refs.modal, {
@@ -69,6 +108,7 @@ export default {
 </script>
 
 <template>
+  <loading-view :active="isLoading" />
   <div class="modal fade" ref="modal">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
       <div class="modal-content">
@@ -317,20 +357,66 @@ export default {
                           v-model="productData.ingredients"
                           :disabled="productData.type !== 'drink'"></textarea>
                       </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="calories" class="form-label">飲品熱量
+                            <span class="text-muted fs-7">(大卡/100ml)</span>
+                          </label>
+                          <input type="text" id="calories" class="form-control"
+                            placeholder="請輸入飲品卡路里" v-model="productData.calories"
+                            :disabled="productData.type !== 'drink'">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="calories" class="form-label">全糖使用克數
+                            <span class="text-muted fs-7">(克/100ml)</span>
+                          </label>
+                          <input type="text" id="calories" class="form-control"
+                            placeholder="請輸入全糖使用的糖克數" v-model="productData.sugarGramPer100ml"
+                            :disabled="productData.type !== 'drink'">
+                        </div>
+                      </div>
                       <div class="mb-3">
-                        <label for="calories" class="form-label">熱量
-                          <span class="text-muted fs-7">(大卡/100ml)</span>
-                        </label>
-                        <textarea id="calories" class="form-control" placeholder="請輸入飲品卡路里"
+                        <!-- <textarea id="calories" class="form-control" placeholder="請輸入飲品卡路里"
                           v-model="productData.calories"
-                          :disabled="productData.type !== 'drink'"></textarea>
+                          :disabled="productData.type !== 'drink'"></textarea> -->
                       </div>
                   </div>
                   <div class="tab-pane fade" id="nav-img">
-                    <div class="mb-3">
-                      <label for="imageUrl" class="form-label">主圖片網址</label>
-                      <input type="text" id="imageUrl" class="form-control" placeholder="請輸入主圖片網址"
-                        v-model="productData.imageUrl">
+                    <div v-if="productData.imageUrl">
+                      <label class="form-label">圖片網址</label>
+                      <div class="input-group mb-3">
+                        <input type="text" id="imageUrl-now" class="form-control"
+                          placeholder="圖片網址" v-model="productData.imageUrl" disabled>
+                        <button class="btn btn-gray" type="button"
+                          @click="editImageUrl">
+                          編輯
+                        </button>
+                      </div>
+                    </div>
+                    <div class="mb-3" v-else>
+                      <label for="imageUrl" class="form-label">輸入圖片網址 / 上傳圖片</label>
+                      <div class="input-group mb-3">
+                        <input type="text" id="imageUrl" class="form-control"
+                          placeholder="請輸入圖片網址" v-model="tempImgUrl">
+                        <button class="btn btn-gray" type="button"
+                          :disabled="!tempImgUrl" @click="productData.imageUrl = tempImgUrl">
+                          使用圖片
+                        </button>
+                      </div>
+                      <div class="input-group mb-3">
+                        <input
+                          type="file"
+                          name="imageFile"
+                          id="imageFile"
+                          class="form-control"
+                          ref="imageFile"
+                          @change="checkUploadFile"
+                        />
+                        <button class="btn btn-gray" type="button"
+                          :disabled="!isFile" @click="uploadFile()">
+                          上傳圖片
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div class="tab-pane fade" id="nav-select">
@@ -433,7 +519,7 @@ export default {
             </div>
             <div class="text-end mt-4">
               <button type="button" class="btn text-muted" @click="hide">取消</button>
-              <button type="submit" class="btn btn-primary" @click="requiredDataTab.show()">
+              <button type="submit" class="btn btn-primary" @click="requiredDataTab.show">
                 {{ productData.id ? '更新' : '新增' }}
               </button>
             </div>

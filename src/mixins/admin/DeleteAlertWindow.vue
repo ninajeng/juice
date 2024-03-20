@@ -13,7 +13,7 @@ export default {
       });
 
       swalButtons.fire({
-        title: `刪除 "${item.title}" ${name}?`,
+        title: `刪除 "${item.title || item.name}" ${name}?`,
         text: '刪除後將無法恢復',
         icon: 'warning',
         confirmButtonText: '刪除',

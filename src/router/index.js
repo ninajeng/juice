@@ -12,6 +12,7 @@ import AdminLayout from '@/views/admin/LayoutView.vue';
 import AdminLoginView from '@/views/admin/LoginView.vue';
 import AdminProductsView from '@/views/admin/ProductsView.vue';
 import AdminCouponsView from '@/views/admin/CouponsView.vue';
+import AdminOrdersView from '@/views/admin/OrdersView.vue';
 
 const webName = '果時';
 
@@ -27,12 +28,19 @@ const router = createRouter({
           name: 'home',
           component: HomeView,
           meta: {
-            title: webName,
+            title: `${webName} - 享受無盡的果汁時光`,
           },
         },
         {
           path: 'products',
           name: 'products',
+          component: UserProductsView,
+          meta: {
+            title: `${webName} - 查看菜單`,
+          },
+        },
+        {
+          path: 'products/:id',
           component: UserProductsView,
           meta: {
             title: `${webName} - 查看菜單`,
@@ -91,7 +99,7 @@ const router = createRouter({
           name: 'adminProducts',
           component: AdminProductsView,
           meta: {
-            title: `${webName} 後台 - 我的產品`,
+            title: `${webName}/後台 - 產品管理`,
           },
         },
         {
@@ -99,7 +107,15 @@ const router = createRouter({
           name: 'adminCoupons',
           component: AdminCouponsView,
           meta: {
-            title: `${webName} 後台 - 優惠卷列表`,
+            title: `${webName}/後台 - 優惠卷管理`,
+          },
+        },
+        {
+          path: 'orders',
+          name: 'adminOrders',
+          component: AdminOrdersView,
+          meta: {
+            title: `${webName}/後台 - 訂單管理`,
           },
         },
       ],

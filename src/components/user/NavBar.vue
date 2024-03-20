@@ -38,11 +38,29 @@ export default {
         }
       }
     },
+    login() {
+      this.setLoginWindowSignal(true);
+      this.closeNav();
+    },
     logout() {
       this.$userRequest.logout();
       this.setUserData({});
       this.toastShow('success', '會員已登出');
       this.$router.replace({ name: 'home' });
+      this.closeNav();
+    },
+    closeNav() {
+      this.$refs.navCollapse.classList.remove('show');
+    },
+    setZIndex() {
+      const collapseClassList = this.$refs.navCollapse.classList;
+      if ([...collapseClassList].indexOf('show') > -1) {
+        collapseClassList.remove('show');
+        this.$refs.navbar.style['z-index'] = '1020';
+      } else {
+        collapseClassList.add('show');
+        this.$refs.navbar.style['z-index'] = '1050';
+      }
     },
     ...mapActions(cartStore, ['getCartInfo']),
     ...mapActions(userAccountStore, ['setLoginWindowSignal', 'setUserData']),
@@ -55,54 +73,40 @@ export default {
 
 <template>
   <LoginOffcanvas/>
-  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm" ref="navbar">
     <div class="container">
-      <logoHTML/>
+      <logoHTML @click="closeNav"/>
       <button class="navbar-toggler p-2"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarContent">
+        @click="setZIndex">
         <span class=""><i class="bi bi-list"></i></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- data-bs-toggle="collapse"
+        data-bs-target="#navbarContent" -->
+      <div class="collapse navbar-collapse" id="navbarContent" ref="navCollapse">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
           <li class="nav-item">
-            <router-link class="nav-link link-primary px-3" to="/products">
+            <router-link class="nav-link link-primary px-3"
+              to="/products"
+              @click="closeNav">
               <i class="bi bi-list me-1"></i>查看菜單
             </router-link>
           </li>
           <li class="nav-item" v-if="!hasLogin">
-            <a href="#" class="nav-link link-primary ps-3 pe-0"
-              @click.prevent="setLoginWindowSignal(true)">
-              <i class="bi bi-person-fill"></i>會員登入
+            <a href="#" class="nav-link link-primary px-3 pe-lg-0"
+              @click.prevent="login">
+              <i class="bi bi-person-fill me-1"></i>會員登入
             </a>
           </li>
           <template v-else>
-            <li class="nav-item dropdown" data-bs-toggle="dropdown">
-              <a href="#" class="nav-link dropdown-toggle link-primary px-3" @click.prevent="">
-                <i class="bi bi-person-fill"></i>
+            <li class="nav-item">
+              <a class="nav-link link-primary px-3" href="#" @click.prevent="logout">
+                <i class="bi bi-box-arrow-right me-1"></i>會員登出
               </a>
-              <ul class="dropdown-menu border-primary-subtle">
-                <li>
-                  <a class="dropdown-item link-primary" href="#">
-                    <i class="bi bi-person-lines-fill me-2"></i>個人資料
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item link-primary" href="#">
-                    <i class="bi bi-list-ul me-2"></i>訂單查詢
-                  </a>
-                </li>
-                <li><hr class="dropdown-divider border-primary-subtle"></li>
-                <li>
-                  <a class="dropdown-item link-primary" href="#" @click.prevent="logout">
-                    <i class="bi bi-box-arrow-right me-2"></i>會員登出
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item mt-1">
-              <router-link class="nav-link link-primary ps-3 pe-0 mb-1" to="/user/cart">
+              <router-link class="nav-link link-primary px-3 pe-lg-0 mb-1" to="/user/cart">
                 <i class="bi bi-cart-fill me-1"></i>購物車
                 <span class="badge rounded-pill bg-danger align-middle"
                   style="transform: translateY(-2px);">{{ cartItemNum }}</span>

@@ -40,7 +40,7 @@ export default {
     <hr>
     <div class="d-flex justify-content-between">
       <p class="mb-0">{{ `商品共 ${cartItemNum} 件` }}</p>
-      <p class="mb-0">{{ `NT$ ${cartInfo.price}` }}</p>
+      <p class="mb-0">{{ `NT$ ${$filters.currency(cartInfo.price)}` }}</p>
     </div>
     <div class="input-group mt-3" v-if="isEdit">
       <input type="text" class="form-control border-primary"
@@ -52,8 +52,8 @@ export default {
       <p class="mt-3">已套用的優惠券：</p>
       <div class="d-flex justify-content-between">
         <p class="mb-0">{{ `${cartInfo.coupon.code} ${cartInfo.coupon.name}
-          ${cartInfo.coupon.discount * 100 % 10 === 0 ?
-            cartInfo.coupon.discount * 10 : cartInfo.coupon.discount * 100 } 折` }}</p>
+          ${cartInfo.coupon.discount % 10 === 0 ?
+            cartInfo.coupon.discount / 10 : cartInfo.coupon.discount } 折` }}</p>
         <p class="mb-0">
           {{ `-${$filters.currency(cartInfo.price - cartInfo.totalPrice)}` }}
         </p>
@@ -62,7 +62,7 @@ export default {
     <hr>
     <div class="d-flex justify-content-between">
       <p>總金額</p>
-      <p class="fw-bolder">{{ `NT$ ${cartInfo.totalPrice}` }}</p>
+      <p class="fw-bolder">{{ `NT$ ${$filters.currency(cartInfo.totalPrice)}` }}</p>
     </div>
     <router-link :to="{name: 'orderContact' }"
       class="btn btn-primary mb-3" v-if="isEdit">

@@ -10,7 +10,7 @@ export const types = {
 export const categories = [
   {
     type: 'drink',
-    name: '現打果汁',
+    name: '純果汁',
   },
   {
     type: 'drink',
@@ -18,7 +18,7 @@ export const categories = [
   },
   {
     type: 'drink',
-    name: '果汁牛奶',
+    name: '果汁佐茶',
   },
   {
     type: 'drink',
@@ -30,7 +30,7 @@ export const categories = [
   },
   {
     type: 'fruit',
-    name: '新鮮水果',
+    name: '整顆/分裝水果',
   },
 ];
 
@@ -58,3 +58,5 @@ export const drinkOptions = {
     addPrice: 10,
   },
 };
+
+export const sugarGramPer100ml = 6;
