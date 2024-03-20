@@ -30,6 +30,7 @@ export default {
       }
     },
     async addItemToCart() {
+      this.isLoading = true;
       const resError = await this.setCustomItem(this.isUpdate);
       if (!resError) {
         this.toastShow('success', `已${this.isUpdate ? '更新' : '加入'}購物車！`);
