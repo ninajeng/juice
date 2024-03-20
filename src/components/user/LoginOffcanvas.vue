@@ -111,7 +111,7 @@ export default {
         <div class="position-absolute w-100 h-100"
           :class="isRegister ? 'hideContent' : 'showContent'">
           <div class="d-flex h-100">
-            <div class="my-auto w-100">
+            <div class="w-100">
               <div class="content">
                 <h3 class="mb-3 text-center">會員登入</h3>
                 <div class="alert alert-danger mb-3" v-if="loginError">
