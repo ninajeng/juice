@@ -57,6 +57,7 @@ export default {
         userCustom = { ...this.userCustom };
         if (userCustom.extras.length) {
           const addPrice = userCustom.extras.length * product.custom.extras.addPrice;
+          userCustom.extras.sort();
           originPrice += addPrice;
           price += addPrice;
         }
