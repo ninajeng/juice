@@ -41,7 +41,7 @@ export default {
   <div class="container py-5">
     <template v-if="cartInfo.list?.length">
       <h2 class="h5">{{ `${stepNum === 3 ? '訂購完成' : '結帳'}` }}</h2>
-      <div class="d-flex flex-wrap text-nowrap mb-5" v-if="stepNum < 3">
+      <div class="d-flex flex-wrap text-nowrap mb-5 overflow-hidden" v-if="stepNum < 3">
         <p class="p-2 mb-1 flex-fill text-center stepLabel" :class="{'stepActive': stepNum > key}"
           v-for="(step, key) in steps" :key="'step' + key">
           <i class="bi me-1" :class="step.icon"></i>{{ step.info }}

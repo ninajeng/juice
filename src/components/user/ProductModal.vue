@@ -41,6 +41,7 @@ export default {
       this.setProductData(null);
     },
     async addItemToCart() {
+      this.isLoading = true;
       const resError = await this.setCustomItem(this.isUpdate);
       if (!resError) {
         this.hide();

@@ -106,7 +106,8 @@ export default {
               </a>
             </li>
             <li class="nav-item mt-1">
-              <router-link class="nav-link link-primary px-3 pe-lg-0 mb-1" to="/user/cart">
+              <router-link class="nav-link link-primary px-3 pe-lg-0 mb-1"
+                to="/user/cart" @click="closeNav">
                 <i class="bi bi-cart-fill me-1"></i>購物車
                 <span class="badge rounded-pill bg-danger align-middle"
                   style="transform: translateY(-2px);">{{ cartItemNum }}</span>
