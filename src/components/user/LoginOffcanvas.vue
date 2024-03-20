@@ -111,17 +111,11 @@ export default {
         <div class="position-absolute w-100 h-100"
           :class="isRegister ? 'hideContent' : 'showContent'">
           <div class="d-flex h-100">
-            <div class="w-100">
+            <div class="my-auto w-100">
               <div class="content">
                 <h3 class="mb-3 text-center">會員登入</h3>
                 <div class="alert alert-danger mb-3" v-if="loginError">
                   <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ loginError }}
-                </div>
-                <div class="form-floating mb-4">
-                  <v-field type="text" id="username" placeholder="請輸入姓名" name="姓名"
-                    class="form-control"
-                    rules="required"/>
-                  <label for="username">測試*</label>
                 </div>
                 <v-form v-slot="{ errors }" @submit="login" v-if="!isRegister">
                   <div class="form-floating mb-3">
@@ -256,7 +250,7 @@ export default {
   100%{
     display: none;
     opacity: 0;
-    transform: translateY(-50%);
+    transform: translateY(-100%);
     filter: blur(4px);
   }
 }
