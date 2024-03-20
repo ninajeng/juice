@@ -22,20 +22,25 @@ export default {
       <div class="col">
         <div class="card-body d-flex flex-column h-100">
           <h5 class="card-title mb-0">{{ productInfo.title }}
-            <span class="productBadge secondaryOutlineBadge">{{ productInfo.category }}</span>
+            <span class="productBadge secondaryOutlineBadge d-inline-block my-2">
+              {{ productInfo.category }}
+            </span>
           </h5>
           <div class="mt-auto">
             <p class="card-text">
               <span v-if="productInfo.origin_price === productInfo.price">
                 {{ `NT$ ${$filters.currency(productInfo.price)}` }}
+                <span class="text-muted fs-7">{{ ` / ${productInfo.unit}` }}</span>
               </span>
-              <span class="text-danger" v-else>
+              <span class="text-danger me-1" v-else>
                 {{ `NT$ ${$filters.currency(productInfo.price)}` }}
-                <del class="ms-1 text-muted">
-                  {{ `NT$ ${$filters.currency(productInfo.origin_price)}` }}
-                </del>
+                <div class="d-inline-block">
+                  <del class="text-muted">
+                    {{ `NT$ ${$filters.currency(productInfo.origin_price)}` }}
+                  </del>
+                  <span class="text-muted fs-7">{{ ` / ${productInfo.unit}` }}</span>
+                </div>
               </span>
-              <span class="text-muted fs-7">{{ ` / ${productInfo.unit}` }}</span>
             </p>
             <a href="#"
               class="btn btn-primary stretched-link"

@@ -60,9 +60,10 @@ export default {
           </ol>
         </nav>
         <div class="text-center">
-          <img :src="productData.imageUrl" :alt="productData.title"
-            style="width: 500px; height: 400px;
-            object-fit: cover; object-position: center;" v-if="productData.imageUrl">
+          <div class="productImage">
+            <img :src="productData.imageUrl" :alt="productData.title"
+              class="img-fluid" v-if="productData.imageUrl">
+          </div>
         </div>
       </div>
       <div class="ms-0 ms-lg-5">
@@ -193,3 +194,14 @@ export default {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.productImage{
+  max-width: 100%;
+}
+@media (min-width: 992px){
+  .productImage{
+    max-width: 500px;
+  }
+}
+</style>

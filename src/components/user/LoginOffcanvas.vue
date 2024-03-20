@@ -117,6 +117,12 @@ export default {
                 <div class="alert alert-danger mb-3" v-if="loginError">
                   <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ loginError }}
                 </div>
+                <div class="form-floating mb-4">
+                  <v-field type="text" id="username" placeholder="請輸入姓名" name="姓名"
+                    class="form-control"
+                    rules="required"/>
+                  <label for="username">測試*</label>
+                </div>
                 <v-form v-slot="{ errors }" @submit="login" v-if="!isRegister">
                   <div class="form-floating mb-3">
                     <v-field type="email" class="form-control"
@@ -220,7 +226,12 @@ export default {
 
 <style lang="scss" scoped>
 .offcanvas{
-  width: 75%;
+  width: 100%;
+}
+@media (min-width: 992px){
+  .offcanvas{
+    width: 75%;
+  }
 }
 .content{
   max-width: 500px;

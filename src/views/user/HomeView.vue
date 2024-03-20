@@ -148,7 +148,7 @@ export default {
   </section>
 
   <section class="mt-5 container">
-    <div class="position-relative mb-3 storeFeature"
+    <div class="position-relative mb-3 storeFeature d-none d-lg-block"
       :style="{'background-image': `url(${feature.imgUrl})`}"
                 v-for="(feature, key) in storeFeature" :key="'feature' + key">
       <div class="h-100 d-flex align-items-center"
@@ -158,69 +158,72 @@ export default {
         </div>
       </div>
     </div>
+    <div class="mb-4 border border-primary p-3 d-lg-none"
+      v-for="(feature, key) in storeFeature" :key="'feature-m' + key">
+      <h3 class="text-center">{{ feature.title }}</h3>
+      <div>
+        <img :src="feature.imgUrl" alt="" class="img-fluid">
+      </div>
+    </div>
   </section>
 
-  <section class="py-5">
-    <div class="container">
-      <h3 class="mb-5 text-center">週年慶活動開跑</h3>
-      <div class="border pt-4 pb-3 text-center position-relative mb-5">
-        <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
-          <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
-            活動一
-          </span>
+  <section class="container py-5">
+    <h3 class="mb-5 text-center">週年慶活動開跑</h3>
+    <div class="border p-3 pt-4 text-center position-relative mb-5">
+      <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
+        <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
+          活動一
+        </span>
+      </p>
+      <h4 class="mt-4 fw-semibold">週年慶折扣碼優惠</h4>
+      <p>結帳使用週年慶折扣碼，享九五折優惠。</p>
+      <div class="d-flex justify-content-center mb-3">
+        <p class="display-6 me-2 my-1 text-secondary">
+          <i class="bi bi-ticket-perforated-fill fs-3"></i>
+          {{ couponCode }}
         </p>
-        <h4 class="mt-4 fw-semibold">週年慶折扣碼優惠</h4>
-        <p>結帳使用週年慶折扣碼，享九五折優惠。</p>
-        <div class="d-flex justify-content-center mb-3">
-          <p class="display-6 me-2 my-1 text-secondary">
-            <i class="bi bi-ticket-perforated-fill fs-3"></i>
-            {{ couponCode }}
-          </p>
-          <button
-            type="button"
-            class="btn btn btn-primary my-1 align-self-center"
-            @click="copyCode(couponCode, $event)"
-          >
-            複製優惠碼
-          </button>
-        </div>
+        <button
+          type="button"
+          class="btn btn btn-primary my-1 align-self-center"
+          @click="copyCode(couponCode, $event)"
+        >
+          複製優惠碼
+        </button>
       </div>
-      <div class="border pt-4 pb-3 text-center position-relative">
-        <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
-          <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
-            活動二
-          </span>
-        </p>
-        <h4 class="my-4 fw-semibold">官網限定優惠</h4>
-        <div class="row justify-content-center align-items-center mb-3 text-start"
-          :class="{'flex-row-reverse': key % 2 !== 0}"
-          v-for="(product, key) in onSalesData" :key="product.id">
-          <div class="col-md-5" :class=" key % 2 === 0 ? 'text-end': 'text-start'">
-            <img :src="product.imageUrl" :alt="product.title"
-              class="w-100" style="width: 400px;height: 400px; object-fit: cover;">
-          </div>
-          <div class="col-md-5">
-            <div class="">
-              <h4 class="mb-3">{{ product.title }}</h4>
-              <p>{{ product.description }}</p>
-              <p>
-                <span v-if="product.origin_price === product.price">
-                  {{ `NT$ ${$filters.currency(product.origin_price)}` }}
-                </span>
-                <span class="text-danger" v-else>
-                  {{ `NT$ ${$filters.currency(product.price)}` }}
-                  <del class="ms-1 text-muted">
-                    {{ `NT$ ${$filters.currency(product.origin_price)}` }}
-                  </del>
-                </span>
-                <span class="text-muted fs-7">{{ ` / ${product.unit}` }}</span>
-              </p>
-              <router-link :to="`products/${product.id}`"
-                class="btn btn-primary">
-                加入購物車<i class="bi bi-caret-right-fill ms-1"></i>
-              </router-link>
-            </div>
-          </div>
+    </div>
+    <div class="border pb-3 p-4 text-center position-relative">
+      <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
+        <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
+          活動二
+        </span>
+      </p>
+      <h4 class="my-4 fw-semibold">官網限定優惠</h4>
+      <div class="row justify-content-center align-items-center mb-lg-3 text-start"
+        :class="{'flex-row-reverse': key % 2 !== 0}"
+        v-for="(product, key) in onSalesData" :key="product.id">
+        <div class="col-md-5 mb-4 mb-md-0" :class=" key % 2 === 0 ? 'text-end': 'text-start'">
+          <img :src="product.imageUrl" :alt="product.title"
+            class="w-100" style="width: 400px;height: 400px; object-fit: cover;">
+        </div>
+        <div class="col-md-5" :class="key === onSalesData.length - 1 ? 'mb-3' : 'mb-5'">
+          <h4 class="mb-3">{{ product.title }}</h4>
+          <p>{{ product.description }}</p>
+          <p>
+            <span v-if="product.origin_price === product.price">
+              {{ `NT$ ${$filters.currency(product.origin_price)}` }}
+            </span>
+            <span class="text-danger" v-else>
+              {{ `NT$ ${$filters.currency(product.price)}` }}
+              <del class="ms-1 text-muted">
+                {{ `NT$ ${$filters.currency(product.origin_price)}` }}
+              </del>
+            </span>
+            <span class="text-muted fs-7">{{ ` / ${product.unit}` }}</span>
+          </p>
+          <router-link :to="`products/${product.id}`"
+            class="btn btn-primary">
+            加入購物車<i class="bi bi-caret-right-fill ms-1"></i>
+          </router-link>
         </div>
       </div>
     </div>
