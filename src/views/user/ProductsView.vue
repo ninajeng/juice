@@ -100,17 +100,18 @@ export default {
 <template>
   <LoadingView :active="isLoading"/>
   <ProductModal/>
-  <img src="https://images.unsplash.com/photo-1622597467821-df79dcb4f94d?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="菜單頁背景圖"
-    style="height: 300px; width: 100%; object-fit: cover; object-position: center center;">
+  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711016342192.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=qc98CuXlk6ZyibBVHszlUGLIR18B%2FMfD3FI8EthuOoCmYQFDhGl1R2%2FzANZI162RV4gaa2eG9db5DJ5ifov9mTtCxV6WkP2F2GnLCWCgZl4pU%2FxfxMJgDMaOa8xQhpLKZueAtEawaXz8vWOztowKlwJzAPJW8Ou2LyS1fiFQxGixV%2Ftj1O2iBbKgMZFY6Xfwdhwr1s0YtU%2FDxRi%2BxE8zOnBUsbXBq1K03VDx0Wd8ilP0xhyzrAzHNxUOlWEanMSUjUOJXsg2qQ1nXEogjmCHUKDgxcmidMGvmCoK7Z5jd9eEeHrDAQR652P169dRpn1LARd5UlfXcaJu%2FzseY0In6g%3D%3D" alt="菜單頁背景圖" class="bgImage"
+    style="width: 100%; object-fit: cover; object-position: center center;">
   <nav class="container" style="--bs-breadcrumb-divider: '>'; margin-bottom: -0.5rem;">
     <ol class="breadcrumb mt-4">
-      <li class="breadcrumb-item link-offset-2">
-        <router-link :to="{name: 'home'}">首頁</router-link>
+      <li class="breadcrumb-item">
+        <router-link class="link-offset-2 link-underline link-underline-opacity-75"
+          :to="{name: 'home'}">首頁</router-link>
       </li>
       <li class="breadcrumb-item active">菜單</li>
     </ol>
   </nav>
-  <div class="sticky-top bg-white pt-3 navList" style="top: 50px;">
+  <div class="sticky-top bg-white pt-3 pt-lg-1 navList" style="top: 50px;">
     <div class="container">
       <ul class="nav nav-pills text-nowrap">
         <li class="nav-item bg-light mb-2" v-for="(category, key) in categories" :key="'btn' + key">
@@ -130,3 +131,14 @@ export default {
     </template>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.bgImage{
+  height: 200px;
+}
+@media(min-width: 992px){
+  .bgImage{
+    height: 300px;
+  }
+}
+</style>

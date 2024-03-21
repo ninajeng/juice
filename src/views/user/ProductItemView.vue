@@ -48,14 +48,16 @@ export default {
   <div class="container py-5" v-if="productData.title">
     <div class="d-flex flex-column flex-lg-row
       justify-content-center justify-content-lg-start">
-      <div class="mb-3 me-0 me-lg-5">
+      <div class="mb-3 me-0 me-lg-5 h-100">
         <nav style="--bs-breadcrumb-divider: '>';">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item link-offset-2">
-              <router-link :to="{name: 'home'}">首頁</router-link>
+            <li class="breadcrumb-item">
+              <router-link :to="{name: 'home'}"
+                class="link-offset-2 link-underline link-underline-opacity-75">首頁</router-link>
             </li>
-            <li class="breadcrumb-item link-offset-2">
-              <router-link :to="{name: 'products'}">菜單</router-link>
+            <li class="breadcrumb-item">
+              <router-link :to="{name: 'products'}"
+                class="link-offset-2 link-underline link-underline-opacity-75">菜單</router-link>
             </li>
             <li class="breadcrumb-item active">{{ productData.title}}</li>
           </ol>
@@ -63,11 +65,11 @@ export default {
         <div class="text-center">
           <div class="productImage">
             <img :src="productData.imageUrl" :alt="productData.title"
-              class="img-fluid" v-if="productData.imageUrl">
+              class="w-100" style="object-fit: cover; height: 400px;" v-if="productData.imageUrl">
           </div>
         </div>
       </div>
-      <div class="ms-0 ms-lg-5">
+      <div class="ms-0 ms-lg-5 align-self-lg-center">
         <h4>
           {{ productData.title }}
           <span class="productBadge secondaryOutlineBadge">
@@ -89,7 +91,7 @@ export default {
                 <input type="radio" class="btn-check" :id="option"
                   name="sugar" :value="option"
                   v-model="userCustom.sugar" >
-                <label class="btn btn-light btn-sm" :for="option">
+                <label class="btn btn-light btn" :for="option">
                   {{ option }}
                 </label>
               </span>
@@ -104,7 +106,7 @@ export default {
                 <input type="radio" class="btn-check" :id="option"
                   name="ice" :value="option"
                   v-model="userCustom.ice">
-                <label class="btn btn-light btn-sm" :for="option">
+                <label class="btn btn-light btn" :for="option">
                   {{ option }}
                 </label>
               </span>
@@ -119,11 +121,11 @@ export default {
                 <input type="radio" class="btn-check" :id="option"
                   name="size" :value="option"
                   v-model="userCustom.size">
-                <label class="btn btn-light btn-sm" :for="option" v-if="!key">
+                <label class="btn btn-light btn" :for="option" v-if="!key">
                   {{ option }}
                   <span class="fs-7">{{ `(${productData.price}元)` }}</span>
                 </label>
-                <label class="btn btn-light btn-sm" :for="option" v-else>
+                <label class="btn btn-light btn" :for="option" v-else>
                   {{ option }}
                   <span class="fs-7">
                     {{ `(${productData.price + productData.custom.extras.addPrice}元)` }}
@@ -143,7 +145,7 @@ export default {
                 <input type="checkbox" class="btn-check" :id="option"
                   :value="option"
                   v-model="userCustom.extras">
-                <label class="btn btn-light btn-sm" :for="option">
+                <label class="btn btn-light btn" :for="option">
                   {{ option }}
                 </label>
               </span>

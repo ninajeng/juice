@@ -121,7 +121,7 @@ const router = createRouter({
       ],
     },
   ],
-  linkActiveClass: 'active',
+  linkActiveClass: 'activeLink',
 });
 
 router.beforeEach((to, from, next) => {

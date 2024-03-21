@@ -12,25 +12,25 @@ export default {
       storeFeature: [
         {
           title: '產地直送、新鮮蔬果',
-          imgUrl: 'https://images.unsplash.com/photo-1517260739337-6799d239ce83?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          imgUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711002366930.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=RYoPppqg60lmM2mC17rwdThL%2BWGQrPDS4QU%2FYMiBY5RE0dpRD0VmMgpVm8igHESz8YxJVIsPVqY31FlHPCPxp7JG66NQqaI4GS0G%2F5NWrhNa%2Bjch1us%2BRKvToeuvQ918MKXcOtjOdrTaBDcAeek2xtGXtEeK%2Ba9wDhcnroGh%2FNAJ9WPKHvnPSn%2BEKXsGcyOxKTzObdqmKBcsSSdk5soOiqq6x2tEvN0SMQtzL3tEPn9ZqajkAne81dlxbozs4jmSfLL9Z2t9Qynv%2FK6Qt7ujJM6KzvNdsm5t6W%2BeNIWejn0qRoINZ%2B0LjRxOykAnfzWkU88iigBDHo%2BPR3xrUjiXvA%3D%3D',
         },
         {
           title: '健康營養、香甜美味',
-          imgUrl: 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          imgUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711002349575.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=PIkbyeoktLeq6j%2BzemVLAkxnO%2B%2FnpbSM2PWbmiYhSmYFP2t%2FRyR8i78JucI0CjaxPOtrMdzxJ1dnp9ZJYyT3a6kpnsFiWPGLVgi3aBFiLVG8awq0Xr6tE6ic2AuB8%2FQLYEP3ImUe%2FDZzirR30I6CyaqD1zdvb0bs%2BS4691nW66b0BcyEpsdMj2nb5Sd8hqF5vbNGCeFMPxtQzSzYyxYAch79%2Bu2IA%2FIH7ywvUMsSifn0%2FBZpIBqjmCeW%2B8zvOPiUGlubyQ407WZc3kz6HvkAZsj3e%2BEF%2B4AxvRUQo4bDxP4GoC0UC7kbkJl%2FAAPlmsOnCgVcTlsu4U6cMklNGq3SyQ%3D%3D',
         },
         {
           title: '獨特飲品、多種選擇',
-          imgUrl: 'https://images.unsplash.com/photo-1574571791847-06514225b338?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          imgUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711002283149.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=blEk1Ra1mZ2QkBhIza70Drk0Yg%2FzZT30s%2BJBtgSyvAaJxvf4QfhUOd16q97OjW2irRCjswS0Be0nBkI4OXkDkrjfusWvkD%2BTLC9aO3pVZIK9X0QKzTq2y6MpQyvzsF2jFtifnO8catI35kkwO3IQaYD6QYHD9Fo7z5YA%2FRjYrerlYifDuXJ%2BAT9z1KR25hpllSCRQyyq5mHfjBgjDwgtm0jQ0P9xCYoKWCH8u2kwVH2VJj3T5KiR7G39sigZxnBX2V2g4jAyjHmxLs29HkIOaqu1zpSYijDTDERHyRS7U72FS9nVsBONfniSoMvWHba3b4C71u3UlHDHhr3xBePNzw%3D%3D',
         },
         {
           title: '24小時服務',
-          imgUrl: 'https://images.unsplash.com/photo-1599595344070-c456bea6ee98?q=80&w=1878&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          imgUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711002217128.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Qe2gVn8JqRGlmO7mXHhCl6XKS91JVOZOW1DQPFUkqrc81GHHn%2BJfK5ytFDIqVnypHSFZt%2FNfTQs%2BT2nJP5NebFZ1HpRmd1xLqO0Hon%2FTchtfyu8T6%2BGHlTMoOTv5YEW2bJkhhVOHNQxlxO1oojcsZZXBkqtEcc58CVDYLHEtG3UYT4Jxf0NBbcg7%2FZUDRxJHnRRAqX2gIX0f7BofAr8kVbKP4M7qL9Cnq7MyhFsyEtDmmnoXg7fFUjGRzT%2BXzDWHUZecjojAj1t08UT8Q%2F1dWG6gHIDI6vRYm8Jk4OPPK9sS33IKmp1MDjpDQi0AXIVlv4aWaudn85yVKpwbjlaZvw%3D%3D',
         },
       ],
       couponCode: 'anniversary',
       feedbacks: [],
-      onSalesId: ['-NtFaeJPVgdEndI-na1r', '-NtFkFeioTL8c8XzgbCm'],
-      onSalesData: [],
+      onSaleIds: ['-NtFaeJPVgdEndI-na1r', '-NtFkFeioTL8c8XzgbCm'],
+      onSaleData: [],
       swiperModules: [Navigation],
       swiperBreakpoints: {
         640: {
@@ -87,10 +87,10 @@ export default {
         this.toastShow('error', this.$errorMessage);
         return;
       }
-      this.onSalesId.forEach((id) => {
+      this.onSaleIds.forEach((id) => {
         const index = this.productList.findIndex((item) => item.id === id);
         if (index > -1) {
-          this.onSalesData.push(this.productList[index]);
+          this.onSaleData.push(this.productList[index]);
         }
       });
     },
@@ -137,10 +137,10 @@ export default {
   <section class="banner mb-5">
     <div class="container h-100 d-flex align-items-center">
       <div class="text-gray-dark">
-        <h2>享受無盡的果汁時光</h2>
-        <p class="mb-2">新鮮、健康、24小時不打烊</p>
+        <h2 class="mb-3">享受無盡的果汁時光</h2>
+        <p class="fs-5">新鮮、健康、24小時不打烊</p>
         <router-link :to="{name: 'products'}"
-          class="btn btn-primary">
+          class="btn btn-primary btn-lg">
           查看菜單<i class="bi bi-caret-right-fill ms-1"></i>
         </router-link>
       </div>
@@ -148,35 +148,46 @@ export default {
   </section>
 
   <section class="mt-5 container">
-    <div class="position-relative mb-3 storeFeature d-none d-lg-block"
+    <h3 class="textTitle text-center mb-3 d-none d-md-block">
+      擁抱健康，從一杯<span class="mark">果汁</span>開始
+    </h3>
+    <h3 class="textTitle text-center mb-3 lh-base d-md-none">
+      擁抱健康<span class="d-block">從一杯<span class="mark">果汁</span>開始</span>
+    </h3>
+    <div class="position-relative mb-5 storeFeature d-none d-lg-block"
       :style="{'background-image': `url(${feature.imgUrl})`}"
                 v-for="(feature, key) in storeFeature" :key="'feature' + key">
       <div class="h-100 d-flex align-items-center"
             :class="key % 2 === 0 ? 'storeFeature-toRight' : 'storeFeature-toLeft'">
         <div class="container text-center">
-          <p class="h4 text-white title">{{ feature.title }}</p>
+          <h4 class="text-white title">{{ feature.title }}</h4>
         </div>
       </div>
     </div>
-    <div class="mb-4 border border-primary p-3 d-lg-none"
-      v-for="(feature, key) in storeFeature" :key="'feature-m' + key">
-      <h3 class="text-center">{{ feature.title }}</h3>
-      <div>
-        <img :src="feature.imgUrl" alt="" class="img-fluid">
+    <div class="row gy-3 d-lg-none mb-5">
+      <div class="col-12" v-for="(feature, key) in storeFeature" :key="'feature-m' + key">
+        <div class="position-relative">
+          <img :src="feature.imgUrl" :alt="feature.title" class="img-fluid">
+          <div class="position-absolute top-0 left-0 h-100 w-100
+            d-flex align-items-end justify-content-center">
+            <h4 class="h6 text-white bg-dark bg-opacity-25 w-100 text-center mb-0 py-2">
+              {{ feature.title }}
+            </h4>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="container py-5">
-    <h3 class="mb-5 text-center">週年慶活動開跑</h3>
+  <section class="container py-5 mt-3">
+    <h3 class="textTitle text-center" style="margin-bottom: 2.5rem;">週年慶好禮</h3>
     <div class="border p-3 pt-4 text-center position-relative mb-5">
-      <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
-        <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
-          活動一
-        </span>
-      </p>
-      <h4 class="mt-4 fw-semibold">週年慶折扣碼優惠</h4>
-      <p>結帳使用週年慶折扣碼，享九五折優惠。</p>
+      <h4 class="position-absolute top-0 start-50 translate-middle bg-white px-3">
+        <span class="productBadge secondaryOutlineBadge me-2">
+          好禮一
+        </span>折扣碼優惠
+      </h4>
+      <p class="mt-4">結帳使用週年慶折扣碼，享九五折優惠。</p>
       <div class="d-flex justify-content-center mb-3">
         <p class="display-6 me-2 my-1 text-secondary">
           <i class="bi bi-ticket-perforated-fill fs-3"></i>
@@ -192,20 +203,32 @@ export default {
       </div>
     </div>
     <div class="border pb-3 p-4 text-center position-relative">
-      <p class="position-absolute top-0 start-50 translate-middle bg-white px-3">
-        <span class="productBadge secondaryOutlineBadge fs-5 me-2 mb-1">
-          活動二
-        </span>
-      </p>
-      <h4 class="my-4 fw-semibold">官網限定優惠</h4>
-      <div class="row justify-content-center align-items-center mb-lg-3 text-start"
-        :class="{'flex-row-reverse': key % 2 !== 0}"
-        v-for="(product, key) in onSalesData" :key="product.id">
-        <div class="col-md-5 mb-4 mb-md-0" :class=" key % 2 === 0 ? 'text-end': 'text-start'">
-          <img :src="product.imageUrl" :alt="product.title"
-            class="w-100" style="width: 400px;height: 400px; object-fit: cover;">
+      <h4 class="position-absolute top-0 start-50 translate-middle bg-white px-3">
+        <span class="productBadge secondaryOutlineBadge me-2">
+          好禮二
+        </span>官網限定優惠
+      </h4>
+      <div class="mt-3 row justify-content-center align-items-center mb-md-3 text-start"
+        :class="{'flex-row-reverse': key % 2 === 0}"
+        v-for="(product, key) in onSaleData" :key="product.id">
+        <div class="col-md-5 mb-4 mb-md-0"
+          :class=" key % 2 === 0 ? 'text-end': 'text-start'">
+          <div class="position-relative onSaleImage">
+            <img :src="product.imageUrl" :alt="product.title"
+              class="w-100" style="height: 250px; object-fit: cover;">
+            <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark bg-opacity-50 text-white
+              d-flex justify-content-center align-items-center imageMask">
+              <div class="text-center">
+                <p><i class="bi bi-search display-4"></i></p>
+                <router-link :to="`products/${product.id}`"
+                  class="text-white text-decoration-none stretched-link">
+                  瀏覽產品
+                </router-link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-5" :class="key === onSalesData.length - 1 ? 'mb-3' : 'mb-5'">
+        <div class="col-md-5 mb-md-0" :class="key === onSaleData.length - 1 ? 'mb-3' : 'mb-5'">
           <h4 class="mb-3">{{ product.title }}</h4>
           <p>{{ product.description }}</p>
           <p>
@@ -222,12 +245,13 @@ export default {
           </p>
           <router-link :to="`products/${product.id}`"
             class="btn btn-primary">
-            加入購物車<i class="bi bi-caret-right-fill ms-1"></i>
+            瀏覽產品<i class="bi bi-caret-right-fill ms-1"></i>
           </router-link>
         </div>
       </div>
     </div>
   </section>
+
   <section class="bg-light my-5 py-5" v-if="feedbacks.length">
     <div class="container">
       <h3 class="text-center mb-4">客戶好評回饋</h3>
@@ -254,7 +278,7 @@ export default {
     </div>
   </section>
   <section class="container mb-5 py-5">
-    <h3 class="text-center mb-5">常見問題</h3>
+    <h3 class="text-center mb-3">常見問題</h3>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" v-for="(FQA, key) in FQAs" :key="'FQA' + key">
         <h2 class="accordion-header">
@@ -276,8 +300,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-$linear-color: rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 1) 90%;
-
 .banner{
   height: calc(100vh - 60px);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0)),
@@ -285,8 +307,13 @@ $linear-color: rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.5) 80%, rgba(25
   background-size: cover;
   background-position: center center;
 }
+.mark{
+  background-image: linear-gradient(white 60%, lighten(#86b2c2, 20%) 40%);
+  padding: 0rem 0.25rem;
+  color: inherit;
+}
 .storeFeature{
-  height: 400px;
+  height: 500px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -308,9 +335,16 @@ $linear-color: rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.5) 80%, rgba(25
     backdrop-filter: blur(4px);
     background-color: rgba(60, 60, 60, 0.25);
   }
-  p{
+  h4{
     opacity: 1;
     transform: translateX(0px);
   }
+}
+.onSaleImage .imageMask {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.onSaleImage:hover .imageMask{
+  opacity: 1;
 }
 </style>

@@ -51,6 +51,7 @@ export default {
     },
     closeNav() {
       this.$refs.navCollapse.classList.remove('show');
+      this.$refs.navbar.style['z-index'] = '1020';
     },
     setZIndex() {
       const collapseClassList = this.$refs.navCollapse.classList;
@@ -81,32 +82,29 @@ export default {
         @click="setZIndex">
         <span class=""><i class="bi bi-list"></i></span>
       </button>
-
-      <!-- data-bs-toggle="collapse"
-        data-bs-target="#navbarContent" -->
-      <div class="collapse navbar-collapse" id="navbarContent" ref="navCollapse">
+      <div class="collapse navbar-collapse" ref="navCollapse">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-          <li class="nav-item">
-            <router-link class="nav-link link-primary px-3"
+          <li class="nav-item py-2 py-lg-0 mx-2">
+            <router-link class="nav-link link-primary p-1"
               to="/products"
               @click="closeNav">
               <i class="bi bi-list me-1"></i>查看菜單
             </router-link>
           </li>
-          <li class="nav-item" v-if="!hasLogin">
-            <a href="#" class="nav-link link-primary px-3 pe-lg-0"
+          <li class="nav-item py-2 py-lg-0 mx-2" v-if="!hasLogin">
+            <a href="#" class="nav-link link-primary p-1"
               @click.prevent="login">
               <i class="bi bi-person-fill me-1"></i>會員登入
             </a>
           </li>
           <template v-else>
-            <li class="nav-item">
-              <a class="nav-link link-primary px-3" href="#" @click.prevent="logout">
+            <li class="nav-item py-2 py-lg-0 mx-2">
+              <a class="nav-link link-primary p-1" href="#" @click.prevent="logout">
                 <i class="bi bi-box-arrow-right me-1"></i>會員登出
               </a>
             </li>
-            <li class="nav-item mt-1">
-              <router-link class="nav-link link-primary px-3 pe-lg-0 mb-1"
+            <li class="nav-item py-2 py-lg-0 ms-2 me-2 me-md-0">
+              <router-link class="nav-link link-primary p-1"
                 to="/user/cart" @click="closeNav">
                 <i class="bi bi-cart-fill me-1"></i>購物車
                 <span class="badge rounded-pill bg-danger align-middle"
@@ -135,5 +133,11 @@ export default {
 }
 .navbar-toggler:focus{
   box-shadow: 0 0 0 0;
+}
+.nav-item{
+  border: white 1px solid
+}
+.nav-item .activeLink{
+  border-bottom: #c2d8e0 1px solid
 }
 </style>

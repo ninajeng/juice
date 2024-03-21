@@ -96,7 +96,8 @@ export default {
   <div class="d-flex justify-content-between align-items-end mb-3">
     <h3 class="mb-0 h5">購物清單</h3>
     <a href="#" @click.prevent="confirmDeleteAll"
-      class="link-gray-dark link-offset-2" v-if="cartInfo.list?.length && isEdit">
+      class="link-gray-dark link-offset-3 link-underline-gray link-underline-opacity-75"
+        v-if="cartInfo.list?.length && isEdit">
       移除所有品項
     </a>
   </div>
@@ -114,7 +115,7 @@ export default {
       <div class="position-relative">
         <img :src="cartItem.product.imageUrl"
           :alt="cartItem.product.title"
-          style="height: 180px; width: 250px; object-fit: cover;">
+          class="productImage">
         <a href="#" class="stretched-link" @click.prevent="addItem(cartItem)" v-if="isEdit">
           <span class="position-absolute bottom-0 end-0 me-2 mb-1 link-dark">
             <i class="bi bi-plus-square-fill"></i>
@@ -210,6 +211,11 @@ export default {
 .cartList{
   border: 1px solid var(--bs-border-color);
 }
+.productImage{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
 @media (min-width: 992px){
   .cartList{
     padding-bottom: 0.5rem;
@@ -219,6 +225,9 @@ export default {
   .cartList:nth-child(1){
     padding-top: 0.5rem;
     border-top: 1px solid var(--bs-border-color);
+  }
+  .productImage{
+    width: 250px;
   }
 }
 </style>

@@ -34,10 +34,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    <img src="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="購物車結帳背景圖"
-      style="height: 300px; width: 100%; object-fit: cover; object-position: bottom center;">
-  </div>
+  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711016396423.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=kn%2BU4nYmKrlEvZ9t7o9qZUphT4TPS6bYughLSjSxF%2FMtUM1HRH2PGHXoPl46QnX6MP2eooS8jvbioCh4Qx7oiGtMue4nI1rzXqyokPvsdGKNViKvQzmt0LhmP%2FJHbYc8zBXOv9qRfIfhPo2B4NF9GkTfbUCpqQc0q%2BPeJkDnKcecsRsGhH26f95UIZ%2Bmc0zRnUMKfsH8dvQmgTXcEP%2Bwh47mPXhd9M%2FLjcA0AjKRkk3K3Kp%2BONQOYFFPRYD9RkVNwVaBikeuiMl0kL3E2%2BZgCifrLVaQboFrj4wDGnAUVrBvHeV4m20cpEwfkGpVkPTYuyDRdngjy%2Fvr2i5xdStqUg%3D%3D" alt="購物車結帳背景圖" class="bgImage"
+    style="width: 100%; object-fit: cover; object-position: center center;">
   <div class="container py-5">
     <template v-if="cartInfo.list?.length">
       <h2 class="h5">{{ `${stepNum === 3 ? '訂購完成' : '結帳'}` }}</h2>
@@ -54,7 +52,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .stepLabel{
   position: relative;
   margin-right: 1.5rem;
@@ -83,6 +81,14 @@ export default {
 @media(max-width: 310px){
   .stepLabel {
     width: 100%;
+  }
+}
+.bgImage{
+  height: 200px;
+}
+@media(min-width: 992px){
+  .bgImage{
+    height: 300px;
   }
 }
 </style>

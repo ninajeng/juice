@@ -15,9 +15,8 @@ export default {
     <div class="row g-0">
       <div class="col-auto">
         <img :src="productInfo.imageUrl"
-        class="img-fluid"
-        :alt="productInfo.title"
-        style="width: 200px; height: 200px; object-fit: cover;">
+        class="img-fluid productImg"
+        :alt="productInfo.title">
       </div>
       <div class="col">
         <div class="card-body d-flex flex-column h-100">
@@ -55,6 +54,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.productImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media(min-width: 380px){
+  .productImg{
+    width: 200px;
+  }
+}
 .productCard:hover{
   border: 1px solid var(--bs-primary);
   transform: translateY(-2px);
