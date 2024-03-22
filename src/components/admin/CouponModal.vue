@@ -237,7 +237,8 @@ export default {
               </div>
 
               <div class="border position-relative">
-                <h5 class="position-absolute start-0 translate-middle-x mx-0 mb-0 bg-white py-2 fs-6"
+                <h5 class="position-absolute start-0
+                  translate-middle-x mx-0 mb-0 bg-white py-2 fs-6"
                 style="writing-mode: vertical-lr; letter-spacing: 0.3rem; margin-top: 0.3rem;">
                   <span class="opacity-75">啟用</span>
                 </h5>

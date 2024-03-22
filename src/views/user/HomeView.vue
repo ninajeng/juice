@@ -186,7 +186,7 @@ export default {
         <span class="productBadge secondaryOutlineBadge d-inline-block me-2 my-1">
           好禮一
         </span>
-        <span class="d-inline-block">折扣碼優惠</span>
+        <span class="d-inline-block my-1">折扣碼優惠</span>
       </h4>
       <p class="mt-4">結帳使用週年慶折扣碼，享九五折優惠。</p>
       <div class="d-flex justify-content-center mb-3 flex-wrap">
@@ -208,7 +208,7 @@ export default {
         <span class="productBadge secondaryOutlineBadge me-2">
           好禮二
         </span>
-        <span class="d-inline-block">官網限定優惠</span>
+        <span class="d-inline-block my-1">官網限定優惠</span>
       </h4>
       <div class="mt-3 row justify-content-center align-items-center mb-md-3 text-start"
         :class="{'flex-row-reverse': key % 2 === 0}"
@@ -303,7 +303,7 @@ export default {
 
 <style lang="scss" scoped>
 .banner{
-  height: calc(100vh - 60px);
+  height: calc(100vh - 30px);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0)),
                     url('@/assets/image/banner.jpg');
   background-size: cover;

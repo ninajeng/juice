@@ -8,8 +8,9 @@ const Toast = Swal.mixin({
   showConfirmButton: false,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
+    const toastSwal = toast;
+    toastSwal.onmouseenter = Swal.stopTimer;
+    toastSwal.onmouseleave = Swal.resumeTimer;
   },
   background: '#f5f5f5',
   customClass: {

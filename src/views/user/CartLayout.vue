@@ -84,11 +84,11 @@ export default {
   }
 }
 .bgImage{
-  height: 200px;
+  height: 250px;
 }
 @media(min-width: 992px){
   .bgImage{
-    height: 300px;
+    height: 350px;
   }
 }
 </style>

@@ -9,6 +9,7 @@ export default {
     ...mapActions(userStore, ['checkAuth', 'setLoginWindowSignal']),
   },
   async created() {
+    this.isLoading = true;
     window.scroll({
       top: 0,
       behavior: 'smooth',
@@ -22,6 +23,8 @@ export default {
     }
     if (this.init) {
       this.init();
+    } else {
+      this.isLoading = false;
     }
   },
 };
