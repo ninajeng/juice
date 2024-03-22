@@ -52,16 +52,22 @@ export default {
     closeNav() {
       this.$refs.navCollapse.classList.remove('show');
       this.$refs.navContainer.classList.remove('sm-style');
-      this.$refs.navContainer.classList.remove('bgWhite');
+      if (window.scrollY === 0) {
+        this.$refs.navContainer.classList.remove('bgWhite');
+      }
     },
     setZIndex() {
       let method = 'add';
       if ([...this.$refs.navCollapse.classList].indexOf('show') > -1) {
         method = 'remove';
+        if (window.scrollY === 0) {
+          this.$refs.navContainer.classList.remove('bgWhite');
+        }
+      } else {
+        this.$refs.navContainer.classList.add('bgWhite');
       }
       this.$refs.navCollapse.classList[method]('show');
       this.$refs.navContainer.classList[method]('sm-style');
-      this.$refs.navContainer.classList[method]('bgWhite');
     },
     setNavColor() {
       if ([...this.$refs.navCollapse.classList].indexOf('show') > -1) {
