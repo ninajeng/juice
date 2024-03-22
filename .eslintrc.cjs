@@ -23,4 +23,7 @@ module.exports = {
       '@vitejs/plugin-vue',
     ],
   },
+  rules: {
+    'vue/comment-directive': 0,
+  },
 };
