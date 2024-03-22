@@ -8,7 +8,7 @@
           >果時</router-link>
       </div>
       <div class="d-md-flex justify-content-center text-gray-dark">
-        <p class="me-4">營業時間：全年無休、24小時營業</p>
+        <p class="me-4">營業時間：全年24小時營業</p>
         <p class="me-4">
           <a href="tel:+" class="text-gray-dark text-decoration-none">
             電話：03-33445566

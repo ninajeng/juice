@@ -183,12 +183,13 @@ export default {
     <h3 class="textTitle text-center" style="margin-bottom: 2.5rem;">週年慶好禮</h3>
     <div class="border p-3 pt-4 text-center position-relative mb-5">
       <h4 class="position-absolute top-0 start-50 translate-middle bg-white px-3">
-        <span class="productBadge secondaryOutlineBadge me-2">
+        <span class="productBadge secondaryOutlineBadge d-inline-block me-2 my-1">
           好禮一
-        </span>折扣碼優惠
+        </span>
+        <span class="d-inline-block">折扣碼優惠</span>
       </h4>
       <p class="mt-4">結帳使用週年慶折扣碼，享九五折優惠。</p>
-      <div class="d-flex justify-content-center mb-3">
+      <div class="d-flex justify-content-center mb-3 flex-wrap">
         <p class="display-6 me-2 my-1 text-secondary">
           <i class="bi bi-ticket-perforated-fill fs-3"></i>
           {{ couponCode }}
@@ -206,7 +207,8 @@ export default {
       <h4 class="position-absolute top-0 start-50 translate-middle bg-white px-3">
         <span class="productBadge secondaryOutlineBadge me-2">
           好禮二
-        </span>官網限定優惠
+        </span>
+        <span class="d-inline-block">官網限定優惠</span>
       </h4>
       <div class="mt-3 row justify-content-center align-items-center mb-md-3 text-start"
         :class="{'flex-row-reverse': key % 2 === 0}"

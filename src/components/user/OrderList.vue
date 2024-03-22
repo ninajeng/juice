@@ -15,6 +15,7 @@ const swalDeleteAlert = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-danger m-1',
     cancelButton: 'btn m-1',
+    title: 'lh-base',
   },
   buttonsStyling: false,
 });
@@ -104,40 +105,38 @@ export default {
   <div v-if="cartInfo.list?.length">
     <div class="mb-2 d-flex flex-column flex-sm-row align-items-center cartList"
       v-for="cartItem in cartInfo.list" :key="cartItem.id">
-      <div class="mx-1 w-100 text-end d-sm-none">
-        <button type="button"
-          class="btn" title="移除品項"
-          @click.prevent="confirmDeleteItem(cartItem)"
-          v-if="isEdit">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-      <div class="position-relative">
-        <img :src="cartItem.product.imageUrl"
-          :alt="cartItem.product.title"
-          class="productImage">
+      <div class="position-relative productImage"
+        :style="{'background-image': `url(${cartItem.product.imageUrl})`}">
+        <div class="py-1 d-sm-none position-absolute end-0 z-2 bg-light">
+          <a href="#" title="移除品項"
+            class="link-gray px-2"
+            @click.prevent="confirmDeleteItem(cartItem)"
+            v-if="isEdit">
+            <i class="bi bi-x-lg"></i>
+          </a>
+        </div>
         <a href="#" class="stretched-link" @click.prevent="addItem(cartItem)" v-if="isEdit">
           <span class="position-absolute bottom-0 end-0 me-2 mb-1 link-dark">
             <i class="bi bi-plus-square-fill"></i>
           </span>
         </a>
       </div>
-      <div class="px-4 py-3 py-lg-0 flex-fill text-center text-sm-start d-flex flex-column"
-        style="min-height: 180px;">
+      <div class="px-4 py-3 py-lg-0 flex-fill d-flex flex-column w-100 productInfo">
         <div class="position-relative" v-if="cartItem.product.type === 'drink'">
-          <p class="mb-1">
+          <p class="mb-2">
             {{ `${cartItem.product.title} (${cartItem.userCustom.size})` }}
           </p>
-          <p class="mb-2 d-inline-block">
-            <span class="productBadge secondaryOutlineBadge me-2 mb-1 fw-normal fs-6">
+          <p class="mb-2">
+            <span class="productBadge secondaryOutlineBadge
+              d-inline-block me-2 mb-1 fw-normal fs-6">
               {{ cartItem.userCustom.ice || '冷熱固定' }}
             </span>
-            <span class="productBadge secondaryOutlineBadge me-2 mb-1 fw-normal fs-6">
+            <span class="productBadge secondaryOutlineBadge
+              d-inline-block me-2 mb-1 fw-normal fs-6">
               {{ cartItem.userCustom.sugar || '甜度固定' }}
             </span>
-          </p>
-          <p class="mb-2 d-inline-block d-lg-inline text-nowrap">
-            <span class="productBadge secondaryOutlineBadge me-2 mb-1 fw-normal fs-6"
+            <span class="productBadge secondaryOutlineBadge
+              d-inline-block me-2 mb-1 fw-normal fs-6"
               v-for="(extra, key) in cartItem.userCustom.extras" :key="'extras' + key">
               {{ extra }}
             </span>
@@ -165,11 +164,11 @@ export default {
           <span class="text-muted fs-7">{{ ` / ${cartItem.product.unit}` }}</span>
         </p>
         <div class="row g-2 g-sm-3
-          align-items-center justify-content-center justify-content-sm-start" v-if="isEdit">
+          align-items-center" v-if="isEdit">
           <div class="col-auto">
             <label :for="'itemQty' + cartItem.cartId" class="text-nowrap">數量</label>
           </div>
-          <div class="col-auto" style="min-width: 120px;">
+          <div class="col-auto formSelect">
             <select class="form-select" :id="'itemQty' + cartItem.cartId"
               :value="cartItem.qty"
               @change="setQuantity(cartItem.cartId, Number($event.target.value))">
@@ -214,7 +213,11 @@ export default {
 .productImage{
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+.formSelect{
+  min-width: auto;
 }
 @media (min-width: 992px){
   .cartList{
@@ -226,8 +229,19 @@ export default {
     padding-top: 0.5rem;
     border-top: 1px solid var(--bs-border-color);
   }
+  .productInfo{
+    min-height: 180px;
+  }
+}
+@media (min-width: 576px){
   .productImage{
+    height: 180px;
     width: 250px;
+  }
+}
+@media (min-width: 200px){
+  .formSelect{
+    min-width: 120px;
   }
 }
 </style>

@@ -108,7 +108,7 @@ export default {
     </div>
     <div class="offcanvas-body">
       <div class="h-100 position-relative overflow-y-hidden" v-if="isAliveForm">
-        <div class="position-absolute w-100 h-100"
+        <div class="position-absolute w-100 h-100 px-2"
           :class="isRegister ? 'hideContent' : 'showContent'">
           <div class="d-flex h-100">
             <div class="my-auto w-100">
@@ -156,7 +156,7 @@ export default {
             </div>
           </div>
         </div>
-        <div class="position-absolute w-100 h-100"
+        <div class="position-absolute w-100 h-100 px-2"
           :class="!isRegister ? 'hideContent' : 'showContent'">
           <div class="d-flex h-100">
             <div class="my-auto w-100">

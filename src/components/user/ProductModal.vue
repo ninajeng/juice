@@ -96,7 +96,7 @@ export default {
               <div class="border p-3 mb-3">
                 <p class="mb-3 text-muted">請選擇甜度*</p>
                 <p class="mb-0">
-                  <span class="me-2"
+                  <span class="me-2 mb-2 d-inline-block"
                     v-for="(option, key) in productData.custom.sugar.options"
                     :key="'sugar' + key">
                     <input type="radio" class="btn-check" :id="option"
@@ -111,7 +111,7 @@ export default {
               <div class="border p-3 mb-3">
                 <p class="mb-3 text-muted">請選擇冷熱*</p>
                 <p class="mb-0">
-                  <span class="me-2"
+                  <span class="me-2 mb-2 d-inline-block"
                     v-for="(option, key) in productData.custom.ice.options"
                     :key="'ice' + key">
                     <input type="radio" class="btn-check" :id="option"
@@ -126,7 +126,7 @@ export default {
               <div class="border p-3 mb-3">
                 <p class="mb-3 text-muted">請選擇尺寸*</p>
                 <p class="mb-0">
-                  <span class="me-2"
+                  <span class="me-2 mb-2 d-inline-block"
                     v-for="(option, key) in productData.custom.size.options"
                     :key="'size' + key">
                     <input type="radio" class="btn-check" :id="option"
@@ -150,7 +150,7 @@ export default {
                   <span class="fs-7">{{ `(+${productData.custom.extras.addPrice}元/項)` }}</span>
                 </p>
                 <p class="mb-0">
-                  <span class="me-2"
+                  <span class="me-2 mb-2 d-inline-block"
                     v-for="(option, key) in productData.custom.extras.options"
                     :key="'extras' + key">
                     <input type="checkbox" class="btn-check" :id="option"
