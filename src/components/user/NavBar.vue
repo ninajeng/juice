@@ -4,6 +4,7 @@ import { mapState, mapActions } from 'pinia';
 import LoginOffcanvas from '@/components/user/LoginOffcanvas.vue';
 import cartStore from '@/stores/cartStore';
 import userAccountStore from '@/stores/userAccountStore';
+import navStyleStore from '@/stores/navStyleStore';
 import ToastMessage from '@/mixins/ToastMessage.vue';
 import logoHTML from '../logoHTML.vue';
 
@@ -26,6 +27,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(navStyleStore, ['disableShadow']),
     ...mapState(cartStore, ['cartItemNum']),
     ...mapState(userAccountStore, ['hasLogin', 'userData']),
   },
@@ -44,7 +46,7 @@ export default {
     },
     logout() {
       this.$userRequest.logout();
-      this.setUserData({});
+      this.clearData({});
       this.toastShow('success', '會員已登出');
       this.$router.replace({ name: 'home' });
       this.closeNav();
@@ -56,36 +58,39 @@ export default {
         this.$refs.navContainer.classList.remove('bgWhite');
       }
     },
-    setZIndex() {
+    toggleCollapse() {
       let method = 'add';
       if ([...this.$refs.navCollapse.classList].indexOf('show') > -1) {
         method = 'remove';
-        if (window.scrollY === 0) {
-          this.$refs.navContainer.classList.remove('bgWhite');
-        }
-      } else {
-        this.$refs.navContainer.classList.add('bgWhite');
       }
       this.$refs.navCollapse.classList[method]('show');
       this.$refs.navContainer.classList[method]('sm-style');
+      this.setNavColor();
     },
     setNavColor() {
+      let method = 'add';
       if ([...this.$refs.navCollapse.classList].indexOf('show') > -1) {
+        this.$refs.navContainer.classList[method]('bgWhite');
         return;
       }
-      let method = 'add';
       if (window.scrollY === 0) {
         method = 'remove';
       }
       this.$refs.navContainer.classList[method]('bgWhite');
+      if (this.disableShadow) {
+        method = 'remove';
+      }
       this.$refs.navContainer.classList[method]('shadow-sm');
     },
     ...mapActions(cartStore, ['getCartInfo']),
-    ...mapActions(userAccountStore, ['setLoginWindowSignal', 'setUserData']),
+    ...mapActions(userAccountStore, ['setLoginWindowSignal', 'clearData']),
   },
   mounted() {
     this.getData();
     window.addEventListener('scroll', this.setNavColor);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.setNavColor);
   },
 };
 </script>
@@ -98,34 +103,57 @@ export default {
         <logoHTML @click="closeNav"/>
         <button class="navbar-toggler p-2 mb-2"
           type="button"
-          @click="setZIndex">
+          @click="toggleCollapse">
           <i class="bi bi-list"></i>
         </button>
         <div class="collapse navbar-collapse h-100" ref="navCollapse">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center h-75">
             <li class="nav-item py-2 py-lg-0 mx-2">
-              <router-link class="nav-link link-primary p-1"
-                to="/products"
-                @click="closeNav">
-                <i class="bi bi-list me-1"></i>查看菜單
+              <router-link class="nav-link link-primary px-3 px-lg-1"
+                :to="{name: 'products'}" @click="closeNav">
+                <i class="bi bi-list me-2 me-lg-1"></i>查看菜單
               </router-link>
             </li>
-            <li class="nav-item py-2 py-lg-0 mx-2" v-if="!hasLogin">
-              <a href="#" class="nav-link link-primary p-1"
+            <li class="nav-item mx-2" v-if="!hasLogin">
+              <a href="#" class="nav-link link-primary px-3 px-lg-1"
                 @click.prevent="login">
-                <i class="bi bi-person-fill me-1"></i>會員登入
+                <i class="bi bi-person-fill me-2 me-lg-1"></i>會員登入
               </a>
             </li>
             <template v-else>
-              <li class="nav-item py-2 py-lg-0 mx-2">
-                <a class="nav-link link-primary p-1" href="#" @click.prevent="logout">
-                  <i class="bi bi-box-arrow-right me-1"></i>會員登出
+              <li class="dropdown mx-2">
+                <a href="#" data-bs-toggle="dropdown"
+                  class="nav-link dropdown-toggle link-primary px-3 px-lg-1">
+                  <i class="bi bi-person-fill me-2 me-lg-1"></i>
+                  <span class="me-1 d-lg-none">會員專區</span>
                 </a>
+                <ul class="dropdown-menu border-primary-subtle shadow">
+                  <li class="dropdown-item">
+                    <router-link class="link-primary text-decoration-none
+                      d-block py-2 py-lg-1 px-3 mb-lg-2"
+                      :to="{name: 'profile'}" @click="closeNav">
+                      <i class="bi bi-person-lines-fill me-2"></i>個人資料
+                    </router-link>
+                  </li>
+                  <li class="dropdown-item">
+                    <router-link class="link-primary text-decoration-none d-block py-2 py-lg-0 px-3"
+                      :to="{name: 'orders'}" @click="closeNav">
+                      <i class="bi bi-list-ul me-2"></i>訂單查詢
+                    </router-link>
+                  </li>
+                  <li><hr class="dropdown-divider border-primary-subtle"></li>
+                  <li class="dropdown-item">
+                    <a class="link-primary text-decoration-none d-block py-2 py-lg-0 px-3"
+                      href="#" @click.prevent="logout">
+                      <i class="bi bi-box-arrow-right me-2"></i>會員登出
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item py-2 py-lg-0 ms-2 me-2 me-md-0 mt-auto">
-                <router-link class="nav-link link-primary p-1"
-                  to="/user/cart" @click="closeNav">
-                  <i class="bi bi-cart-fill me-1"></i>購物車
+                <router-link class="nav-link link-primary px-3 px-lg-1"
+                  :to="{name: 'cart'}" @click="closeNav">
+                  <i class="bi bi-cart-fill me-2 me-lg-1"></i>購物車
                   <span class="badge rounded-pill bg-danger align-middle"
                     style="transform: translateY(-2px);">{{ cartItemNum }}</span>
                 </router-link>
@@ -154,16 +182,16 @@ export default {
   border: transparent 1px solid;
 }
 .nav-item .activeLink{
-  border-bottom: #c2d8e0 1px solid;
+  background-color: var(--bs-tertiary-bg);
 }
-.navContainer {
-  z-index: 1020;
-}
-.navContainer.sm-style {
-  z-index: 1050;
+.dropdown-item .activeLink{
+  background-color: var(--bs-tertiary-bg);
 }
 .navContainer{
   transition: background-color 0.5s;
+}
+.navContainer.sm-style{
+  transition: background-color 0s;
 }
 .navContainer.bgWhite{
   background-color: #FFFFFF;
@@ -173,9 +201,20 @@ export default {
     height: 100vh;
   }
   .collapse{
-    padding-top: 3rem;
-    border-top: 1px solid var(--bs-border-color);
+    border-top: 1px solid var(--bs-primary);
   }
+}
+.nav-item, .dropdown {
+  width: 100%;
+}
+.dropdown-item {
+  padding: 0px;
+}
+.dropdown-item:active {
+  background-color: var(--bs-tertiary-bg);
+}
+.dropdown-item:hover {
+  background-color: inherit;
 }
 @media (min-width: 992px) {
   .sm-style {
@@ -186,6 +225,13 @@ export default {
       padding-top: 0rem;
       border: 0px;
     }
+  }
+  .nav-item, .dropdown {
+    width: auto;
+  }
+  .nav-item .activeLink{
+    border-bottom: var(--bs-primary) 1px solid;
+    background-color: inherit
   }
 }
 </style>

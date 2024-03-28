@@ -1,6 +1,6 @@
 <template>
   <router-link class="navbar-brand text-primary lh-1 link-primary" :to="{name: 'home'}">
-    果
+    <img src="@/assets/image/logo.png" alt="果時店家logo" style="height: 1.5rem;">
     <!-- <span style="font-size: 2.5rem;">果</span>
     <span class="fs-7" style="writing-mode: vertical-lr">
       <span class="bg-primary p-1 text-white"

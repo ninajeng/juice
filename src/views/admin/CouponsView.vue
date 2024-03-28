@@ -25,7 +25,6 @@ export default {
     },
     async getCoupon() {
       this.isLoading = true;
-      window.scrollTo({ top: 0 });
       const res = await this.$adminRequest.getCoupons();
       if (res.success) {
         this.couponList = res.data.message;

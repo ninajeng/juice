@@ -21,12 +21,11 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['cartInfo', 'cartItemNum']),
-    ...mapState(userAccountStore, ['userData']),
   },
   methods: {
     async init() {
       this.isLoading = true;
-      const res = await this.$userRequest.getOrder(this.userData.id, this.$route.params.id);
+      const res = await this.getOrder(this.$route.params.id);
       if (!res.success) {
         this.toastShow('error', this.$errorMessage);
         this.$router.replace({ name: 'cart' });
@@ -37,7 +36,7 @@ export default {
       }
       this.isLoading = false;
     },
-    ...mapActions(cartStore, ['getOrder']),
+    ...mapActions(userAccountStore, ['getOrder']),
   },
   created() {
     this.$emit('stepNum', 3);
@@ -49,13 +48,13 @@ export default {
   <LoadingView :active="isLoading"/>
   <div class="row g-4 flex-lg-row justify-content-between pt-2"
     v-if="orderInfo.cartInfo">
-    <div class="col-lg-5">
+    <div class="col-lg-5 mb-3">
       <div class="alert alert-success mb-3
         border-3 border-top-0 border-bottom-0 border-end-0 d-flex">
         <i class="bi bi-check-square-fill me-2"></i>
         <div>
           <p class="mb-0">我們已收到您的訂單！</p>
-          <p class="mb-0">餐點現做需10~15分鐘，如有問題歡迎來電詢問！</p>
+          <p class="mb-0">餐點準備需10~15分鐘，如有問題歡迎來電詢問！</p>
         </div>
       </div>
       <div class="mt-4 mb-3 px-3 border-start border-primary border-3 text-break">

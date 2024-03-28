@@ -7,6 +7,9 @@ import UserCartLayout from '@/views/user/CartLayout.vue';
 import UserCartView from '@/views/user/CartList.vue';
 import UserOrderContactView from '@/views/user/OrderContact.vue';
 import UserOrderCompleteView from '@/views/user/OrderComplete.vue';
+import UserProfileLayout from '@/views/user/ProfileLayout.vue';
+import UserProfileView from '@/views/user/ProfileView.vue';
+import UserOrdersView from '@/views/user/ProfileOrders.vue';
 
 import AdminLayout from '@/views/admin/LayoutView.vue';
 import AdminLoginView from '@/views/admin/LoginView.vue';
@@ -52,6 +55,28 @@ const router = createRouter({
           meta: {
             title: `${webName} - 產品細節`,
           },
+        },
+        {
+          path: 'user',
+          component: UserProfileLayout,
+          children: [
+            {
+              path: 'profile',
+              name: 'profile',
+              meta: {
+                title: `${webName} - 個人資料`,
+              },
+              component: UserProfileView,
+            },
+            {
+              path: 'orders',
+              name: 'orders',
+              meta: {
+                title: `${webName} - 訂單查詢`,
+              },
+              component: UserOrdersView,
+            },
+          ],
         },
         {
           path: 'user/cart',
@@ -122,6 +147,12 @@ const router = createRouter({
     },
   ],
   linkActiveClass: 'activeLink',
+  scrollBehavior() {
+    return {
+      top: 0,
+      behavior: 'instant',
+    };
+  },
 });
 
 router.beforeEach((to, from, next) => {
@@ -130,5 +161,4 @@ router.beforeEach((to, from, next) => {
   }
   next();
 });
-
 export default router;

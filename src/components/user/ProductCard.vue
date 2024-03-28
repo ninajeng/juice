@@ -11,8 +11,8 @@ export default {
 </script>
 
 <template>
-  <div class="card productCard">
-    <div class="row g-0">
+  <div class="card productCard h-100">
+    <div class="row g-0 h-100">
       <div class="col-auto">
         <img :src="productInfo.imageUrl"
         class="img-fluid productImg"
@@ -26,10 +26,10 @@ export default {
             </span>
           </h5>
           <div class="mt-auto">
-            <p class="card-text">
+            <p class="card-text mt-2">
               <span v-if="productInfo.origin_price === productInfo.price">
                 {{ `NT$ ${$filters.currency(productInfo.price)}` }}
-                <span class="text-muted fs-7">{{ ` / ${productInfo.unit}` }}</span>
+                <span class="text-muted fs-7 d-inline-block">{{ ` / ${productInfo.unit}` }}</span>
               </span>
               <span class="text-danger me-1" v-else>
                 {{ `NT$ ${$filters.currency(productInfo.price)}` }}
@@ -44,7 +44,7 @@ export default {
             <a href="#"
               class="btn btn-primary stretched-link"
               @click.prevent="setProductData(productInfo)">
-              <i class="bi bi-search me-2"></i>瀏覽產品
+              瀏覽<span class="d-md-none d-lg-inline">產品</span><i class="bi bi-caret-right-fill"></i>
             </a>
           </div>
         </div>
@@ -62,6 +62,7 @@ export default {
 @media(min-width: 380px){
   .productImg{
     width: 200px;
+    height: 100%;
   }
 }
 .productCard:hover{

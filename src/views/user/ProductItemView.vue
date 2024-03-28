@@ -45,7 +45,7 @@ export default {
 
 <template>
   <LoadingView :active="isLoading"/>
-  <div class="container py-5" v-if="productData.title">
+  <div class="container py-5 mt-5" v-if="productData.title">
     <div class="d-flex flex-column flex-lg-row
       justify-content-center justify-content-lg-start">
       <div class="mb-3 me-0 me-lg-5 h-100">

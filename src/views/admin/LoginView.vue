@@ -23,7 +23,7 @@ export default {
         this.$router.push({ name: 'adminProducts' });
       } else {
         this.isLoading = false;
-        this.$emit('showAlert', { type: 'Error', title: res.errorMessage });
+        this.errorMessageForLogin = '登入失敗！請確認帳號與密碼是否正確。';
       }
     },
     ...mapActions(adminAccountStore, ['checkAccountState', 'setLogoutState']),
@@ -46,7 +46,7 @@ export default {
               <i class="bi bi-exclamation-diamond-fill me-2"></i>{{ errorMessageForLogin }}
             </div>
             <div class="text-center p-3 border rounded">
-              <h2>請先登入</h2>
+              <h2 class="mb-3">登入</h2>
               <v-form v-slot="{ errors }" @submit="login">
                 <div class="form-floating mb-3">
                   <v-field type="email" class="form-control"
@@ -74,7 +74,7 @@ export default {
                 </div>
                 <button type="submit" class="btn btn-primary w-100">登入</button>
               </v-form>
-              <p class="text-muted mt-3 mb-0">© 2024~∞ - JuiceOasis</p>
+              <p class="text-muted mt-3 mb-0">© 2024 JuiceOasis</p>
             </div>
           </div>
         </div>

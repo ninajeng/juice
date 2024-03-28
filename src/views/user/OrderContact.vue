@@ -13,6 +13,7 @@ export default {
         payment: '',
       },
       useMemberData: false,
+      hasSettingsData: true,
       isLoading: false,
     };
   },
@@ -24,14 +25,15 @@ export default {
   watch: {
     useMemberData(use) {
       if (use) {
-        this.user.name = this.userData.name;
-        this.user.phone = this.userData.phone;
+        Object.keys(this.userSettings).forEach((option) => {
+          this.user[option] = this.userSettings[option];
+        });
       }
     },
   },
   computed: {
     ...mapState(cartStore, ['cartInfo', 'cartItemNum']),
-    ...mapState(userAccountStore, ['userData']),
+    ...mapState(userAccountStore, ['userData', 'userSettings']),
   },
   methods: {
     async init() {
@@ -40,11 +42,12 @@ export default {
       if (!this.cartInfo.list?.length) {
         this.$router.replace({ name: 'cart' });
       }
+      const errorRes = await this.getUserSettings();
+      if (errorRes) {
+        this.toastShow('error', errorRes);
+        this.hasSettingsData = false;
+      }
       this.isLoading = false;
-    },
-    isPhone(value) {
-      const phoneNumber = /^(09)[0-9]{8}$/;
-      return phoneNumber.test(value) ? true : '請填寫正確的電話號碼';
     },
     async setUserData() {
       this.isLoading = true;
@@ -62,7 +65,17 @@ export default {
         this.$router.push(`/user/cart/complete/${id}`);
       }
     },
+    checkDefaultSettings(e) {
+      const target = e.target.id;
+      if (this.userSettings[target]) {
+        this.useMemberData = false;
+      }
+      if (target === 'delivery') {
+        this.user.payment = '';
+      }
+    },
     ...mapActions(cartStore, ['getCartInfo', 'sentOrder']),
+    ...mapActions(userAccountStore, ['getUserSettings']),
   },
   created() {
     this.$emit('stepNum', 2);
@@ -86,7 +99,7 @@ export default {
       <div class="card border-primary p-3 px-4">
         <div class="d-flex align-items-center mb-3">
           <h3 class="mb-0 h5 me-4">訂購人資料</h3>
-          <div class="form-check">
+          <div class="form-check" v-if="hasSettingsData">
             <input class="form-check-input" type="checkbox"
               id="useMemberData" v-model="useMemberData">
             <label class="form-check-label" for="useMemberData">
@@ -96,26 +109,29 @@ export default {
         </div>
         <v-form v-slot="{ errors }" @submit="setUserData">
           <div class="form-floating mb-3">
-            <v-field type="text" id="userName" placeholder="姓名" name="姓名"
-              class="form-control" :class="{'is-invalid': errors['姓名']}"
+            <v-field type="text" id="name" placeholder="姓名" name="姓名"
+              class="form-control"
+              :class="{'is-invalid': errors['姓名'], 'bg-primary-subtle': user.name && !errors['姓名']}"
               rules="required" v-model="user.name"
-              @input="useMemberData = false"></v-field>
-            <label for="userName" class="opacity-75">姓名*</label>
+              @input="checkDefaultSettings"></v-field>
+            <label for="name" class="opacity-75">姓名*</label>
             <error-message name="姓名" class="invalid-feedback text-start"/>
           </div>
           <div class="form-floating mb-3">
-            <v-field type="tel" id="orderTel" placeholder="手機" name="手機"
-              class="form-control" :class="{'is-invalid': errors['手機']}"
-              :rules="isPhone" v-model="user.phone"
-              @input="useMemberData = false"></v-field>
-            <label for="orderEmail" class="opacity-75">手機*</label>
+            <v-field type="tel" id="phone" placeholder="手機" name="手機" class="form-control"
+              :class="{'is-invalid': errors['手機'],
+                'bg-primary-subtle': user.phone && !errors['手機']}"
+              :rules="$filters.isPhone" v-model="user.phone"
+              @input="checkDefaultSettings"></v-field>
+            <label for="phone" class="opacity-75">手機*</label>
             <error-message name="手機" class="invalid-feedback text-start"/>
           </div>
           <div class="form-floating mb-3">
-            <v-field class="form-select"  :class="{ 'is-invalid': errors['取貨方式'] }"
-              id="delivery" name="取貨方式"
-              rules="required" as="select"
-              placeholder="請選擇取貨方式" v-model="user.delivery" @input="user.payment = ''">
+            <v-field class="form-select" :class="{'is-invalid': errors['取貨方式'],
+              'bg-primary-subtle': user.delivery && !errors['取貨方式']}"
+              id="delivery" name="取貨方式" rules="required" as="select"
+              placeholder="請選擇取貨方式" v-model="user.delivery"
+              @input="checkDefaultSettings">
               <option disabled value="">請選擇取貨方式</option>
               <option value="外送">外送</option>
               <option value="門市取貨">門市取貨</option>
@@ -124,17 +140,19 @@ export default {
             <error-message name="取貨方式" class="invalid-feedback"></error-message>
           </div>
           <div class="form-floating mb-3" v-if="user.delivery === '外送'">
-            <v-field type="text" id="address" placeholder="外送地址" name="外送地址"
-              class="form-control" :class="{'is-invalid': errors['外送地址']}"
-              rules="required" v-model="user.address"></v-field>
+            <v-field type="text" id="address" placeholder="外送地址" name="外送地址" class="form-control"
+              :class="{'is-invalid': errors['外送地址'],
+                'bg-primary-subtle': user.address && !errors['外送地址']}"
+              rules="required" v-model="user.address" @input="checkDefaultSettings"></v-field>
             <label for="address" class="opacity-75">外送地址*</label>
             <error-message name="外送地址" class="invalid-feedback text-start"/>
           </div>
           <div class="form-floating mb-3">
-            <v-field class="form-select" :class="{ 'is-invalid': errors['付款方式'] }"
-              id="payment" name="付款方式"
+            <v-field id="payment" name="付款方式" class="form-select"
+              :class="{'is-invalid': errors['付款方式'],
+                'bg-primary-subtle': user.payment && !errors['付款方式']}"
               rules="required" as="select"
-              placeholder="請選擇付款方式" v-model="user.payment">
+              placeholder="請選擇付款方式" v-model="user.payment" @input="checkDefaultSettings">
               <option disabled value="">請選擇付款方式</option>
               <option value="線上刷卡">線上刷卡</option>
               <option value="ATM轉帳">ATM轉帳</option>
@@ -145,7 +163,8 @@ export default {
           </div>
           <div class="form-floating mb-3">
             <textarea id="message" placeholder="留言" name="message"
-              class="form-control" v-model="user.message" style="height: 100px;"></textarea>
+              class="form-control" v-model="user.message" style="height: 100px;"
+              @input="checkDefaultSettings"></textarea>
             <label for="message" class="opacity-75">留言給我們</label>
           </div>
           <div class="text-end">

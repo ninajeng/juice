@@ -80,10 +80,6 @@ export default {
       }
       this.isLoading = false;
     },
-    isPhone(value) {
-      const phoneNumber = /^(09)[0-9]{8}$/;
-      return phoneNumber.test(value) ? true : '請填寫正確的電話號碼';
-    },
     ...mapActions(userAccountStore, ['setLoginWindowSignal']),
   },
   mounted() {
@@ -183,7 +179,7 @@ export default {
                   <div class="form-floating mb-4">
                     <v-field type="tel" id="phone" placeholder="請輸入手機" name="手機"
                       class="form-control" :class="{ 'is-invalid': errors['手機'] }"
-                      :rules="isPhone" v-model="registerData.phone" />
+                      :rules="$filters.isPhone" v-model="registerData.phone" />
                     <error-message name="手機" class="invalid-feedback"/>
                     <label for="phone">手機*</label>
                   </div>

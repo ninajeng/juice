@@ -5,6 +5,7 @@ const PRODUCT_PATH = `${base.PRODUCT_URL}/v2/api/${base.PRODUCT_PATH}/product`;
 const REGISTER_PATH = `${base.USER_URL}/register`;
 const LOGIN_PATH = `${base.USER_URL}/login`;
 const USER_PATH = `${base.USER_URL}/600/users`;
+const SETTINGS_PATH = `${base.USER_URL}/600/orderDataSettings`;
 const CART_PATH = `${base.USER_URL}/600/carts`;
 const COUPON_PATH = `${base.USER_URL}/coupons`;
 const FEEDBACK_PATH = `${base.USER_URL}/feedbacks`;
@@ -26,6 +27,10 @@ export function login(user) {
   return base.axiosFunction('post', LOGIN_PATH, user);
 }
 
+export function logout() {
+  cookie.delUserCookie();
+}
+
 export function checkLoginState() {
   const token = cookie.getUserToken();
   const id = cookie.getUserId();
@@ -39,8 +44,33 @@ export function checkLoginState() {
   return base.axiosFunction('get', `${USER_PATH}/${id}`, null, token);
 }
 
-export function logout() {
-  cookie.delUserCookie();
+export function updateUserData(data) {
+  const token = cookie.getUserToken();
+  const id = cookie.getUserId();
+  if (!token || !id) {
+    cookie.delUserCookie();
+    const res = {
+      success: false,
+    };
+    return res;
+  }
+  return base.axiosFunction('patch', `${USER_PATH}/${id}`, data, token);
+}
+
+export function updatePassword(userId, data) {
+  return base.axiosFunction('patch', `${USER_PATH}/${userId}`, data, cookie.getUserToken());
+}
+
+export function getUserSettings(userId) {
+  return base.axiosFunction('get', `${USER_PATH}/${userId}/orderDataSettings`, null, cookie.getUserToken());
+}
+
+export function initUserSettings(userId, data) {
+  return base.axiosFunction('post', `${USER_PATH}/${userId}/orderDataSettings`, data, cookie.getUserToken());
+}
+
+export function updateUserSettings(settingsId, data) {
+  return base.axiosFunction('put', `${SETTINGS_PATH}/${settingsId}`, data, cookie.getUserToken());
 }
 // 購物車
 export function getCartInfo(userId) {
@@ -77,6 +107,10 @@ export function sentOrder(userId, data) {
 
 export function getOrder(userId, orderId) {
   return base.axiosFunction('get', `${USER_PATH}/${userId}/orders?id=${orderId}`, null, cookie.getUserToken());
+}
+
+export function getOrderList(userId) {
+  return base.axiosFunction('get', `${USER_PATH}/${userId}/orders`, null, cookie.getUserToken());
 }
 // 客戶回饋
 export function getFeedback() {

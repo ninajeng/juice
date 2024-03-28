@@ -93,32 +93,57 @@ export default {
           this.onSaleData.push(this.productList[index]);
         }
       });
+      this.isLoading = false;
     },
     copyCode(code, e) {
+      const successDOM = '<i class="bi bi-check me-1"></i>已複製';
+      const errorDOM = '<i class="bi bi-x"></i>複製失敗';
       e.target.classList.add('disabled');
       if (navigator.clipboard) {
         navigator.clipboard
           .writeText(code)
           .then(() => {
-            e.target.innerHTML = '<i class="bi bi-check me-1"></i>已複製';
+            this.toastShow('success', '已複製優惠碼！');
+            e.target.innerHTML = successDOM;
             e.target.classList.add('btn-success');
             e.target.classList.add('btn-outline-success');
+            const delay = 3;
+            for (let sec = 0; sec <= delay; sec += 1) {
+              setTimeout(() => {
+                if (sec !== delay) {
+                  e.target.innerHTML = `${successDOM} (${delay - sec})`;
+                } else {
+                  this.resetBtn(e.target);
+                }
+              }, 1000 * sec);
+            }
           })
           .catch(() => {
-            e.target.innerHTML = '<i class="bi bi-x"></i>複製失敗';
-            e.target.classList.add('btn-danger');
-            e.target.classList.add('btn-outline-danger');
+            this.copyError(e.target, errorDOM);
           });
       } else {
-        e.target.innerHTML = '<i class="bi bi-x"></i>複製失敗';
-        e.target.classList.add('btn-danger');
-        e.target.classList.add('btn-outline-danger');
+        this.copyError(e.target, errorDOM);
       }
+    },
+    resetBtn(btn) {
+      const target = btn;
+      target.innerHTML = '複製優惠碼';
+      target.classList.remove('disabled');
+      target.classList.remove('btn-success');
+      target.classList.remove('btn-outline-success');
+    },
+    copyError(btn, errorDOM) {
+      const target = btn;
+      this.toastShow('success', '複製失敗，請稍後再嘗試');
+      target.innerHTML = errorDOM;
+      target.classList.add('btn-danger');
+      target.classList.add('btn-outline-danger');
     },
     ...mapActions(productStore, ['getProducts', 'setProductData']),
   },
   mixins: [CheckLogin],
   async mounted() {
+    this.isLoading = true;
     const res = await this.$userRequest.getFeedback();
     if (!res.success) {
       this.toastShow('error', this.$errorMessage);
@@ -128,12 +153,14 @@ export default {
     setTimeout(() => {
       const height = document.querySelector('.swiper').offsetHeight;
       document.querySelector('.swiper').style.height = `${height}px`;
+      this.isLoading = false;
     }, 0);
   },
 };
 </script>
 
 <template>
+  <LoadingView :active="isLoading"/>
   <section class="banner mb-5">
     <div class="container h-100 d-flex align-items-center">
       <div class="text-gray-dark">
@@ -196,7 +223,7 @@ export default {
         </p>
         <button
           type="button"
-          class="btn btn btn-primary my-1 align-self-center"
+          class="btn btn-primary my-1 align-self-center"
           @click="copyCode(couponCode, $event)"
         >
           複製優惠碼
@@ -281,7 +308,7 @@ export default {
   </section>
   <section class="container mb-5 py-5">
     <h3 class="text-center mb-3">常見問題</h3>
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="accordion">
       <div class="accordion-item" v-for="(FQA, key) in FQAs" :key="'FQA' + key">
         <h2 class="accordion-header">
           <button class="accordion-button" :class="{'collapsed': key !== 0}" type="button"
@@ -290,14 +317,13 @@ export default {
           </button>
         </h2>
         <div :id="`FQA${key}`" class="accordion-collapse collapse"
-          :class="{'show': key === 0}" data-bs-parent="#accordionExample">
+          :class="{'show': key === 0}" data-bs-parent="#accordion">
           <div class="accordion-body text-secondary">
             {{ FQA.answer }}
           </div>
         </div>
       </div>
     </div>
-
   </section>
 </template>
 

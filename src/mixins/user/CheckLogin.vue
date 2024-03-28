@@ -10,10 +10,6 @@ export default {
   },
   async created() {
     this.isLoading = true;
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
     const isLogin = await this.checkAuth();
     if (this.$route.path.indexOf('/user/') > -1 && !isLogin) {
       this.toastShow('error', '請先登入會員');

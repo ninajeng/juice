@@ -24,7 +24,6 @@ export default {
     },
     async getOrder() {
       this.isLoading = true;
-      window.scrollTo({ top: 0 });
       const res = await this.$adminRequest.getOrders();
       if (res.success) {
         this.orderList = res.data.message;

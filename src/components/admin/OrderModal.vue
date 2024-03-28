@@ -83,6 +83,14 @@ export default {
             </div>
             <div class="row">
               <div class="col-4">
+                <p>訂購人電話</p>
+              </div>
+              <div class="col-8">
+                <p>{{ order.contact.phone }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
                 <p>取貨方式</p>
               </div>
               <div class="col-8">

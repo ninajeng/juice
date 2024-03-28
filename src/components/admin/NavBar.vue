@@ -1,7 +1,8 @@
 <script>
+import { mapState, mapActions } from 'pinia';
 import LogoHTML from '@/components/logoHTML.vue';
 import adminAccountStore from '@/stores/adminAccountStore';
-import { mapState, mapActions } from 'pinia';
+import ToastMessage from '@/mixins/ToastMessage.vue';
 
 export default {
   data() {
@@ -13,6 +14,7 @@ export default {
   components: {
     LogoHTML,
   },
+  mixins: [ToastMessage],
   computed: {
     ...mapState(adminAccountStore, ['hasCheckedAuth']),
   },
@@ -34,6 +36,7 @@ export default {
           },
         });
       }
+      this.toastShow('success', '登出成功');
       this.isLoading = false;
     },
     ...mapActions(adminAccountStore, ['setLogoutState']),
@@ -70,15 +73,15 @@ export default {
       <div class="bg-light" :class="{show: isShowMenu && hasCheckedAuth}">
         <div class="list-group overflow-y-auto sticky-top" ref="list">
           <div v-if="hasCheckedAuth">
-            <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
+            <RouterLink class="list-group-item list-group-item-action border-0"
               to="products">
               產品管理
             </RouterLink>
-            <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
+            <RouterLink class="list-group-item list-group-item-action border-0"
               to="coupons">
               優惠券管理
             </RouterLink>
-            <RouterLink class="list-group-item list-group-item-action btn-primary border-0"
+            <RouterLink class="list-group-item list-group-item-action border-0"
               to="orders">
               訂單管理
             </RouterLink>
@@ -99,5 +102,15 @@ export default {
 }
 .show .list-group {
   width: 250px;
+}
+.list-group-item{
+  background-color: var(--bs-primary-bg-subtle);
+}
+.list-group-item:hover{
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
+}
+.activeLink{
+  background-color: var(--bs-primary);
 }
 </style>
