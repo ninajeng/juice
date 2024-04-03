@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapActions } from 'pinia';
-import LogoHTML from '@/components/LogoHTML.vue';
+import LogoImageLink from '@/components/LogoImageLink.vue';
 import adminAccountStore from '@/stores/adminAccountStore';
 import LogoutWindow from '@/mixins/LogoutWindow.vue';
 import ToastMessage from '@/mixins/ToastMessage.vue';
@@ -13,7 +13,7 @@ export default {
     };
   },
   components: {
-    LogoHTML,
+    LogoImageLink,
   },
   mixins: [LogoutWindow, ToastMessage],
   computed: {
@@ -59,7 +59,7 @@ export default {
           <i class="bi bi-list"></i>
         </button>
         <h1 class="navbar-brand mb-0">
-          <LogoHTML class="dashboard-logo"/>
+          <LogoImageLink class="dashboard-logo"/>
         </h1>
         <p class="mb-0 h5 text-primary">後台管理</p>
         <div class="ms-auto">

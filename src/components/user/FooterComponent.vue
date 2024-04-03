@@ -1,10 +1,9 @@
 <script>
-
-import LogoHTML from '@/components/LogoHTML.vue';
+import LogoImageLink from '@/components/LogoImageLink.vue';
 
 export default {
   components: {
-    LogoHTML,
+    LogoImageLink,
   },
 };
 </script>
@@ -12,7 +11,7 @@ export default {
   <div class="bg-primary bg-opacity-25">
     <div class="container text-md-center py-4">
       <h5 class="mb-2 text-md-center">
-        <LogoHTML class="footer-logo"/>
+        <LogoImageLink class="footer-logo"/>
       </h5>
       <p class="text-primary">© 2024 Juice oasis</p>
       <div class="d-md-flex justify-content-center text-gray-dark">

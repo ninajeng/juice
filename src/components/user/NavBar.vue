@@ -8,7 +8,7 @@ import collectStore from '@/stores/collectStore';
 import navStyleStore from '@/stores/navStyleStore';
 import LogoutWindow from '@/mixins/LogoutWindow.vue';
 import ToastMessage from '@/mixins/ToastMessage.vue';
-import LogoHTML from '@/components/LogoHTML.vue';
+import LogoImageLink from '@/components/LogoImageLink.vue';
 
 export default {
   data() {
@@ -20,7 +20,7 @@ export default {
   mixins: [LogoutWindow, ToastMessage],
   components: {
     LoginOffcanvas,
-    LogoHTML,
+    LogoImageLink,
   },
   watch: {
     hasLogin(isValid) {
@@ -116,7 +116,7 @@ export default {
           <i class="bi bi-list"></i>
         </button>
         <h1 class="fs-2 mb-0 me-0">
-          <LogoHTML @click="closeNav"/>
+          <LogoImageLink @click="closeNav"/>
         </h1>
         <a href="#" class="link-primary d-lg-none py-1 text-decoration-none"
           @click.prevent="login" v-if="!hasLogin">
