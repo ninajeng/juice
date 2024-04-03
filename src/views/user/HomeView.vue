@@ -510,7 +510,7 @@ export default {
             </li>
           </ul>
           <button class="btn btn-primary" @click="login">
-            加入會員<i class="bi bi-caret-right-fill ms-1"></i>
+            登入／加入會員<i class="bi bi-caret-right-fill ms-1"></i>
           </button>
         </div>
       </div>
