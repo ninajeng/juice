@@ -243,7 +243,7 @@ export default {
           </div>
         </template>
       </div>
-      <div class="mt-auto" v-if="hasLogin">
+      <div class="mt-auto mb-5" v-if="hasLogin">
         <button type="button" class="btn btn-outline-primary w-100 border-primary-subtle mt-3"
           @click="showLogoutConfirm()">
           <i class="bi bi-box-arrow-right me-1"></i>會員登出
@@ -260,6 +260,8 @@ export default {
   &:active{
     background-color: var(--bs-primary);
     color: var(--bs-white);
+  }&.active{
+    border: 0px solid var(--bs-primary);
   }
   &:focus{
     box-shadow: 0 0 0 0;
@@ -320,6 +322,9 @@ export default {
 }
 .sm-style {
   height: 100vh;
+  .container:nth-child(1){
+    border-bottom: 1px solid var(--bs-primary);
+  }
 }
 .collapse{
   display: none;
@@ -331,6 +336,9 @@ export default {
 @media (min-width: 992px) {
   .sm-style {
     height: auto;
+    .container:nth-child(1){
+      border-bottom: unset;
+    }
   }
   .collapse.show{
     display: none;

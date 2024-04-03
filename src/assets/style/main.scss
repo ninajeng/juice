@@ -43,8 +43,10 @@
   color: var(--bs-white);
 }
 
-.swal2-container.swal2-top-end{
-  padding-top: 80px;
+@media (min-width: 992px){
+  .swal2-container.swal2-top-end{
+    padding-top: 80px;
+  }
 }
 
 .swal2-toast .swal2-warning{
