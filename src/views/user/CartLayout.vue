@@ -46,7 +46,7 @@ export default {
         </p>
       </div>
     </template>
-    <div style="min-height: 600px;">
+    <div class="position-relative" style="min-height: 450px;">
       <RouterView @step-num="setStep"/>
     </div>
   </div>

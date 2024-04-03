@@ -6,6 +6,7 @@ const REGISTER_PATH = `${base.USER_URL}/register`;
 const LOGIN_PATH = `${base.USER_URL}/login`;
 const USER_PATH = `${base.USER_URL}/600/users`;
 const SETTINGS_PATH = `${base.USER_URL}/600/orderDataSettings`;
+const COLLECTION_PATH = `${base.USER_URL}/600/collection`;
 const CART_PATH = `${base.USER_URL}/600/carts`;
 const COUPON_PATH = `${base.USER_URL}/coupons`;
 const FEEDBACK_PATH = `${base.USER_URL}/feedbacks`;
@@ -71,6 +72,22 @@ export function initUserSettings(userId, data) {
 
 export function updateUserSettings(settingsId, data) {
   return base.axiosFunction('put', `${SETTINGS_PATH}/${settingsId}`, data, cookie.getUserToken());
+}
+// 收藏
+export function getUserCollection(userId) {
+  return base.axiosFunction('get', `${USER_PATH}/${userId}/collection`, null, cookie.getUserToken());
+}
+
+export function initCollection(userId) {
+  const data = {
+    list: [],
+    id: new Date().getTime(),
+  };
+  return base.axiosFunction('post', `${USER_PATH}/${userId}/collection`, data, cookie.getUserToken());
+}
+
+export function updateCollection(collectionId, data) {
+  return base.axiosFunction('patch', `${COLLECTION_PATH}/${collectionId}`, data, cookie.getUserToken());
 }
 // 購物車
 export function getCartInfo(userId) {

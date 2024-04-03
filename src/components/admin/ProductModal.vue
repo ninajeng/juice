@@ -95,6 +95,7 @@ export default {
         return;
       }
       this.productData.imageUrl = res.data.imageUrl;
+      this.isFile = false;
       this.isLoading = false;
     },
   },
@@ -374,11 +375,6 @@ export default {
                             placeholder="請輸入全糖使用的糖克數" v-model="productData.sugarGramPer100ml"
                             :disabled="productData.type !== 'drink'">
                         </div>
-                      </div>
-                      <div class="mb-3">
-                        <!-- <textarea id="calories" class="form-control" placeholder="請輸入飲品卡路里"
-                          v-model="productData.calories"
-                          :disabled="productData.type !== 'drink'"></textarea> -->
                       </div>
                   </div>
                   <div class="tab-pane fade" id="nav-img">

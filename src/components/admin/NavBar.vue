@@ -1,7 +1,8 @@
 <script>
 import { mapState, mapActions } from 'pinia';
-import LogoHTML from '@/components/logoHTML.vue';
+import LogoHTML from '@/components/LogoHTML.vue';
 import adminAccountStore from '@/stores/adminAccountStore';
+import LogoutWindow from '@/mixins/LogoutWindow.vue';
 import ToastMessage from '@/mixins/ToastMessage.vue';
 
 export default {
@@ -14,13 +15,14 @@ export default {
   components: {
     LogoHTML,
   },
-  mixins: [ToastMessage],
+  mixins: [LogoutWindow, ToastMessage],
   computed: {
     ...mapState(adminAccountStore, ['hasCheckedAuth']),
   },
   methods: {
     async logout() {
       this.isLoading = true;
+      this.isShowMenu = false;
       const res = await this.$adminRequest.logout();
       this.setLogoutState();
       this.$cookie.delAdminCookie();
@@ -36,59 +38,66 @@ export default {
           },
         });
       }
-      this.toastShow('success', '登出成功');
+      this.toastShow('success', '已登出後台');
       this.isLoading = false;
     },
     ...mapActions(adminAccountStore, ['setLogoutState']),
   },
   mounted() {
     const navbarHeight = this.$refs.navbar.offsetHeight;
-    this.$refs.list.style.height = `calc(100vh - ${navbarHeight}px )`;
-    this.$refs.list.style.top = `${navbarHeight}px`;
+    this.$refs.content.style.height = `calc(100vh - ${navbarHeight}px )`;
   },
 };
 </script>
 
 <template>
-  <loading-view :active="isLoading" />
-  <nav class="navbar bg-body-tertiary sticky-top" style="min-height: 55px;" ref="navbar">
-    <div class="container-fluid justify-content-start">
-      <button class="btn me-1" @click="isShowMenu = !isShowMenu" v-if="hasCheckedAuth">
-        <i class="bi bi-list"></i>
-      </button>
-      <LogoHTML/>
-      <p class="mb-0 h5 opacity-75">後台管理</p>
-      <div class="ms-auto">
-        <router-link class="btn btn-outline-dark btn-sm me-3" to="/">
-          回到前台
-        </router-link>
-        <button class="btn btn-outline-dark btn-sm" @click="logout" v-if="hasCheckedAuth">
-          登出
+  <loading-view :active="isLoading"/>
+  <div class="d-flex flex-column" style="height: 100vh;">
+    <nav class="navbar bg-body-tertiary sticky-top p-0" style="z-index: 1020;" ref="navbar">
+      <div class="container-fluid justify-content-start">
+        <button class="btn me-2" @click="isShowMenu = !isShowMenu" v-if="hasCheckedAuth">
+          <i class="bi bi-list"></i>
         </button>
-      </div>
-    </div>
-  </nav>
-  <div class="flex-fill d-flex flex-column">
-    <div class="d-flex flex-fill">
-      <div class="bg-light" :class="{show: isShowMenu && hasCheckedAuth}">
-        <div class="list-group overflow-y-auto sticky-top" ref="list">
-          <div v-if="hasCheckedAuth">
-            <RouterLink class="list-group-item list-group-item-action border-0"
-              to="products">
-              產品管理
-            </RouterLink>
-            <RouterLink class="list-group-item list-group-item-action border-0"
-              to="coupons">
-              優惠券管理
-            </RouterLink>
-            <RouterLink class="list-group-item list-group-item-action border-0"
-              to="orders">
-              訂單管理
-            </RouterLink>
-          </div>
+        <h1 class="navbar-brand mb-0">
+          <LogoHTML class="dashboard-logo"/>
+        </h1>
+        <p class="mb-0 h5 text-primary">後台管理</p>
+        <div class="ms-auto">
+          <router-link class="btn btn-outline-primary btn-sm me-3" to="/">
+            回到前台
+          </router-link>
+          <button class="btn btn-outline-primary btn-sm"
+            @click="showLogoutConfirm()"
+            v-if="hasCheckedAuth">
+            登出
+          </button>
         </div>
       </div>
-      <slot></slot>
+    </nav>
+    <div class="flex-fill d-flex" ref="content">
+      <div class="d-flex flex-fill overflow-y-auto">
+        <div class="bg-light" :class="{show: isShowMenu && hasCheckedAuth}">
+          <div class="list-group">
+            <div v-if="hasCheckedAuth">
+              <RouterLink class="list-group-item list-group-item-action border-0"
+                to="products">
+                產品管理
+              </RouterLink>
+              <RouterLink class="list-group-item list-group-item-action border-0"
+                to="coupons">
+                優惠券管理
+              </RouterLink>
+              <RouterLink class="list-group-item list-group-item-action border-0"
+                to="orders">
+                訂單管理
+              </RouterLink>
+            </div>
+          </div>
+        </div>
+        <div class="w-100 overflow-y-auto">
+          <slot></slot>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -112,5 +121,10 @@ export default {
 }
 .activeLink{
   background-color: var(--bs-primary);
+  color: #FFFFFF;
+}
+.dashboard-logo{
+  width: 70px;
+  margin-bottom: 6px;
 }
 </style>

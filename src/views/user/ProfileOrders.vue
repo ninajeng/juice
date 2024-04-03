@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
+  <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="container">
     <div class="border-start border-primary border-3 bg-primary-subtle p-3 mb-1">
       <h3 class="h5 me-3 mb-2">訂單紀錄</h3>
@@ -47,8 +47,8 @@ export default {
             <button class="accordion-button collapsed" type="button"
               data-bs-toggle="collapse" :data-bs-target="`#order${key}`">
               <span class="text-white fs-7 me-2">
-                <span class="bg-gray py-1 px-2" v-if="order.isFinish">已完成</span>
-                <span class="bg-success py-1 px-2" v-else>處理中</span>
+                <span class="bg-gray py-1 px-2 text-nowrap" v-if="order.isFinish">已完成</span>
+                <span class="bg-success py-1 px-2 text-nowrap" v-else>處理中</span>
               </span>
               <span>{{ $filters.unixToDateTime(order.createTime) }}</span>
             </button>
@@ -182,7 +182,7 @@ export default {
               </div>
               <hr>
               <p class="text-muted mb-2">明細</p>
-              <ol class="ps-3">
+              <ol class="ps-lg-3">
                 <li v-for="orderItem in order.cartInfo.list" :key="orderItem.cartId">
                   <p class="mb-1">{{ orderItem.product.title }}</p>
                   <p class="mb-1 text-muted" v-if="Object.keys(orderItem.userCustom).length">

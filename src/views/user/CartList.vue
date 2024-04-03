@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       couponCode: '',
+      initFinish: false,
       isLoading: false,
     };
   },
@@ -27,6 +28,7 @@ export default {
     async init() {
       this.isLoading = true;
       await this.getCartInfo(this.userData.id);
+      this.initFinish = true;
       this.isLoading = false;
     },
     ...mapActions(cartStore, ['getCartInfo']),
@@ -38,13 +40,15 @@ export default {
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
+  <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="row g-4 flex-column-reverse flex-lg-row justify-content-between">
-    <div class="col-lg-7 col-xl-6">
-      <OrderList :cart-info="cartInfo" :isEdit="true"/>
-    </div>
-    <div class="col-lg-5" v-if="cartInfo.list?.length">
-      <CartInfo :cart-info="cartInfo" :cart-item-num="cartItemNum" :isEdit="true"/>
-    </div>
+    <template v-if="initFinish">
+      <div class="col-lg-7 col-xl-6">
+        <OrderList :cart-info="cartInfo" :isEdit="true"/>
+      </div>
+      <div class="col-lg-5" v-if="cartInfo.list?.length">
+        <CartInfo :cart-info="cartInfo" :cart-item-num="cartItemNum" :isEdit="true"/>
+      </div>
+    </template>
   </div>
 </template>

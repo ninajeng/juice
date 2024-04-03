@@ -16,8 +16,9 @@ import AdminLoginView from '@/views/admin/LoginView.vue';
 import AdminProductsView from '@/views/admin/ProductsView.vue';
 import AdminCouponsView from '@/views/admin/CouponsView.vue';
 import AdminOrdersView from '@/views/admin/OrdersView.vue';
+import UserCollectionView from '@/views/user/ProfileCollection.vue';
 
-const webName = '果時';
+const webName = 'JUICE';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -43,7 +44,7 @@ const router = createRouter({
           },
         },
         {
-          path: 'products/:id',
+          path: 'products/:key',
           component: UserProductsView,
           meta: {
             title: `${webName} - 查看菜單`,
@@ -67,6 +68,14 @@ const router = createRouter({
                 title: `${webName} - 個人資料`,
               },
               component: UserProfileView,
+            },
+            {
+              path: 'collection',
+              name: 'collection',
+              meta: {
+                title: `${webName} - 我的收藏`,
+              },
+              component: UserCollectionView,
             },
             {
               path: 'orders',
@@ -124,7 +133,7 @@ const router = createRouter({
           name: 'adminProducts',
           component: AdminProductsView,
           meta: {
-            title: `${webName}/後台 - 產品管理`,
+            title: `${webName} 後台 - 產品管理`,
           },
         },
         {
@@ -132,7 +141,7 @@ const router = createRouter({
           name: 'adminCoupons',
           component: AdminCouponsView,
           meta: {
-            title: `${webName}/後台 - 優惠卷管理`,
+            title: `${webName} 後台 - 優惠卷管理`,
           },
         },
         {
@@ -140,10 +149,14 @@ const router = createRouter({
           name: 'adminOrders',
           component: AdminOrdersView,
           meta: {
-            title: `${webName}/後台 - 訂單管理`,
+            title: `${webName} 後台 - 訂單管理`,
           },
         },
       ],
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
     },
   ],
   linkActiveClass: 'activeLink',

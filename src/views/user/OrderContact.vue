@@ -84,7 +84,7 @@ export default {
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
+  <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="row g-4 flex-column-reverse flex-lg-row justify-content-between"
     v-if="cartInfo.list?.length">
     <div class="col-lg-5">
@@ -111,7 +111,8 @@ export default {
           <div class="form-floating mb-3">
             <v-field type="text" id="name" placeholder="姓名" name="姓名"
               class="form-control"
-              :class="{'is-invalid': errors['姓名'], 'bg-primary-subtle': user.name && !errors['姓名']}"
+              :class="{'is-invalid': errors['姓名'],
+                'bg-primary bg-opacity-10': user.name && !errors['姓名']}"
               rules="required" v-model="user.name"
               @input="checkDefaultSettings"></v-field>
             <label for="name" class="opacity-75">姓名*</label>
@@ -120,7 +121,7 @@ export default {
           <div class="form-floating mb-3">
             <v-field type="tel" id="phone" placeholder="手機" name="手機" class="form-control"
               :class="{'is-invalid': errors['手機'],
-                'bg-primary-subtle': user.phone && !errors['手機']}"
+                'bg-primary bg-opacity-10': user.phone && !errors['手機']}"
               :rules="$filters.isPhone" v-model="user.phone"
               @input="checkDefaultSettings"></v-field>
             <label for="phone" class="opacity-75">手機*</label>
@@ -128,7 +129,7 @@ export default {
           </div>
           <div class="form-floating mb-3">
             <v-field class="form-select" :class="{'is-invalid': errors['取貨方式'],
-              'bg-primary-subtle': user.delivery && !errors['取貨方式']}"
+              'bg-primary bg-opacity-10': user.delivery && !errors['取貨方式']}"
               id="delivery" name="取貨方式" rules="required" as="select"
               placeholder="請選擇取貨方式" v-model="user.delivery"
               @input="checkDefaultSettings">
@@ -142,7 +143,7 @@ export default {
           <div class="form-floating mb-3" v-if="user.delivery === '外送'">
             <v-field type="text" id="address" placeholder="外送地址" name="外送地址" class="form-control"
               :class="{'is-invalid': errors['外送地址'],
-                'bg-primary-subtle': user.address && !errors['外送地址']}"
+                'bg-primary bg-opacity-10': user.address && !errors['外送地址']}"
               rules="required" v-model="user.address" @input="checkDefaultSettings"></v-field>
             <label for="address" class="opacity-75">外送地址*</label>
             <error-message name="外送地址" class="invalid-feedback text-start"/>
@@ -150,7 +151,7 @@ export default {
           <div class="form-floating mb-3">
             <v-field id="payment" name="付款方式" class="form-select"
               :class="{'is-invalid': errors['付款方式'],
-                'bg-primary-subtle': user.payment && !errors['付款方式']}"
+                'bg-primary bg-opacity-10': user.payment && !errors['付款方式']}"
               rules="required" as="select"
               placeholder="請選擇付款方式" v-model="user.payment" @input="checkDefaultSettings">
               <option disabled value="">請選擇付款方式</option>
@@ -163,7 +164,8 @@ export default {
           </div>
           <div class="form-floating mb-3">
             <textarea id="message" placeholder="留言" name="message"
-              class="form-control" v-model="user.message" style="height: 100px;"
+              class="form-control" :class="{'bg-primary bg-opacity-10': user.message}"
+              v-model="user.message" style="height: 100px;"
               @input="checkDefaultSettings"></textarea>
             <label for="message" class="opacity-75">留言給我們</label>
           </div>

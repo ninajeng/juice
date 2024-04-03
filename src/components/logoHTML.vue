@@ -1,10 +1,26 @@
 <template>
-  <router-link class="navbar-brand text-primary lh-1 link-primary" :to="{name: 'home'}">
-    <img src="@/assets/image/logo.png" alt="果時店家logo" style="height: 1.5rem;">
-    <!-- <span style="font-size: 2.5rem;">果</span>
-    <span class="fs-7" style="writing-mode: vertical-lr">
-      <span class="bg-primary p-1 text-white"
-      style="writing-mode: horizontal-tb; margin-bottom: 0.1rem;">24</span>時
-    </span> -->
+  <router-link class="text-primary link-primary fs-2 logo" :to="{name: 'home'}">
+    Juice oasis
   </router-link>
 </template>
+
+<style lang="scss" scoped>
+.logo{
+  background-image: url('@/assets/image/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  text-indent: 101%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.logo:hover{
+  opacity: 0.8;
+}
+@media (min-width: 992px){
+  .logo{
+    background-position: left;
+  }
+}
+</style>

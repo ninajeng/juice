@@ -27,9 +27,7 @@ export default {
     },
   },
   mounted() {
-    this.orderModal = new Modal(this.$refs.modal, {
-      backdrop: 'static',
-    });
+    this.orderModal = new Modal(this.$refs.modal);
   },
 };
 </script>
@@ -59,7 +57,7 @@ export default {
                   {{ order.isFinish ? '已完成' : '未完成' }}
                   <span>
                     <button type="button"
-                      class="btn btn-sm btn-outline-secondary ms-2"
+                      class="btn btn-sm btn-primary ms-2"
                       @click="updateOrder">變更狀態</button>
                   </span>
                 </p>

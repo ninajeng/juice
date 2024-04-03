@@ -3,6 +3,7 @@ import {
   getCartInfo, initCart, updateCart, getCoupon, sentOrder, clearCart,
 } from '@/api/userRequest';
 import errorMessage from '@/utils/errorMessage';
+import utils from '@/utils/sortProduct';
 
 export default defineStore('cartStore', {
   state: () => ({
@@ -36,14 +37,15 @@ export default defineStore('cartStore', {
       return errorMessage;
     },
     async addToCart(userId, data, isUpdate) {
-      if (!userId) {
-        return '請先登入';
+      const resError = await this.getCartInfo(userId);
+      if (resError) {
+        return resError;
       }
       let list = [...this.cartInfo.list];
       if (isUpdate) {
         list = this.updateList(list, data);
         if (!list) {
-          return errorMessage;
+          return { isNotUpdate: true };
         }
       } else {
         const index = list.findIndex((item) => item.product.id === data.product.id
@@ -55,11 +57,7 @@ export default defineStore('cartStore', {
         }
       }
 
-      list.sort((a, b) => {
-        if (a.product.id > b.product.id) return 1;
-        if (a.product.id < b.product.id) return -1;
-        return 0;
-      });
+      list.sort((a, b) => utils.sortData(a, b));
 
       const res = await this.updateCart(list, userId);
       return res;
@@ -84,7 +82,14 @@ export default defineStore('cartStore', {
       return list;
     },
     async setItemQty(userId, cartId, qty) {
+      const resError = await this.getCartInfo(userId);
+      if (resError) {
+        return resError;
+      }
       const index = this.cartInfo.list.findIndex((item) => item.cartId === cartId);
+      if (index < 0) {
+        return { isNotUpdate: true };
+      }
       const list = [...this.cartInfo.list];
       list[index].qty = qty;
 

@@ -11,6 +11,7 @@ export default {
       couponList: [],
       tempCoupon: {},
       couponStatus: {},
+      isInitLoading: true,
       isLoading: false,
     };
   },
@@ -28,8 +29,10 @@ export default {
       const res = await this.$adminRequest.getCoupons();
       if (res.success) {
         this.couponList = res.data.message;
+        this.isInitLoading = false;
         this.isLoading = false;
       } else {
+        this.isInitLoading = false;
         this.isLoading = false;
         this.$cookie.delAdminCookie();
         this.alertWindow.show({
@@ -79,74 +82,95 @@ export default {
 </script>
 
 <template>
-  <loading-view :active="isLoading"/>
+  <loading-view :active="isLoading && !isInitLoading"/>
   <coupon-modal
     :temp-coupon="tempCoupon"
     @update-coupon="updateCoupon"
     ref="couponModal"
   />
-  <div class="container p-5 pt-0 position-relative">
-    <div class="d-flex pt-5 pb-2
+  <div class="container-fluid px-5 position-relative d-flex flex-column h-100">
+    <loading-view :active="isInitLoading" :is-full-page="false"/>
+    <div class="d-flex pt-4 pb-2
         align-items-center flex-wrap
-        position-fixed w-100 bg-white"
-        style="z-index: 2;">
+        sticky-top w-100 bg-white"
+        style="z-index: 900;">
       <h2 class="mb-0 me-2 opacity-75">優惠券管理</h2>
       <a href="#" class="link-primary fs-4"
         @click.prevent="editCoupon({})" title="建立優惠券">
         <i class="bi bi-plus-square-fill"></i>
       </a>
     </div>
-    <div class="text-nowrap overflow-x-auto" style="margin-top: 100px;">
-      <table class="table table-hover align-middle text-nowrap">
-        <thead class="border-dark">
-          <tr>
-            <th>優惠券代碼</th>
-            <th>優惠券名稱</th>
-            <th class="text-end pe-5">折扣內容</th>
-            <th>優惠截止時間</th>
-            <th>優惠券狀態</th>
-            <th width="70"></th>
-            <th width="70"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="coupon in couponList" :key="coupon.id">
-            <td>{{ coupon.code }}</td>
-            <td>{{ coupon.name }}</td>
-            <td class="text-end pe-5">
-              {{ `${coupon.discount % 10 === 0 ? coupon.discount / 10 : coupon.discount} 折` }}
-              </td>
-            <td>{{ $filters.unixToDateTime(coupon.dueDate) }}</td>
-            <td :class="checkStatus(coupon) ? 'text-success' : 'text-gray'">
-              <i class="bi bi-check fw-bolder" v-if="checkStatus(coupon)"></i>
-              <i class="bi bi-x" v-else></i>
-              <span class="text-danger"
-                v-if="new Date(coupon.dueDate).getTime() < Date.now()">已過期</span>
-              <span v-else>尚未過期</span>,
-              <span class="text-danger" v-if="!coupon.isEnabled">未啟用</span>
-              <span v-else>啟用</span>
-            </td>
-            <td class="text-end">
+    <div class="align-self-start overflow-x-auto mt-2 border p-3 mb-3"
+      :class="{'w-100': !couponList.length }" style="min-height: 150px">
+      <div class="row g-3" v-if="couponList.length">
+        <div class="col-auto" v-for="coupon in couponList" :key="coupon.id">
+          <div class="card shadow-sm">
+            <div class="text-center p-3"
+              :class="checkStatus(coupon) ? '' : 'opacity-50'">
+              <h5 class="mb-1">
+                <span class="mark">
+                  {{ `${coupon.name}
+                  ${coupon.discount % 10 === 0 ? coupon.discount / 10 : coupon.discount} 折` }}
+                </span>
+              </h5>
+              <p class="mb-0">
+                {{ coupon.code }}
+              </p>
+            </div>
+            <div class="p-3 border-top">
+              <p class="mb-2">
+                <span class="text-danger" v-if="!coupon.isEnabled">
+                  <i class="bi bi-exclamation-triangle me-1"></i>未啟用</span>
+                <span v-else>
+                  <i class="bi bi-check-square me-1"></i>啟用
+                </span>
+              </p>
+              <p class="mb-2">
+                <span class="text-danger" v-if="new Date(coupon.dueDate).getTime() < Date.now()">
+                  <i class="bi bi-exclamation-triangle me-1"></i>已過期</span>
+                <span v-else>
+                  <i class="bi bi-check-square me-1"></i>尚未過期
+                </span>
+              </p>
+              <p class="mb-0">
+                {{ `${$filters.unixToDateTime(coupon.dueDate)} 截止` }}
+                <span class="fs-7"></span>
+              </p>
+            </div>
+            <div class="d-flex border-top">
               <button
                 type="button"
-                class="btn btn-outline-primary"
-                @click="editCoupon(coupon)"
-              >
+                class="btn btn-outline-gray-dark border-0 border-end w-100 z-2"
+                @click="deleteConfirm('Coupon', '優惠券', coupon)">
+                <i class="bi bi-trash3"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary border-0 w-100 stretched-link"
+                @click="editCoupon(coupon)">
                 <i class="bi bi-pencil"></i>
               </button>
-            </td>
-            <td class="text-end">
-              <button
-                  type="button"
-                  class="btn btn-outline-gray-dark"
-                  @click="deleteConfirm('Coupon', '優惠券', coupon)"
-                >
-                  <i class="bi bi-trash3"></i>
-                </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+            <div class="d-flex">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-muted" v-if="!couponList.length && !isInitLoading">尚未建立優惠券</p>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.mark{
+  background-image: linear-gradient(white 60%, lighten(#86b2c2, 20%) 40%);
+  padding: 0rem 0.25rem;
+  color: inherit;
+}
+.card{
+  transition: transform 0.5s;
+}
+.card:hover{
+  transform: translateY(-3px);
+}
+</style>

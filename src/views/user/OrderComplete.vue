@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
+  <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="row g-4 flex-lg-row justify-content-between pt-2"
     v-if="orderInfo.cartInfo">
     <div class="col-lg-5 mb-3">
@@ -105,7 +105,7 @@ export default {
 @media (min-width: 200px){
   .dataTitle{
     min-width: 110px;
-  margin-right: 0rem;
+    margin-right: 0rem;
   }
 }
 </style>

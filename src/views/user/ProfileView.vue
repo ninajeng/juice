@@ -125,7 +125,7 @@ export default {
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
+  <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="container">
     <section class="mb-5">
       <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3
@@ -138,7 +138,7 @@ export default {
       </div>
       <v-form class="px-3" v-slot="{ errors }" @submit="updateProfile">
         <div class="row align-items-center">
-          <div class="col-3">
+          <div class="col-auto col-sm-3">
             <label class="form-label mb-3 text-muted" for="userName">
               姓名*
             </label>
@@ -154,7 +154,7 @@ export default {
           </div>
         </div>
         <div class="row align-items-center">
-          <div class="col-3">
+          <div class="col-auto col-sm-3">
             <label class="form-label mb-3 text-muted" for="userPhone">
               手機*
             </label>
@@ -285,7 +285,7 @@ export default {
           </div>
         </div>
         <div class="row mb-2 mb-sm-0">
-          <div class="col-3">
+          <div class="col-sm-3">
             <label class="form-label mb-2 mb-sm-3 mt-sm-1 text-muted" for="delivery">
               取貨方式
             </label>
@@ -319,7 +319,7 @@ export default {
           </div>
         </div>
         <div class="row mb-2 mb-sm-0" v-if="tempSettings.delivery === '外送'">
-          <div class="col-3">
+          <div class="col-sm-3">
             <label class="form-label mb-2 mb-sm-3 mt-sm-1 text-muted" for="address">
               外送地址
             </label>
@@ -349,7 +349,7 @@ export default {
           </div>
         </div>
         <div class="row mb-2 mb-sm-0">
-          <div class="col-3">
+          <div class="col-sm-3">
             <label class="form-label mb-2 mb-sm-3 mt-sm-1 text-muted" for="payment">
               付款方式
             </label>
@@ -385,7 +385,7 @@ export default {
           </div>
         </div>
         <div class="row mb-2 mb-sm-0">
-          <div class="col-3">
+          <div class="col-sm-3">
             <label class="form-label mt-sm-1 mb-2 mb-sm-3 text-muted" for="message">
               留言
             </label>

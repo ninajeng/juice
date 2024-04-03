@@ -9,51 +9,44 @@
 
 @import '@/assets/style/helpers/swiper';
 
-.btn-primary:hover {
-    color: #FFFFFF;
-    background-color: darken($primary, 20%);
-    border-color: darken($primary, 20%);
-}
-.btn-outline-primary:hover, .btn-outline-gray:hover {
-    color: #FFFFFF;
-}
-
-.text-primary-dark {
-    color: $blue-600;
-}
-
 .swal2-container{
-    z-index: 10000;
+  z-index: 10000;
 }
 
 .productBadge {
-    border: 1px solid gray;
-    color: gray;
-    font-size: 0.75rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-    font-weight: bold;
-    vertical-align: middle;
-    margin: 0px;
+  border: 1px solid gray;
+  color: gray;
+  font-size: 0.75rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  font-weight: bold;
+  vertical-align: middle;
+  margin: 0px;
 }
 
 .productBadge.secondaryOutlineBadge {
-    border: 1px solid var(--bs-secondary);
-    color: var(--bs-secondary);
+  border: 1px solid var(--bs-secondary);
+  color: var(--bs-secondary);
 }
 
 .productBadge.secondaryBadge {
-    border: 0px;
-    background-color: var(--bs-secondary);
-    color: var(--bs-white);
+  border: 0px;
+  background-color: var(--bs-secondary);
+  color: var(--bs-white);
+}
+
+.productBadge.grayBadge {
+  border: 0px;
+  background-color: #8f9091;
+  color: var(--bs-white);
 }
 
 .swal2-container.swal2-top-end{
-    padding-top: 80px;
+  padding-top: 80px;
 }
 
-.textTitle{
-    color: darken($primary, 20%);
-  }
+.swal2-toast .swal2-warning{
+  padding-left: 0.25rem;
+}

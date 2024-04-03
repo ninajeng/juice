@@ -1,13 +1,20 @@
+<script>
+
+import LogoHTML from '@/components/LogoHTML.vue';
+
+export default {
+  components: {
+    LogoHTML,
+  },
+};
+</script>
 <template>
   <div class="bg-primary bg-opacity-25">
     <div class="container text-md-center py-4">
-      <div class="mb-3 position-relative">
-        <router-link
-          class="link-primary text-decoration-none h3"
-          to="/"
-          >果時</router-link>
-      </div>
-      <p class="text-primary">© 2024 JuiceOasis</p>
+      <h5 class="mb-2 text-md-center">
+        <LogoHTML class="footer-logo"/>
+      </h5>
+      <p class="text-primary">© 2024 Juice oasis</p>
       <div class="d-md-flex justify-content-center text-gray-dark">
         <p class="me-4">營業時間：全年24小時營業</p>
         <p class="me-4">
@@ -23,3 +30,15 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.footer-logo{
+  background-position: left;
+}
+@media (min-width: 768px){
+  .footer-logo{
+  background-position: left;
+    background-position: center;
+  }
+}
+</style>

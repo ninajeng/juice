@@ -13,9 +13,12 @@ export default {
       products: [],
       categories: [],
       navTargets: [],
+      targetTemp: '',
+      navActiveIndex: 0,
       filter: '',
       filterProducts: [],
       categoryHeight: 135,
+      productsSectionOffset: 0,
       isLoading: false,
     };
   },
@@ -31,13 +34,10 @@ export default {
     filter(newValue) {
       if (newValue) {
         window.removeEventListener('scroll', this.setNavButton);
-        const activeBtn = document.querySelector('.nav-link.active');
-        if (activeBtn) {
-          activeBtn.classList.remove('active');
-        }
-        this.filterProducts = this.productList.filter(
-          (item) => item.title.indexOf(this.filter) > -1,
-        );
+        this.navActiveIndex = -1;
+        this.filterProducts = this.productList.filter((item) => item.title.indexOf(this.filter) > -1
+          || item.description.indexOf(this.filter) > -1
+          || item.ingredients?.indexOf(this.filter) > -1);
 
         window.scroll({
           top: this.categoryHeight,
@@ -78,13 +78,16 @@ export default {
       this.isLoading = false;
     },
     initProductModal() {
-      const productId = this.$route.params.id;
-      let index = -1;
-      if (productId) {
-        index = this.productList.findIndex((item) => item.id === productId);
-      }
-      if (index > -1) {
-        this.setProductData(this.productList[index]);
+      const { key } = this.$route.params;
+      const filterKey = 'search=';
+      if (key && key.indexOf(filterKey) === 0) {
+        this.filter = key.slice(filterKey.length);
+        this.scrollEnd();
+      } else if (key) {
+        const index = this.productList.findIndex((item) => item.id === key);
+        if (index > -1) {
+          this.setProductData(this.productList[index]);
+        }
       }
     },
     resizeWindow() {
@@ -93,8 +96,9 @@ export default {
       this.setNavButton();
     },
     setCategory() {
+      this.setOffset();
       [...document.querySelectorAll('.categoryTitle')].forEach((e) => {
-        this.navTargets.push(e.offsetTop);
+        this.navTargets.push(e.offsetTop + this.productsSectionOffset);
       });
     },
     setNavShadow() {
@@ -112,7 +116,6 @@ export default {
         this.setCategory();
       }
       const scrollPosition = document.documentElement.scrollTop;
-      const activeIndex = parseInt(document.querySelector('.nav-link.active')?.href.split('#')[1].slice(-1), 10) || -1;
       const positionIndex = this.navTargets.findIndex((y, key) => {
         const tolerance = 100;
         const min = key === 0 ? 0 : y - this.categoryHeight - tolerance;
@@ -120,18 +123,19 @@ export default {
           || document.documentElement.offsetHeight;
         return scrollPosition < max && scrollPosition >= min;
       });
-      if (activeIndex !== positionIndex) {
-        const activeBtn = document.querySelector('.nav-link.active');
-        if (activeBtn) {
-          activeBtn.classList.remove('active');
-        }
+      if (this.navActiveIndex !== positionIndex) {
+        this.navActiveIndex = positionIndex;
         const targetBtn = document.querySelector(`a[href*=category${positionIndex}]`);
         const buttonsDiv = this.$refs.categoryNav;
         buttonsDiv.scroll({
-          left: targetBtn.offsetLeft - buttonsDiv.offsetLeft,
+          left: targetBtn.offsetLeft - buttonsDiv.offsetLeft - 35,
           behavior: 'smooth',
         });
         targetBtn.classList.add('active');
+      }
+
+      if (this.targetTemp) {
+        this.scroll(null);
       }
     },
     scrollEnd() {
@@ -146,18 +150,28 @@ export default {
       if (!this.navTargets.length) {
         this.setCategory();
       }
-      const index = e.target.href.split('#')[1].slice(-1);
+      const index = e?.target.href.split('#')[1].slice(-1) || this.targetTemp;
+      this.targetTemp = '';
+      if (!this.navTargets.length) {
+        this.targetTemp = index;
+      }
       const positionY = this.navTargets[index] - this.categoryHeight;
 
       if (this.filter) {
         this.filter = '';
         document.querySelector('.productDiv').style.minHeight = `${this.navTargets[index]}px`;
       }
-
       window.scroll({
         top: positionY,
         behavior: 'instant',
       });
+    },
+    setOffset() {
+      if (document.documentElement.scrollWidth < 992) {
+        this.productsSectionOffset = 360;
+      } else {
+        this.productsSectionOffset = 460;
+      }
     },
     ...mapActions(productStore, ['getProducts', 'setProductData']),
     ...mapActions(navStyleStore, ['setShadow']),
@@ -170,29 +184,30 @@ export default {
     this.setShadow(false);
     window.removeEventListener('scroll', this.setNavButton);
     window.removeEventListener('scroll', this.setNavShadow);
+    window.removeEventListener('resize', this.resizeWindow);
   },
 };
 </script>
 
 <template>
-  <LoadingView :active="isLoading"/>
   <ProductModal/>
   <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711016342192.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=qc98CuXlk6ZyibBVHszlUGLIR18B%2FMfD3FI8EthuOoCmYQFDhGl1R2%2FzANZI162RV4gaa2eG9db5DJ5ifov9mTtCxV6WkP2F2GnLCWCgZl4pU%2FxfxMJgDMaOa8xQhpLKZueAtEawaXz8vWOztowKlwJzAPJW8Ou2LyS1fiFQxGixV%2Ftj1O2iBbKgMZFY6Xfwdhwr1s0YtU%2FDxRi%2BxE8zOnBUsbXBq1K03VDx0Wd8ilP0xhyzrAzHNxUOlWEanMSUjUOJXsg2qQ1nXEogjmCHUKDgxcmidMGvmCoK7Z5jd9eEeHrDAQR652P169dRpn1LARd5UlfXcaJu%2FzseY0In6g%3D%3D" alt="菜單頁背景圖" class="bgImage"
     style="width: 100%; object-fit: cover; object-position: center center;">
   <nav class="container" style="--bs-breadcrumb-divider: '>'; margin-bottom: -0.5rem;">
     <ol class="breadcrumb mt-4">
       <li class="breadcrumb-item">
-        <router-link class="link-offset-2 link-underline link-underline-opacity-75"
+        <router-link class="link-offset-2 link-underline link-underline-opacity-50"
           :to="{name: 'home'}">首頁</router-link>
       </li>
       <li class="breadcrumb-item active">菜單</li>
     </ol>
   </nav>
-  <div class="sticky-top bg-white pt-3 pt-lg-1 navList" style="top: 55px;">
+  <div class="sticky-top bg-white pt-3 pt-lg-1 navList">
     <div class="container">
-      <ul class="nav nav-pills flex-nowrap overflow-x-auto text-nowrap mb-2" ref="categoryNav">
+      <ul class="nav nav-pills flex-nowrap overflow-x-auto text-nowrap mb-2" ref="categoryNav"
+        :style="{cursor: isLoading ? 'wait' : 'auto'}">
         <li class="nav-item bg-light" v-for="(category, key) in categories" :key="'btn' + key">
-          <a class="nav-link" :class="{'active': key === 0 }"
+          <a class="nav-link" :class="{'disabled': isLoading, 'active': navActiveIndex === key}"
             :href="`#category${key}`" @click.prevent="scroll">{{ category }}</a>
         </li>
         <li class="nav-item">
@@ -212,11 +227,13 @@ export default {
       </ul>
     </div>
   </div>
-  <div class="productDiv container">
+  <div class="productDiv container position-relative">
+    <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
     <div class="pb-3" v-if="!filter">
       <div class="row"
         v-for="(category, categoryIndex) in categories" :key="'category' + categoryIndex">
-        <p class="mt-4 mb-2 text-primary categoryTitle" :id="`category${categoryIndex}`">
+        <p class="mt-4 mb-2 text-primary categoryTitle" :class="{'opacity-0': isLoading}"
+          :id="`category${categoryIndex}`">
           {{ category }}
         </p>
         <div class="mb-3 col-md-6" v-for="productInfo in products[category]" :key="productInfo.id">
@@ -257,9 +274,15 @@ export default {
 .searchInput:focus{
   background-color: var(--bs-primary-bg-subtle);
 }
+.navList{
+  top: 50px;
+}
 @media(min-width: 992px){
   .bgImage{
     height: 350px;
+  }
+  .navList{
+    top: 60px;
   }
 }
 </style>

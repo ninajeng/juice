@@ -2,6 +2,7 @@
 import { mapState, mapActions } from 'pinia';
 import Offcanvas from 'bootstrap/js/dist/offcanvas';
 import { register, login } from '@/api/userRequest';
+import collectStore from '@/stores/collectStore';
 import userAccountStore from '@/stores/userAccountStore';
 import ToastMessage from '@/mixins/ToastMessage.vue';
 
@@ -34,6 +35,13 @@ export default {
         this.setLoginWindowSignal(false);
       }
     },
+    isRegister(value) {
+      if (value) {
+        this.clearLoginData();
+      } else {
+        this.clearRegisterData();
+      }
+    },
   },
   computed: {
     ...mapState(userAccountStore, ['setUserData', 'loginWindowSignal']),
@@ -41,10 +49,28 @@ export default {
   methods: {
     deactivateForm() {
       this.isAliveForm = false;
+      this.clearLoginData();
+      this.clearRegisterData();
     },
     activateForm() {
       this.isAliveForm = true;
       this.isRegister = false;
+    },
+    clearLoginData() {
+      this.loginData = {
+        email: '',
+        password: '',
+      };
+      this.loginError = '';
+    },
+    clearRegisterData() {
+      this.registerData = {
+        name: '',
+        email: '',
+        password: '',
+      };
+      this.registerError = '';
+      this.passwordDoubleCheck = '';
     },
     async login() {
       this.isLoading = true;
@@ -54,6 +80,7 @@ export default {
         this.$cookie.setUserToken(accessToken);
         this.$cookie.setUserId(user.id);
         this.setUserData(user);
+        await this.getCollection();
         this.offcanvas.hide();
       } else if (res.errorMessage.data === 'Cannot find user') {
         this.loginError = '此用戶不存在，請先註冊！';
@@ -80,6 +107,7 @@ export default {
       }
       this.isLoading = false;
     },
+    ...mapActions(collectStore, ['getCollection']),
     ...mapActions(userAccountStore, ['setLoginWindowSignal']),
   },
   mounted() {
@@ -102,7 +130,7 @@ export default {
     <div class="offcanvas-header justify-content-end bg-opacity-0">
       <button type="button" class="btn-close" @click="offcanvas.hide()"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body pb-5" style=" background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7)), url(https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711982111486.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=HnPdSBNaKmoZfxVZbXNDrrMvD8tqK%2FqEWI%2FOwjTzW5stOuO1V1ldSWGfxepLBBepqd9g%2F6T9zkhluqF%2FmEsdxojN4rtzVdlIjVM0hCDCtbdSL5eIkO3T1h1P7onbXtuzwhyJnqRmLxLIvVlGZQVEtBh37I%2FkvcjD%2FWjfTkcz6BMEAvQAM8tp9qY6sk6OZeOrAopWDv8jvvAA9u6Vn9a%2Fx%2BUQMf9UXUBL06hC70kmTMidKZ2j10JLEznUZ%2FO%2Fi1IJKnqkV1vOQudRXCeBELtuMR1xSaVqN3OHU4ZMrQ7pwQ3hj5G4pzz8zgbN2jZNVRXKQauhRjxeNZ9buMD8XiRTQA%3D%3D); background-size: cover; background-position: right center">
       <div class="h-100 position-relative overflow-y-hidden" v-if="isAliveForm">
         <div class="position-absolute w-100 h-100 px-2"
           :class="isRegister ? 'hideContent' : 'showContent'">
@@ -144,7 +172,7 @@ export default {
                   <button type="submit" class="btn btn-primary btn-lg w-100">登入</button>
                 </v-form>
                 <p class="my-4 fs-7 text-gray text-center divider">
-                  <span class="bg-white px-2">OR</span>
+                  <span class="px-2">OR</span>
                 </p>
                 <button type="button" class="btn btn-outline-primary btn-lg w-100"
                   @click="isRegister = true">還不是會員？前往註冊</button>
@@ -201,7 +229,7 @@ export default {
                   <button type="submit" class="btn btn-primary btn-lg w-100">註冊</button>
                 </v-form>
                 <p class="my-4 fs-7 text-gray text-center divider">
-                  <span class="bg-white px-2">OR</span>
+                  <span class="px-2">OR</span>
                 </p>
                 <button type="button" class="btn btn-outline-primary btn-lg w-100"
                   @click="isRegister = false">已有會員，前往登入</button>
@@ -273,14 +301,24 @@ export default {
   position: relative;
   z-index: 1;
 }
-.divider::after{
+.divider::before{
   position: absolute;
   z-index: -1;
   top: -50%;
   left: 10%;
   content: '';
   border-bottom: 1px solid var(--bs-gray);
-  width: 80%;
+  width: calc(40% - 20px);
+  height: 100%;
+}
+.divider::after{
+  position: absolute;
+  z-index: -1;
+  top: -50%;
+  left: calc(50% + 20px);
+  content: '';
+  border-bottom: 1px solid var(--bs-gray);
+  width: calc(40% - 20px);
   height: 100%;
 }
 </style>

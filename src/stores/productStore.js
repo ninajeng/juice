@@ -11,6 +11,12 @@ export default defineStore('productStore', {
     setProductData(data) {
       if (!data) {
         this.targetProduct = data;
+      } else if (data.collectionId) {
+        this.targetProduct = {
+          ...data.product,
+          userCustom: data.userCustom,
+          collectionId: data.collectionId,
+        };
       } else if (!data.cartId) {
         this.targetProduct = data;
       } else {
