@@ -273,7 +273,7 @@ export default {
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === key ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
-              class="img-fluid shadow h-100" style="object-fit: cover;">
+              class="img-fluid shadow" style="object-fit: cover;">
             <div class="position-absolute w-100 h-100 bg-dark top-0 introduceMask"
               :class="{'active': introduceIndex === key}"
               style="cursor: pointer;" @click="introduceIndex = key"></div>
@@ -311,7 +311,7 @@ export default {
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === key ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
-              class="img-fluid shadow h-100" style="object-fit: cover;">
+              class="img-fluid shadow" style="object-fit: cover;">
             <div class="position-absolute w-100 h-100 bg-dark top-0 introduceMask"
               :class="{'active': introduceIndex === key}"
               style="cursor: pointer;" @click="introduceIndex = key"></div>
@@ -364,7 +364,7 @@ export default {
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === fruit.index ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
-              class="img-fluid shadow h-100" style="object-fit: cover;">
+              class="img-fluid shadow" style="object-fit: cover;">
             <div class="position-absolute w-100 h-100 bg-dark top-0 introduceMask"
               :class="{'active': introduceIndex === fruit.index}"
               style="cursor: pointer;"

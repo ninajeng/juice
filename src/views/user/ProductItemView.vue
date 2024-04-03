@@ -73,7 +73,7 @@ export default {
                 {{ productData.category }}
               </span>
             </h4>
-            <img src="@/assets/image/collectLoading.png" alt="收藏設定載入圖示" class="me-3"
+            <img src="@/assets/image/collectLoading.png" alt="收藏設定載入圖示" class="me-3 transformImage"
               style="width: 20px; height: 20px;" v-if="isCollectLoading">
             <a href="#" class="fs-5 collect-link" :class="{'active': collectedProduct}"
               title="加入收藏" @click.prevent="setCollection" v-else>
@@ -217,9 +217,23 @@ export default {
     content: '\f59d';
   }
 }
-.share-link:hover{
+.share-link.active{
   .bi-share::before{
     content: '\f52d';
+  }
+}
+.transformImage{
+  animation: transformImage 2s infinite linear;
+}
+@keyframes transformImage {
+  0%{
+  transform: rotate(0);
+  }
+  50%{
+  transform: rotate(180deg);
+  }
+  100%{
+  transform: rotate(360deg);
   }
 }
 @media (min-width: 992px){
