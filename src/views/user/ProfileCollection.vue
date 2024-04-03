@@ -63,10 +63,17 @@ export default {
       <div class="col-6 col-md-4 col-lg-3"
         v-for="item in collectInfo.list" :key="item.collectionId">
         <div class="border h-100 d-flex flex-column">
-          <img :src="item.product.imageUrl" :alt="item.product.title" class="img-fluid">
+          <img :src="item.product.imageUrl" :alt="item.product.title"
+            class="img-fluid border-bottom">
           <div class="p-3 flex-fill d-flex flex-column">
+
+            <p class="mb-2">
+              <span class="productBadge secondaryOutlineBadge">
+                {{ item.product.category }}
+              </span>
+            </p>
             <template v-if="item.product.type === 'drink'">
-              <h5>{{ `${item.product.title} (${item.userCustom.size})` }}</h5>
+              <h5 class="lh-base">{{ `${item.product.title} (${item.userCustom.size})` }}</h5>
               <p class="mb-2 position-relative">
                 <span class="productBadge grayBadge
                   d-inline-block me-2 mb-1 fw-normal fs-6">
@@ -88,9 +95,9 @@ export default {
               </p>
             </template>
             <template v-else-if="item.product.type === 'fruit'">
-              <p class="mb-2">
+              <h5 class="lh-base mb-2">
                 {{ item.product.title }}
-              </p>
+              </h5>
             </template>
             <p class="mt-auto mb-0">
               <span v-if="item.originPrice === item.price">
@@ -102,7 +109,7 @@ export default {
                   {{ `${$filters.currency(item.originPrice)}` }}
                 </del>
               </span>
-              <span class="text-muted fs-7">{{ ` / ${item.product.unit}` }}</span>
+              <span class="text-muted fs-7 d-inline-block">{{ ` / ${item.product.unit}` }}</span>
             </p>
           </div>
           <div class="d-flex">
