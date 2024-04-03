@@ -487,7 +487,7 @@ export default {
       <div class="col-md-6 col-lg-5">
         <div class="pe-lg-3">
           <h3 class="text-primary mb-3">會員募集中</h3>
-          <ul class="list-unstyled mb-0">
+          <ul class="list-unstyled mb-0" style="text-align: justify;">
             <li class="d-flex">
               <i class="bi bi-stars me-2 text-primary"></i>
               <p>只要成為會員，不論是門市取貨或外送需求，都可以使用線上訂餐服務！</p>

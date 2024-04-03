@@ -32,7 +32,7 @@ export default {
   <div class="container">
     <div class="border-start border-primary border-3 bg-primary-subtle p-3 mb-1">
       <h3 class="h5 me-3 mb-2">訂單紀錄</h3>
-      <p class="text-muted mb-0">每筆訂單紀錄保留60天，如有疑問歡迎來電詢問！</p>
+      <p class="text-muted mb-0">每筆訂單紀錄保留 60 天，如有疑問歡迎來電詢問！</p>
     </div>
     <div class="mt-4">
       <div v-if="!orderList.length">
