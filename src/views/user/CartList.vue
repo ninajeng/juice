@@ -41,6 +41,10 @@ export default {
 
 <template>
   <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
+  <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 my-4
+    d-flex align-items-center justify-content-between"  v-if="!cartInfo.list?.length">
+    <h3 class="h5 my-2 me-3">購物車</h3>
+  </div>
   <div class="row g-4 flex-column-reverse flex-lg-row justify-content-between">
     <template v-if="initFinish">
       <div class="col-lg-7 col-xl-6">
