@@ -241,7 +241,7 @@ export default {
       </v-form>
     </section>
     <section class="pt-2">
-      <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-1">
+      <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3">
         <div class="d-flex align-items-center justify-content-between">
           <h3 class="h5 mb-0 me-3">常用設定：訂購人資料</h3>
           <button type="button" class="btn btn-primary" title="修改設定"

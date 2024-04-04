@@ -62,7 +62,7 @@ export default {
         {
           title: '西瓜',
           imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869946339.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=IBIQB%2B4FGAFWW4FjGBFt9KgFwZ49OqGlCH9YLMCgYW0lCtqDjc0iwA%2FRWYmdAAMR83GhkETcv92zEQIjCNRw%2BCA6hP5HKmV9v8A3m6RvIfm7P6uTCzXkNBz8E6jxQfzMrZvWrfXrEkQ%2BfWtmyjtWPmzjTHGFdnqOJ7hUhZa0nS0ASmWXBWVIg0B1ROY4Jdrd58IW%2FW7x1CwmeU1ErDn04hihKqPHrKvWmwhjweCfCHgbP2GArkjX640NcZAa85PHAktB36vPAhQfblFDlX3OPZn1KX2ys53hwnzSG7nxSf0QOIyiT06GAqgMwDsAr5NPpogEFjPrPAlY0Ui9oUly1g%3D%3D',
-          description: '西瓜含有維生素A、維生素C與豐富的水分，補充營養的同時也為身體補足水分！',
+          description: '西瓜含有維生素A、維生素C與豐富的水分，不僅能補充營養，也能為身體補足水分！',
         },
         {
           title: '鳳梨',

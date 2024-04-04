@@ -127,14 +127,15 @@ export default {
             </button>
           </div>
         </div>
-
       </div>
     </div>
     <div v-else>
-      <p>尚無收藏</p>
-      <router-link to="/products" class="btn btn-primary">
-        瀏覽菜單<i class="bi bi-caret-right-fill"></i>
-      </router-link>
+      <template v-if="!isLoading">
+        <p>尚無收藏</p>
+        <router-link to="/products" class="btn btn-primary">
+          瀏覽菜單<i class="bi bi-caret-right-fill"></i>
+        </router-link>
+      </template>
     </div>
   </div>
 </template>

@@ -204,16 +204,19 @@ export default {
   </nav>
   <div class="sticky-top bg-white pt-3 pt-lg-1 navList">
     <div class="container">
-      <ul class="nav nav-pills flex-nowrap overflow-x-auto text-nowrap mb-2" ref="categoryNav"
+      <ul class="nav nav-pills flex-nowrap overflow-x-auto text-nowrap mb-2 pb-1" ref="categoryNav"
         :style="{cursor: isLoading ? 'wait' : 'auto'}">
         <li class="nav-item bg-light" v-for="(category, key) in categories" :key="'btn' + key">
-          <a class="nav-link" :class="{'disabled': isLoading, 'active': navActiveIndex === key}"
-            :href="`#category${key}`" @click.prevent="scroll">{{ category }}</a>
+          <a class="nav-link h-100 d-flex align-items-center"
+            :class="{'disabled': isLoading, 'active': navActiveIndex === key}"
+            :href="`#category${key}`" @click.prevent="scroll">
+            {{ category }}
+          </a>
         </li>
         <li class="nav-item">
           <button type="button" :class="{'active': filter}"
             class="btn border-0 d-flex align-items-center
-              position-relative py-1 h-100 searchButton">
+              position-relative py-2 h-100 searchButton">
             <input type="text" class="form-control form-control-sm"
               style="width: 200px; padding-left: 2rem; padding-right: 2rem;"
               placeholder="請輸入關鍵字" v-model.trim="filter" @input="scrollEnd">

@@ -118,100 +118,102 @@ export default {
   <div class="position-relative">
     <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
     <ProductModal/>
-    <div class="d-flex justify-content-between align-items-end mb-3">
-      <h3 class="mb-0 h5">購物清單</h3>
-      <a href="#" @click.prevent="confirmDeleteAll"
-        class="link-gray-dark link-offset-3 link-underline-gray link-underline-opacity-50"
-          v-if="cartInfo.list?.length && isEdit">
-        移除所有品項
-      </a>
-    </div>
     <div v-if="cartInfo.list?.length">
-      <div class="mb-2 d-flex flex-column flex-sm-row align-items-center cartList"
-        v-for="cartItem in cartInfo.list" :key="cartItem.id">
-        <div class="position-relative productImage"
-          :style="{'background-image': `url(${cartItem.product.imageUrl})`}">
-          <div class="py-1 d-sm-none position-absolute end-0 z-2 bg-light">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h3 class="mb-0 h5">購物清單</h3>
+        <a href="#" @click.prevent="confirmDeleteAll"
+          class="link-gray-dark link-offset-3 link-underline-gray link-underline-opacity-50"
+            v-if="isEdit">
+          移除所有品項
+        </a>
+      </div>
+      <div>
+        <div class="mb-2 d-flex flex-column flex-sm-row align-items-center cartList"
+          v-for="cartItem in cartInfo.list" :key="cartItem.id">
+          <div class="position-relative productImage"
+            :style="{'background-image': `url(${cartItem.product.imageUrl})`}">
+            <div class="py-1 d-sm-none position-absolute end-0 z-2 bg-light">
+              <a href="#" title="移除品項"
+                class="link-gray px-2"
+                @click.prevent="confirmDeleteItem(cartItem)"
+                v-if="isEdit">
+                <i class="bi bi-x-lg"></i>
+              </a>
+            </div>
+            <a href="#" class="stretched-link"
+              @click.prevent="showAddItemModal(cartItem)" v-if="isEdit">
+              <span class="position-absolute bottom-0 end-0 me-2 mb-1 link-dark">
+                <i class="bi bi-plus-square-fill"></i>
+              </span>
+            </a>
+          </div>
+          <div class="px-4 py-3 py-lg-0 flex-fill d-flex flex-column w-100 productInfo">
+            <div class="position-relative" v-if="cartItem.product.type === 'drink'">
+              <p class="mb-2">
+                {{ `${cartItem.product.title} (${cartItem.userCustom.size})` }}
+              </p>
+              <p class="mb-2">
+                <span class="productBadge grayBadge
+                  d-inline-block me-2 mb-1 fw-normal fs-6">
+                  {{ cartItem.userCustom.sugar || '甜度固定' }}
+                </span>
+                <span class="productBadge grayBadge
+                  d-inline-block me-2 mb-1 fw-normal fs-6">
+                  {{ cartItem.userCustom.ice || '冷熱固定' }}
+                </span>
+                <span class="productBadge grayBadge
+                  d-inline-block me-2 mb-1 fw-normal fs-6"
+                  v-for="(extra, key) in cartItem.userCustom.extras" :key="'extras' + key">
+                  {{ extra }}
+                </span>
+                <a href="#" class="link-gray-dark stretched-link" title="編輯品項"
+                  @click.prevent="setProductData(cartItem)" v-if="isEdit">
+                  <i class="bi bi-pencil"></i>
+                </a>
+              </p>
+            </div>
+            <div v-else-if="cartItem.product.type === 'fruit'">
+              <p class="mb-2">
+                {{ cartItem.product.title }}
+              </p>
+            </div>
+            <p class="mt-0 mt-sm-auto mb-1">
+              <span v-if="cartItem.originPrice === cartItem.price">
+                {{ `單價 ${$filters.currency(cartItem.price)} 元` }}
+              </span>
+              <span class="text-danger" v-else>
+                {{ `單價 ${$filters.currency(cartItem.price)} 元` }}
+                <del class="ms-1 text-muted">
+                  {{ `${$filters.currency(cartItem.originPrice)}` }}
+                </del>
+              </span>
+              <span class="text-muted fs-7">{{ ` / ${cartItem.product.unit}` }}</span>
+            </p>
+            <div class="row g-2 g-sm-3
+              align-items-center" v-if="isEdit">
+              <div class="col-auto">
+                <label :for="'itemQty' + cartItem.cartId" class="text-nowrap">數量</label>
+              </div>
+              <div class="col-auto formSelect">
+                <select class="form-select" :id="'itemQty' + cartItem.cartId"
+                  :value="cartItem.qty"
+                  @change="setQuantity(cartItem, Number($event.target.value))">
+                  <option v-for="i in setQtyOption(cartItem.qty)" :key="'cartItemQty' + i">
+                    {{ i }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div v-else>{{ `數量 ${cartItem.qty}` }}</div>
+          </div>
+          <div class="mx-2 my-1 my-lg-0 align-self-start d-none d-sm-block">
             <a href="#" title="移除品項"
-              class="link-gray px-2"
+              class="link-gray"
               @click.prevent="confirmDeleteItem(cartItem)"
               v-if="isEdit">
               <i class="bi bi-x-lg"></i>
             </a>
           </div>
-          <a href="#" class="stretched-link"
-            @click.prevent="showAddItemModal(cartItem)" v-if="isEdit">
-            <span class="position-absolute bottom-0 end-0 me-2 mb-1 link-dark">
-              <i class="bi bi-plus-square-fill"></i>
-            </span>
-          </a>
-        </div>
-        <div class="px-4 py-3 py-lg-0 flex-fill d-flex flex-column w-100 productInfo">
-          <div class="position-relative" v-if="cartItem.product.type === 'drink'">
-            <p class="mb-2">
-              {{ `${cartItem.product.title} (${cartItem.userCustom.size})` }}
-            </p>
-            <p class="mb-2">
-              <span class="productBadge grayBadge
-                d-inline-block me-2 mb-1 fw-normal fs-6">
-                {{ cartItem.userCustom.sugar || '甜度固定' }}
-              </span>
-              <span class="productBadge grayBadge
-                d-inline-block me-2 mb-1 fw-normal fs-6">
-                {{ cartItem.userCustom.ice || '冷熱固定' }}
-              </span>
-              <span class="productBadge grayBadge
-                d-inline-block me-2 mb-1 fw-normal fs-6"
-                v-for="(extra, key) in cartItem.userCustom.extras" :key="'extras' + key">
-                {{ extra }}
-              </span>
-              <a href="#" class="link-gray-dark stretched-link" title="編輯品項"
-                @click.prevent="setProductData(cartItem)" v-if="isEdit">
-                <i class="bi bi-pencil"></i>
-              </a>
-            </p>
-          </div>
-          <div v-else-if="cartItem.product.type === 'fruit'">
-            <p class="mb-2">
-              {{ cartItem.product.title }}
-            </p>
-          </div>
-          <p class="mt-0 mt-sm-auto mb-1">
-            <span v-if="cartItem.originPrice === cartItem.price">
-              {{ `單價 ${$filters.currency(cartItem.price)} 元` }}
-            </span>
-            <span class="text-danger" v-else>
-              {{ `單價 ${$filters.currency(cartItem.price)} 元` }}
-              <del class="ms-1 text-muted">
-                {{ `${$filters.currency(cartItem.originPrice)}` }}
-              </del>
-            </span>
-            <span class="text-muted fs-7">{{ ` / ${cartItem.product.unit}` }}</span>
-          </p>
-          <div class="row g-2 g-sm-3
-            align-items-center" v-if="isEdit">
-            <div class="col-auto">
-              <label :for="'itemQty' + cartItem.cartId" class="text-nowrap">數量</label>
-            </div>
-            <div class="col-auto formSelect">
-              <select class="form-select" :id="'itemQty' + cartItem.cartId"
-                :value="cartItem.qty"
-                @change="setQuantity(cartItem, Number($event.target.value))">
-                <option v-for="i in setQtyOption(cartItem.qty)" :key="'cartItemQty' + i">
-                  {{ i }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div v-else>{{ `數量 ${cartItem.qty}` }}</div>
-        </div>
-        <div class="mx-2 my-1 my-lg-0 align-self-start d-none d-sm-block">
-          <a href="#" title="移除品項"
-            class="link-gray"
-            @click.prevent="confirmDeleteItem(cartItem)"
-            v-if="isEdit">
-            <i class="bi bi-x-lg"></i>
-          </a>
         </div>
       </div>
     </div>

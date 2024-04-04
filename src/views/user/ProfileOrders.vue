@@ -36,10 +36,12 @@ export default {
     </div>
     <div class="mt-4">
       <div v-if="!orderList.length">
-        <p>尚無訂單紀錄</p>
-        <router-link to="/products" class="btn btn-primary">
-          瀏覽菜單<i class="bi bi-caret-right-fill"></i>
-        </router-link>
+        <template v-if="!isLoading">
+          <p>尚無訂單紀錄</p>
+          <router-link to="/products" class="btn btn-primary">
+            瀏覽菜單<i class="bi bi-caret-right-fill"></i>
+          </router-link>
+        </template>
       </div>
       <div class="accordion" id="accordion" v-else>
         <div class="accordion-item" v-for="(order, key) in orderList" :key="order.id">

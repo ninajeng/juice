@@ -36,7 +36,6 @@ export default {
 }
 @media (min-width: 768px){
   .footer-logo{
-  background-position: left;
     background-position: center;
   }
 }

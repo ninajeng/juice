@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex-fill position-relative" style="margin-top: 60px;">
+  <div class="flex-fill position-relative" style="margin-top: 0px;">
     <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
     <div class="container py-5 mt-5" v-if="productData.title">
       <div class="d-flex flex-column flex-lg-row
