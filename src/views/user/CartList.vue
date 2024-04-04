@@ -41,7 +41,7 @@ export default {
 
 <template>
   <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
-  <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 my-4
+  <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3
     d-flex align-items-center justify-content-between"  v-if="!cartInfo.list?.length">
     <h3 class="h5 my-2 me-3">購物車</h3>
   </div>
