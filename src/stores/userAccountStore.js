@@ -97,8 +97,8 @@ export default defineStore('userAccountStore', {
       [this.userSettings] = res.data.message;
       return '';
     },
-    async updateUserSettings(settingsId, data) {
-      let res = await userApi.updateUserSettings(settingsId, data);
+    async updateUserSettings(data) {
+      let res = await userApi.updateUserSettings(this.userSettings.id, data);
       if (!res.success) {
         return errorMessage;
       }

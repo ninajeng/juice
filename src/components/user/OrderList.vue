@@ -1,9 +1,8 @@
 <script>
-import { mapState, mapActions } from 'pinia';
+import { mapActions } from 'pinia';
 import Swal from 'sweetalert2/dist/sweetalert2';
 import ProductModal from '@/components/user/ProductModal.vue';
 import cartStore from '@/stores/cartStore';
-import userAccountStore from '@/stores/userAccountStore';
 import productStore from '@/stores/productStore';
 import AddItemToCart from '@/mixins/user/AddItemToCart.vue';
 import ToastMessage from '@/mixins/ToastMessage.vue';
@@ -36,9 +35,6 @@ export default {
   components: {
     ProductModal,
   },
-  computed: {
-    ...mapState(userAccountStore, ['userData']),
-  },
   methods: {
     showAddItemModal(cartItem) {
       this.setProductData(cartItem.product);
@@ -52,7 +48,7 @@ export default {
         return;
       }
       this.isLoading = true;
-      const resError = await this.removeItem(this.userData.id, item.cartId);
+      const resError = await this.removeItem(item.cartId);
       this.isLoading = false;
       if (!resError) {
         this.toastShow('success', '已更新購物車！');
@@ -69,7 +65,7 @@ export default {
         return;
       }
       this.isLoading = true;
-      const resError = await this.removeAll(this.userData.id);
+      const resError = await this.removeAll();
       this.isLoading = false;
       if (!resError) {
         this.toastShow('success', '已清空購物車！');
@@ -79,7 +75,7 @@ export default {
     },
     async setQuantity(cartItem, qty) {
       this.isLoading = true;
-      const resError = await this.setItemQty(this.userData.id, cartItem.cartId, qty);
+      const resError = await this.setItemQty(cartItem.cartId, qty);
       if (!resError) {
         this.toastShow('success', '已更新購物車！');
       } else if (resError.isNotUpdate) {

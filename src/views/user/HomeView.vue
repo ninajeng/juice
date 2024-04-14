@@ -51,32 +51,32 @@ export default {
       fruitIntroduce: [
         {
           title: '柳橙',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869767538.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=U%2BzQkV4G8bbW7A7wv9WXoXq7RxaZctVt6BJJ6AFFuXYJdZW1FJa%2B%2BizlkA%2FCVLMYRjnT4ASOW5Ns31ME%2BikdqpNQKeFhC2GTHP9WCF%2FeJSFffPFSxc2WCDV18DwuvhMSR9GAIknq%2Bpjt7DeF5Fs85D%2Bx7FiGfvWzlJuVqxvEn2OdUpEp4CU5UTUIeaamoynNsoHpKfCy9HE59aI%2B0kNwX4fSuN9PRgyQFokDOr1fjaqNm7eTJxhHF1mUdEtXSqfz8%2B%2FegoHVLylS41udfyQzpZKVSecQB68EOfUKq%2FmNpMdfKI%2BwNGCTYcU%2BL4DdOL%2Fl%2FJIMXLF9zlpE3nvasZcrXQ%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667836366.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=nVrdRncvezwLG0wXkbq6uDynOmPL1%2FQKBBS%2FrOx9smNDJV4l8xjT%2Fs25smbedltK6pK1m%2Bo90%2FLjs6SOED3avJzHE0VDhl1FOx2jtE7zL7kYj%2FZZQLN6sRf3O4sQtn9D85BhtTZ7ZC9TXjb6NzEubC%2FFtq%2B1ITCyD0DbUK9FsfrjVODR5IQrAg7wq96GUMHnIhGLMEnbQHtXaoW1nm5EWo7ctvfl9qHBXMhNLNupyChBa3aQVQ%2Fk5NmIlAIvQgR0cj3WTKXsZgL44hS6telzBh9u%2Bx1xZ4de6Dj5L%2BqeR3Bv8%2FSzdXXk3IqA3vNF%2F%2BKa7rHE%2B3ZVwGNuS1TFt5g0rA%3D%3D',
           description: '柳橙富含維生素A、維生素C、抗氧化物質與膳食纖維，不僅營養豐富，也有助於改善腸道健康！',
         },
         {
           title: '莓果',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869792756.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Oiae9h9%2BWtMdPb6yUejonP1FZcNTuAjOAdnsxoo5J9alAGA%2FOzKaJaGw6vC%2FaHXE8Fw6FTCZpZrpAll9vGFDx%2FLbKGg2w5iCb44XU%2B82KZjgRtWs9HHxs2fP3IDyU86Cc8D1y6ZyK3ucqz38dl7EHntz1wDeNSjcjR6Flazc%2B%2BtiKZnG9GjE09rqqjnUjvTGegpHtKLhqXzPIln0OothAF34btGEYk0FykBtKa4AIpOjlbEArj6IpgKJFGPq3XC4L1jx6rCr%2BBvwiA5tHwKMBFdhk%2BU2nR5jWUyR0bE0sbbp0bttPnA07q8U3ZgBJwX1g18388DemHBnSesOTg8vSg%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667906671.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=PYUbkfRIazmxqFfPmEupRODd3MEmPNYMrpRZb8BkdMXSqDg8IfV1u%2FXwFkCT0sj9jpdUtnq0rX6wIhOW7LdkmoM7l%2BND%2FzYIi0zLPxaPAfCBOorDs%2F%2BonXzSGuETrzjYAZKvHhkcYFk9SwsAVbRfKnyK9f9p%2FYPt0rH2aaAW0mHwLexo%2B%2FOypSonyk5TdtyAXqv4A3ajQatKxohHYopbTBJ6UZg4X0%2BkAMP5zFeWly0gtf%2FskUcK%2BZ7W%2BDLPEX23LYK9gXI7BrvYyi%2F%2BcPR9tP5R3HBK9aeG0Tt8pSJkyKeiDkalH2lELzIU%2BdisN8ZPOot01Yq6UhZcg%2FoA8GmvCA%3D%3D',
           description: '莓果含有豐富的抗氧化物質與維生素C，有助於維持身體健康，提高免疫力！',
         },
         {
           title: '西瓜',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869946339.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=IBIQB%2B4FGAFWW4FjGBFt9KgFwZ49OqGlCH9YLMCgYW0lCtqDjc0iwA%2FRWYmdAAMR83GhkETcv92zEQIjCNRw%2BCA6hP5HKmV9v8A3m6RvIfm7P6uTCzXkNBz8E6jxQfzMrZvWrfXrEkQ%2BfWtmyjtWPmzjTHGFdnqOJ7hUhZa0nS0ASmWXBWVIg0B1ROY4Jdrd58IW%2FW7x1CwmeU1ErDn04hihKqPHrKvWmwhjweCfCHgbP2GArkjX640NcZAa85PHAktB36vPAhQfblFDlX3OPZn1KX2ys53hwnzSG7nxSf0QOIyiT06GAqgMwDsAr5NPpogEFjPrPAlY0Ui9oUly1g%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667922891.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=lAnQaHGMqj7zDAA2Smnk2LB51lMbvxxJk%2BR6sN98ptIl8C6cCvEVSWpPaNsbLlNfWe8R5s%2FjyRKF4uIM8YFOaqMtV00UaKDjSuX3lNmWoEFpN6ChaG%2FC5aakVeBsDdee5LEnyXofALHT3%2Bz2ZFEdOB36EVao4Qba8eI4EZB6Tgo0DGCTDoKFk3nQHbgiDUhefsTX8e6%2Be1%2BgUaj6%2BqxndMFvqcPrqKbmMjcso%2Bj7ugJla%2B7ntRNUkoniNyZP3V5XMyTTK8mI6qgJWSosKmU4c0%2FnskwmOUFAEkkzS%2Fvrtyy%2B5IHJ5diIT9rutSwzEiXu913oyZeF8w7SJYZKS5UntA%3D%3D',
           description: '西瓜含有維生素A、維生素C與豐富的水分，不僅能補充營養，也能為身體補足水分！',
         },
         {
           title: '鳳梨',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869928600.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=jiANzUm7Y4zemnoU4F0Mf95vKj2BIFBUcIPUWGTUrJW0ARuKwD3j95IBDheeE0YseeSwEverfiiCUXS8nd9fVjdSNFeyStWzdKLUFuYcigTmv5GrnI%2B81tLV%2BPPDgwlGcDYOVLY6UYfdm4fycN%2B5QeUCbt4WWBWHw19Ts2zrVe0IAWJV8OP%2BQRIi803sfeGYdEOx%2FDOl2tEtgiMQLWh1gS0p0723LVSvkGJPiZwQ5z5%2FQwC8dSKJH%2Box2XlHkinlogPCQd%2Bswe1taNyOUkXKMdNOx5i7VlfnF%2F6etLj1pcSwnrPM5%2BFaJ5BjUDfEM3MR54uEqNMr5sCI4nViJRaawA%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667938494.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=LOUHVHTaqz3rGj2UOnfOMHc1nlCWIatoQTNKO2ScIuNu27Js1IkmiFGVCVgP8sz9stMcuQaxwosK5gnXCQb3I%2FJYxhswsEJU14LmEtudQUPh1MNGqupfRM36989T4YRkqBCNFYga3peofGXGVR3EbQDeGZuyzqw6twrv4aL64cqpAfcF02VcrufP9ZLT33TxnEfb06QJZ4%2BnJUgyx%2F6eNrz5DEOAfHV3Z9jxKTbId%2F926%2F%2FLWiMhSaZ0etqYslZv2ppGHQbYnv8nhNPdezkFuQN3T6AExW9cdTaoVNj8xTVQdHk2cjCHHi3ma6ib7JKcoSz6njkuixYJ7H9ITGS5Eg%3D%3D',
           description: '鳳梨含有維生素A、維生素C、類胡蘿蔔素與消化酶，有助於促進腸道健康！',
         },
         {
           title: '奇異果',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869980478.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=o2lCQkxtxVGkjVIFTPlmIoFumoPCme67u591xLPEjW9%2BuEsqqqzon8rfadbwTSUA3PCscpUklYrVFD%2FNkDJKA76UZpuN9v4mvEY4HBWmJxxYTraBioPLd1VNP%2BUhfA3hC8UoiwaJOzSoSvPwl1EpzHUhCCUsQUC7xHbDD8TnSdsac87xOTgVYmEEwvmPTG%2FMHN7ANqyjFiy8fTfa0rpKgNmmFEjERL%2BGqACMiV9biW2oE2j5vKZ5YWwo16SMcr1BTONdpkA9r9gxSJSdmcAtZtXaZoWtEX9bxXg8Bycv640xUAs8r7JDCeG3sPt5OpY6StBwSrzMWH%2FQhaEYKQrrOA%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667952932.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=le12qlOvxZcHlp6ez7pD%2BzogTyi9e3veOD1QoThw5ZNNFRsLdGQuIJrc5C9xGoDkkB6TNlx0sL%2FmCITvbL6LrfYHTrYepJz1yfUd9e3lLS8irROAqvhS4AeN3SvyGIA3isykb0C%2FUSD2uZokJkmNkU9OqN1poeDFkzWT10UYJnIzkjeS7Aea2Wd5Qe8wX7%2B2FMV8UUnPB%2FNSRp7OR9%2FBPMmJWp1NPtR3HdeebNLTzGAUrn5KCpvVi%2Bx2GSCGqIBeClGp8bQGE8UeIijrEPWoqnbDKjTvfmFKdu54Y9rjb645g%2BsooUvm9F4WEX%2F8pg9Sb%2FrTxvRZI7%2BejxX53Mf3%2BA%3D%3D',
           description: '奇異果含有維生素C、維生素E、維生素K與膳食纖維，有助於增強免疫系統！',
         },
         {
           title: '綜合水果',
-          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711869994433.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=bLTJnUUcaa28zclBfrvuGGJyaFkWSIGuEJCr%2BipllQlzGL3E%2BmGRwLWI%2FPQhrFMJQMA5k3R1YOPGwEgY7pBA9UOkEDkfbKDsvGJVtaQ0GO6TRZPrIQm0Wh1lxKBqssRexy1wVKDDm9p7Kl008aIZw6W4wq1ZPJvhaRSy3BVrzNGgmfGCymHwu%2FDwg8Ni6NmcWHTvxnNz0AnWPO6bqsSKZyv94z4QrWJc3ZkdYZzUhq0JQLpMWS4EJ292ebDG1D88Ws3D7CvGaCkRjghFQGqurmoWtj%2Bee%2F9BwjqXNpEyK%2FRvQ4HnoBX7%2BKxym79qzzF9ZD%2F9eAo7EcenmxO45%2FMfJg%3D%3D',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712667966450.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=hQhUSePQloo%2BtjSjE8A8%2BjGIlUvuFZg%2F7OWXWXq5FIyiS2pJtTgL58Gz3EdMDFY8ch9j9thG7JqfWTH%2BZnaZWvaQq%2Bh9fiFjGi5lDYJtqmnb5WSTqnBwPHhSPXc4bSmR5mHvTuux65yzaZNt5Y3YzGLEVAVCCUgwk5gqvkoItp%2FN1nZI4BfC%2F701bdcLBbYRCVlVM9JERvZRYX5WD4RI482RonQAewJmIGxfzmhHN6CwDKo1LOeoBgeCyjlFPqhqSnq%2Bo36lWp0ozfisgQHPqRiHcyISycrvONZ7B3o%2FjzyXBTOuP2zbV7Dhrg9T0aUDtgDe%2FWRmlcjbO5zLlK1owg%3D%3D',
           description: '每種水果含有不同的營養素，綜合水果讓您一次補足多種營養！',
         },
       ],
@@ -100,6 +100,7 @@ export default {
         },
       },
       isFeedbackLoading: true,
+      feedbackCardNum: 0,
       isLoading: false,
     };
   },
@@ -132,6 +133,12 @@ export default {
         }
       });
       this.isLoading = false;
+      this.setSwiperHeight();
+    },
+    setSwiperHeight() {
+      const height = document.querySelector('.swiper').offsetHeight;
+      document.querySelector('.swiper').style.height = `${height}px`;
+      this.isFeedbackLoading = false;
     },
     copyCode(code, e) {
       const successDOM = '<i class="bi bi-check me-1"></i>已複製';
@@ -187,7 +194,7 @@ export default {
     ...mapActions(productStore, ['getProducts', 'setProductData']),
     ...mapActions(userAccountStore, ['setLoginWindowSignal', 'clearData']),
   },
-  async mounted() {
+  async created() {
     this.isFeedbackLoading = true;
     this.fruitIntroduce.forEach((item, key) => {
       this.fruitIntroduce[key].index = key;
@@ -200,11 +207,6 @@ export default {
       return;
     }
     this.feedbacks = res.data.message;
-    setTimeout(() => {
-      const height = document.querySelector('.swiper').offsetHeight;
-      document.querySelector('.swiper').style.height = `${height}px`;
-      this.isFeedbackLoading = false;
-    }, 0);
   },
 };
 </script>
@@ -470,7 +472,7 @@ export default {
         v-if="feedbacks.length"
       >
         <swiper-slide v-for="feedback in feedbacks" :key="feedback.id">
-          <FeedbackCard :feedback="feedback" />
+          <FeedbackCard :feedback="feedback"/>
         </swiper-slide>
       </swiper>
     </div>
@@ -515,7 +517,7 @@ export default {
         </div>
       </div>
       <div class="col-6 col-lg-4 d-none d-md-block align-self-stretch">
-        <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711982308788.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=P4bAfhM%2FbbXQ2%2Fn7JvQfbNa6Yi8v6Bq1mgBB87UFNLOVedFQhkIPqAvDc2iEjyq%2F1JXRb7BwuEGJ3x2gjvtfKBL0XqPg9Fdm6yXlFt2NMCM0ijXNWaWEUrWaaWAk939NyNdyof52XLqACwWyWcQSdob9tIdbb%2BSsM3n5FAh8pxRO5abw7uMXLImz7JQ7wCVGZIf999x2wu%2F3UY02AR%2F0ZXWVsQV0aTDYwsDi7X1nDDI5a8xsTgfQRI4bl5uKpfhqTJEQCzr2S%2B%2Bjgw0XUGMndFOdk9G8%2B6kXAh4vI6x1IFl1O9cPs3%2FqoEDV%2BCtgUFzrMsZ3VJFyjIp5GWwvjxBlSg%3D%3D" alt="會員募集背景"
+        <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712668168884.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=TaKC8Zs%2BxXk79wrgUEPtRNGhTlz2H4iIbeiGtwogBsP1EqBxyHz86QFfCCy%2BSQWiLmE9rxbeWDu5rVgFdeS5Fxf1TQoqmufpJJ7uoCOrlt7DTyyFsNWFQqQSCdGbWjYD5mvV2EuX%2FY3Q4t6tHRGqnUT7tcXe7onBvH4LBGIQO3LOoYB5F29D7R0UvZwkopyN4AZXpSd%2BikSdX42oHgMhNwmlemwRdUeg%2B2SHfSJ9GjtRWQAdwtff3oGErhmOFK%2F5Tv%2BBNU3s2s727rq8fDS0Z9jjnKQfv%2FKKg8HKhbyRnyX%2Ft08xSIxOd%2BaelMTp8hy1fTo0MGrCD6YSWp0IfB7iCg%3D%3D" alt="會員募集背景"
           class="img-fluid">
       </div>
     </div>

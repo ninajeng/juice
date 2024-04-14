@@ -22,7 +22,7 @@ const swalConfirmAlert = Swal.mixin({
 export default {
   mixins: [SetCustomOption, ToastMessage],
   computed: {
-    ...mapState(userAccountStore, ['hasLogin', 'userData']),
+    ...mapState(userAccountStore, ['hasLogin']),
   },
   methods: {
     async addItemToCart() {
@@ -34,7 +34,7 @@ export default {
       }
       const data = this.setCustomOption(this.productData);
       const cartId = data.product.cartId || new Date().getTime();
-      const resError = await this.addToCart(this.userData.id, {
+      const resError = await this.addToCart({
         ...data, qty: this.qty, cartId,
       }, this.isUpdate);
       if (!resError) {

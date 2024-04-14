@@ -34,7 +34,7 @@ export default {
 </script>
 
 <template>
-  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711016396423.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=kn%2BU4nYmKrlEvZ9t7o9qZUphT4TPS6bYughLSjSxF%2FMtUM1HRH2PGHXoPl46QnX6MP2eooS8jvbioCh4Qx7oiGtMue4nI1rzXqyokPvsdGKNViKvQzmt0LhmP%2FJHbYc8zBXOv9qRfIfhPo2B4NF9GkTfbUCpqQc0q%2BPeJkDnKcecsRsGhH26f95UIZ%2Bmc0zRnUMKfsH8dvQmgTXcEP%2Bwh47mPXhd9M%2FLjcA0AjKRkk3K3Kp%2BONQOYFFPRYD9RkVNwVaBikeuiMl0kL3E2%2BZgCifrLVaQboFrj4wDGnAUVrBvHeV4m20cpEwfkGpVkPTYuyDRdngjy%2Fvr2i5xdStqUg%3D%3D" alt="購物車結帳背景圖" class="bgImage"
+  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712727758586.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=VijqnQgQPHGlMHnrLQK3fr49TM1uNZIolt03Z1MFugnj4lax8sLDzabDxyS3GbVWsOzuqxl5R6YB4u1sfEAMY%2BYfzDShj0yvwWL7%2FG0pDCrwTcWFBX%2BxcmIKfsNB1pPmIRp1QUseI5mBqKdOaaQJHC0VhoAu11fGTz%2FdbocytEwRANrCzy8Wh0FjdMq4Dvgz6Y3a5YWDEq8wngqVNJOrRTuIy1kSJVIWlLfg84UD4fEzgGyrfddoHmXnlByg3joUsMTco%2BSBQahIMUUEocPxHTp36OFML49PqisDUI6%2F80CnlylBxJKiWlS4hWq6pqS%2Fl5j3HqNVKT%2FUvpYd3H7rQQ%3D%3D" alt="購物車結帳背景圖" class="bgImage"
     style="width: 100%; object-fit: cover; object-position: center center;">
   <div class="container py-5">
     <template v-if="cartInfo.list?.length">

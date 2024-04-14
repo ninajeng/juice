@@ -33,12 +33,12 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['cartInfo', 'cartItemNum']),
-    ...mapState(userAccountStore, ['userData', 'userSettings']),
+    ...mapState(userAccountStore, ['userSettings']),
   },
   methods: {
     async init() {
       this.isLoading = true;
-      await this.getCartInfo(this.userData.id);
+      await this.getCartInfo();
       if (!this.cartInfo.list?.length) {
         this.$router.replace({ name: 'cart' });
       }
@@ -57,7 +57,7 @@ export default {
         cartInfo: this.cartInfo,
         id,
       };
-      const errorRes = await this.sentOrder(this.userData.id, data);
+      const errorRes = await this.sentOrder(data);
       if (errorRes) {
         this.toastShow('error', errorRes);
         this.isLoading = false;

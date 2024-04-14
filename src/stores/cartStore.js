@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import {
   getCartInfo, initCart, updateCart, getCoupon, sentOrder, clearCart,
 } from '@/api/userRequest';
+import userAccountStore from '@/stores/userAccountStore';
 import errorMessage from '@/utils/errorMessage';
 import utils from '@/utils/sortProduct';
 
@@ -10,34 +11,34 @@ export default defineStore('cartStore', {
     cartInfo: [],
   }),
   actions: {
-    async getCartInfo(userId) {
-      if (!userId) {
+    async getCartInfo() {
+      if (!this.userId) {
         return '請先登入';
       }
-      const res = await getCartInfo(userId);
+      const res = await getCartInfo(this.userId);
       if (res.success) {
         if (res.data.message.length) {
           [this.cartInfo] = res.data.message;
           return '';
         }
-        const initRes = await this.initCart(userId);
+        const initRes = await this.initCart(this.userId);
         return initRes;
       }
       return errorMessage;
     },
-    async initCart(userId) {
-      if (!userId) {
+    async initCart() {
+      if (!this.userId) {
         return '請先登入';
       }
-      const res = await initCart(userId);
+      const res = await initCart(this.userId);
       if (res.success) {
         this.cartInfo = res.data.message;
         return '';
       }
       return errorMessage;
     },
-    async addToCart(userId, data, isUpdate) {
-      const resError = await this.getCartInfo(userId);
+    async addToCart(data, isUpdate) {
+      const resError = await this.getCartInfo(this.userId);
       if (resError) {
         return resError;
       }
@@ -59,7 +60,7 @@ export default defineStore('cartStore', {
 
       list.sort((a, b) => utils.sortData(a, b));
 
-      const res = await this.updateCart(list, userId);
+      const res = await this.updateCart(list, this.userId);
       return res;
     },
     updateList(cartList, data) {
@@ -81,8 +82,8 @@ export default defineStore('cartStore', {
       }
       return list;
     },
-    async setItemQty(userId, cartId, qty) {
-      const resError = await this.getCartInfo(userId);
+    async setItemQty(cartId, qty) {
+      const resError = await this.getCartInfo(this.userId);
       if (resError) {
         return resError;
       }
@@ -93,22 +94,22 @@ export default defineStore('cartStore', {
       const list = [...this.cartInfo.list];
       list[index].qty = qty;
 
-      const res = await this.updateCart(list, userId);
+      const res = await this.updateCart(list, this.userId);
       return res;
     },
-    async removeItem(userId, cartId) {
+    async removeItem(cartId) {
       const index = this.cartInfo.list.findIndex((item) => item.cartId === cartId);
       const list = [...this.cartInfo.list];
       list.splice(index, 1);
 
-      const res = await this.updateCart(list, userId);
+      const res = await this.updateCart(list);
       return res;
     },
-    async removeAll(userId) {
-      const res = await this.updateCart([], userId);
+    async removeAll() {
+      const res = await this.updateCart([]);
       return res;
     },
-    async updateCart(list, userId) {
+    async updateCart(list) {
       let price = 0;
       let cartItemNum = 0;
       if (list.length > 0) {
@@ -125,13 +126,13 @@ export default defineStore('cartStore', {
       if (!res.success) {
         return errorMessage;
       }
-      const error = await this.getCartInfo(userId);
+      const error = await this.getCartInfo(this.userId);
       if (error) {
         return errorMessage;
       }
       return '';
     },
-    async getCoupon(userId, code) {
+    async getCoupon(code) {
       const couponInfo = await getCoupon(code);
       if (!couponInfo.success) {
         return errorMessage;
@@ -152,14 +153,14 @@ export default defineStore('cartStore', {
       if (!res.success) {
         return errorMessage;
       }
-      const error = await this.getCartInfo(userId);
+      const error = await this.getCartInfo(this.userId);
       if (error) {
         return errorMessage;
       }
       return '';
     },
-    async sentOrder(userId, data) {
-      if (!userId) {
+    async sentOrder(data) {
+      if (!this.userId) {
         return '請先登入';
       }
       const order = {
@@ -167,7 +168,7 @@ export default defineStore('cartStore', {
         isFinish: false,
         createTime: new Date().getTime(),
       };
-      let res = await sentOrder(userId, order);
+      let res = await sentOrder(this.userId, order);
       if (!res.success) {
         return errorMessage;
       }
@@ -175,7 +176,7 @@ export default defineStore('cartStore', {
       if (!res.success) {
         return errorMessage;
       }
-      const error = await this.getCartInfo(userId);
+      const error = await this.getCartInfo(this.userId);
       if (error) {
         return errorMessage;
       }
@@ -185,6 +186,10 @@ export default defineStore('cartStore', {
   getters: {
     cartItemNum({ cartInfo }) {
       return cartInfo.list?.reduce((acc, cur) => acc + cur.qty, 0) || 0;
+    },
+    userId() {
+      const { userData } = userAccountStore();
+      return userData.id;
     },
   },
 });

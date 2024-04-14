@@ -1,6 +1,7 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import ProductModal from '@/components/user/ProductModal.vue';
+import SectionTitle from '@/components/user/SectionTitle.vue';
 import collectStore from '@/stores/collectStore';
 import productStore from '@/stores/productStore';
 import AddItemToCart from '@/mixins/user/AddItemToCart.vue';
@@ -19,6 +20,7 @@ export default {
   mixins: [CheckLogin, SetCollection, AddItemToCart],
   components: {
     ProductModal,
+    SectionTitle,
   },
   computed: {
     ...mapState(collectStore, ['collectInfo']),
@@ -51,14 +53,14 @@ export default {
   <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <ProductModal :isEditCollection="true"/>
   <div class="container">
-    <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3
-      d-flex align-items-center justify-content-between">
-      <h3 class="h5 my-2 me-3">我的收藏</h3>
-      <button type="button" class="btn btn-primary" title="移除所有收藏"
-        @click="removeAllCollection" v-if="collectInfo.list?.length">
-        <i class="bi bi-trash3"></i>
-      </button>
-    </div>
+    <SectionTitle :title="'我的收藏'">
+      <template #button>
+        <button type="button" class="btn btn-primary" title="移除所有收藏"
+          @click="removeAllCollection" v-if="collectInfo.list?.length">
+          <i class="bi bi-trash3"></i>
+        </button>
+      </template>
+    </SectionTitle>
     <div class="row g-3" v-if="collectInfo.list?.length">
       <div class="col-6 col-md-4 col-lg-3"
         v-for="item in collectInfo.list" :key="item.collectionId">

@@ -1,5 +1,7 @@
 <script>
+import { mapActions } from 'pinia';
 import { getProductItem } from '@/api/userRequest';
+import localStorageStore from '@/stores/localStorageStore';
 import AddItemToCart from '@/mixins/user/AddItemToCart.vue';
 import SetCollection from '@/mixins/user/SetCollection.vue';
 import CheckLogin from '@/mixins/user/CheckLogin.vue';
@@ -27,6 +29,7 @@ export default {
       const res = await getProductItem(this.$route.params.id);
       if (res.success) {
         this.initProductSettings(res.data.product);
+        this.setRecord(this.productData);
         this.isLoading = false;
       } else {
         this.toastShow('error', '您欲查看的產品不存在');
@@ -34,6 +37,7 @@ export default {
         this.isLoading = false;
       }
     },
+    ...mapActions(localStorageStore, ['setRecord']),
   },
 };
 </script>

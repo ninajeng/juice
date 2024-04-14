@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from 'pinia';
+import SectionTitle from '@/components/user/SectionTitle.vue';
 import userAccountStore from '@/stores/userAccountStore';
 import CheckLogin from '@/mixins/user/CheckLogin.vue';
 
@@ -11,6 +12,9 @@ export default {
     };
   },
   mixins: [CheckLogin],
+  components: {
+    SectionTitle,
+  },
   methods: {
     async init() {
       const res = await this.getOrderList();
@@ -30,10 +34,11 @@ export default {
 <template>
   <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="container">
-    <div class="border-start border-primary border-3 bg-primary-subtle p-3 mb-1">
-      <h3 class="h5 me-3 mb-2">訂單紀錄</h3>
-      <p class="text-muted mb-0">每筆訂單紀錄保留 60 天，如有疑問歡迎來電詢問！</p>
-    </div>
+    <SectionTitle :title="'訂單紀錄'">
+      <template #text>
+        <p class="text-muted mb-1">每筆訂單紀錄保留 60 天，如有疑問歡迎來電詢問！</p>
+      </template>
+    </SectionTitle>
     <div class="mt-4">
       <div v-if="!orderList.length">
         <template v-if="!isLoading">

@@ -1,5 +1,6 @@
 <script>
 import { mapActions, mapState } from 'pinia';
+import SectionTitle from '@/components/user/SectionTitle.vue';
 import userAccountStore from '@/stores/userAccountStore';
 import CheckLogin from '@/mixins/user/CheckLogin.vue';
 
@@ -23,6 +24,9 @@ export default {
     };
   },
   mixins: [CheckLogin],
+  components: {
+    SectionTitle,
+  },
   watch: {
     isEditProfile(isEdit) {
       if (!isEdit) {
@@ -93,7 +97,7 @@ export default {
     },
     async setUserSettings() {
       this.isLoading = true;
-      const errorRes = await this.updateUserSettings(this.userSettings.id, this.tempSettings);
+      const errorRes = await this.updateUserSettings(this.tempSettings);
       if (errorRes) {
         this.showErrorMessage(errorRes);
         return;
@@ -128,14 +132,14 @@ export default {
   <LoadingView :active="isLoading" :is-full-page="false" style="z-index: 1000;"/>
   <div class="container">
     <section class="mb-5">
-      <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3
-        d-flex align-items-center justify-content-between">
-        <h3 class="h5 mb-0 me-3">會員基本資料</h3>
-        <button type="button" class="btn btn-primary" title="修改資料"
-          :disabled="isEditProfile" @click="isEditProfile = true">
-          <i class="bi bi-pencil-fill"></i>
-        </button>
-      </div>
+      <SectionTitle :title="'會員基本資料'">
+        <template #button>
+          <button type="button" class="btn btn-primary" title="修改資料"
+            :disabled="isEditProfile" @click="isEditProfile = true">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+        </template>
+      </SectionTitle>
       <v-form class="px-3" v-slot="{ errors }" @submit="updateProfile">
         <div class="row align-items-center">
           <div class="col-auto col-sm-3">
@@ -176,10 +180,7 @@ export default {
       </v-form>
     </section>
     <section class="mb-5">
-      <div class="border-start border-primary border-3 bg-primary-subtle p-3 mb-3
-        d-flex align-items-center justify-content-between">
-        <h3 class="h5 mb-0 me-3">會員帳號</h3>
-      </div>
+      <SectionTitle :title="'會員帳號'"/>
       <v-form class="px-3" v-slot="{ errors }" @submit="updatePassword">
         <div class="row mb-1">
           <div class="col-3">
@@ -241,16 +242,17 @@ export default {
       </v-form>
     </section>
     <section class="pt-2">
-      <div class="border-start border-primary border-3 bg-primary-subtle p-2 ps-3 mb-3">
-        <div class="d-flex align-items-center justify-content-between">
-          <h3 class="h5 mb-0 me-3">常用設定：訂購人資料</h3>
+      <SectionTitle :title="'常用設定：訂購人資料'">
+        <template #button>
           <button type="button" class="btn btn-primary" title="修改設定"
             @click="isEditSettings = true" :disabled="isEditSettings">
             <i class="bi bi-pencil-fill"></i>
           </button>
-        </div>
-        <p class="text-muted my-1">此設定可於結帳流程中，將訂購人資料自動填入欄位。</p>
-      </div>
+        </template>
+        <template #text>
+          <p class="text-muted my-1">此設定可於結帳流程中，將訂購人資料自動填入欄位。</p>
+        </template>
+      </SectionTitle>
       <v-form class="px-3 mt-4" v-slot="{ errors, validate }" @submit="setUserSettings">
         <div class="row align-items-center mb-2 mb-sm-0">
           <div class="col-sm-3">

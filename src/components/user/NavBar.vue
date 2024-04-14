@@ -32,12 +32,12 @@ export default {
   computed: {
     ...mapState(navStyleStore, ['disableShadow']),
     ...mapState(cartStore, ['cartItemNum']),
-    ...mapState(userAccountStore, ['hasLogin', 'userData']),
+    ...mapState(userAccountStore, ['hasLogin']),
   },
   methods: {
     async getData() {
       if (this.hasLogin) {
-        const resError = await this.getCartInfo(this.userData.id);
+        const resError = await this.getCartInfo();
         if (resError) {
           this.toastShow('error', resError, 4000);
         }

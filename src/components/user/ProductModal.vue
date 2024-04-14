@@ -2,6 +2,7 @@
 import Modal from 'bootstrap/js/dist/modal';
 import { mapState, mapActions } from 'pinia';
 import productStore from '@/stores/productStore';
+import localStorageStore from '@/stores/localStorageStore';
 import CopyLink from '@/mixins/user/CopyLink.vue';
 import InitProductSettings from '@/mixins/user/InitProductSettings.vue';
 import SetCollection from '@/mixins/user/SetCollection.vue';
@@ -37,6 +38,7 @@ export default {
   methods: {
     show() {
       this.productModal.show();
+      this.setRecord(this.productData);
     },
     hide() {
       this.productModal.hide();
@@ -45,6 +47,7 @@ export default {
       this.setProductData(null);
     },
     ...mapActions(productStore, ['setProductData']),
+    ...mapActions(localStorageStore, ['setRecord']),
   },
   mounted() {
     this.productModal = new Modal(this.$refs.modal);

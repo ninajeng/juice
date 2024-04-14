@@ -15,7 +15,7 @@ export default {
 
 <template>
   <div class="bg-primary-subtle">
-    <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711282221646.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=B5sr%2F2wk80XxSgISyEC34Di9TWYqE9QXF7MiA%2BS4IeibulyrG2ZSWqKIjfn8CELbCwgG2VOPwqzOv9V9air%2BCa8N0AH%2FMnBJ%2Fsh4XL7vQx1bH%2BBmDppT%2BTJnhJPugpTrfMO91QgNwzYgqPa%2BiSJgzfhqbnfF2zMCay01SySSFl%2F8xDgN6GwNrmdcTmJC%2FH9b4D8X1EP0u47ngQEZA83e3YzSEu3QiqDPck9s%2Begze5QFErlWb60Grs3iiYKMvpTwAuzkIGhBoRZRQ0SQ%2Fp0K2CjmfVrXBI0apGXY4A7dgTn6eQai5D0XVkP5ROAk9mLJEpesOADtwPvJkGge6ZJK9A%3D%3D" alt="會員資料背景圖" class="bgImage"
+    <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712727615057.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=JZb%2FyGX6nFYMtG7N547avGT4OWJo43zw5LVdFjlGf%2B2xRH9F1RVcwgH0H22%2Frrx%2BZuAa7G9ylV7YIv72j5flViYGGtgw5X7HUfWDKO3ird1f7zLwLYKcaW3JKpMfLoTXR54ED1qcA%2BkM%2FHdd46yiNa4eH3201GZmtFJ4TlAvZA8OlTiQBc0UGLoPPmqxe7h4XJscYh0VF1vOiiHmDInhaHsvQdC%2F%2FqsEETZyNs2nV%2B1xii0385KZj7Exd0wGLaoIKVebDVAxQoyRn7Ud1A1OsT0f6YU7mNQKD7ipnwHx5JMHvqKoXxyZZkioG8N0MXzflNe5UITmwEz45cs54%2B%2Bw7Q%3D%3D" alt="會員資料背景圖" class="bgImage"
       style="width: 100%; object-fit: cover; object-position: center center; opacity: 0.95;">
   </div>
   <div class="position-relative py-5" style="min-height: 600px;">

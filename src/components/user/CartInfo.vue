@@ -1,7 +1,6 @@
 <script>
-import { mapState, mapActions } from 'pinia';
+import { mapActions } from 'pinia';
 import cartStore from '@/stores/cartStore';
-import userAccountStore from '@/stores/userAccountStore';
 import ToastMessage from '@/mixins/ToastMessage.vue';
 
 export default {
@@ -13,13 +12,10 @@ export default {
   },
   props: ['cartInfo', 'cartItemNum', 'isEdit'],
   mixins: [ToastMessage],
-  computed: {
-    ...mapState(userAccountStore, ['userData']),
-  },
   methods: {
     async setCoupon() {
       this.isLoading = true;
-      const errorRes = await this.getCoupon(this.userData.id, this.couponCode);
+      const errorRes = await this.getCoupon(this.couponCode);
       if (errorRes) {
         this.toastShow('error', errorRes);
       } else {
