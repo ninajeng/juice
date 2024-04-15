@@ -36,7 +36,7 @@ export default {
   <div class="container">
     <SectionTitle :title="'訂單紀錄'">
       <template #text>
-        <p class="text-muted mb-1">每筆訂單紀錄保留 60 天，如有疑問歡迎來電詢問！</p>
+        <p class="text-muted mb-1">每筆訂單紀錄保留 6 個月，如有疑問歡迎來電詢問！</p>
       </template>
     </SectionTitle>
     <div class="mt-4">

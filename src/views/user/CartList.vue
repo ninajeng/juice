@@ -6,8 +6,8 @@ import Swal from 'sweetalert2/dist/sweetalert2';
 import CartInfo from '@/components/user/CartInfo.vue';
 import OrderList from '@/components/user/OrderList.vue';
 import SectionTitle from '@/components/user/SectionTitle.vue';
+import RecordCard from '@/components/user/RecordCard.vue';
 import cartStore from '@/stores/cartStore';
-import productStore from '@/stores/productStore';
 import localStorageStore from '@/stores/localStorageStore';
 import CheckLogin from '@/mixins/user/CheckLogin.vue';
 
@@ -30,9 +30,6 @@ export default {
       couponCode: '',
       swiperModules: [Navigation],
       swiperBreakpoints: {
-        640: {
-          slidesPerView: 2,
-        },
         768: {
           slidesPerView: 3,
         },
@@ -52,6 +49,7 @@ export default {
     SectionTitle,
     Swiper,
     SwiperSlide,
+    RecordCard,
   },
   computed: {
     ...mapState(cartStore, ['cartInfo', 'cartItemNum']),
@@ -82,7 +80,6 @@ export default {
     },
     ...mapActions(cartStore, ['getCartInfo']),
     ...mapActions(localStorageStore, ['getRecord', 'clearRecord']),
-    ...mapActions(productStore, ['setProductData']),
   },
   async created() {
     this.$emit('stepNum', 1);
@@ -102,52 +99,26 @@ export default {
         <CartInfo :cart-info="cartInfo" :cart-item-num="cartItemNum" :isEdit="true"/>
       </div>
     </template>
-    <div style="margin-top: 200px;" v-if="record.length">
-      <div class="pb-3 mb-3 border-bottom d-flex justify-content-between">
-        <h4 class="h5 mb-0">瀏覽紀錄</h4>
-        <a href="#" @click.prevent="confirmDeleteAll"
-          class="link-gray-dark link-offset-3 link-underline-gray link-underline-opacity-50">
-          清除瀏覽紀錄
-        </a>
-      </div>
-
-      <swiper
-        :slidesPerView="1"
-        :spaceBetween="30"
-        :breakpoints="swiperBreakpoints"
-        :navigation="true"
-        :modules="swiperModules"
-        v-if="record.length"
-      >
-        <swiper-slide v-for="data in record" :key="data.id">
-          <div class="card border-0 shadow-sm">
-            <img :src="data.imageUrl" :alt="data.title">
-            <a href="#" class="stretched-link"
-              @click.prevent="setProductData(data)">
-            </a>
-            <p class="position-absolute bottom-0 m-2 px-3 py-1
-              bg-black bg-opacity-50 text-white">{{ data.title }}</p>
-            <div class="position-absolute top-0 left-0 w-100 h-100
-              bg-dark bg-opacity-50 text-white
-              d-flex justify-content-center align-items-center imageMask">
-              <div class="text-center">
-                <p><i class="bi bi-search display-4"></i></p>
-                <p>瀏覽產品</p>
-              </div>
-              </div>
-          </div>
-        </swiper-slide>
-      </swiper>
+  </div>
+  <div class="mb-5" style="margin-top: 150px;" v-if="record.length">
+    <div class="pb-3 mb-3 border-bottom d-flex justify-content-between">
+      <h4 class="h5 mb-0">瀏覽紀錄</h4>
+      <a href="#" @click.prevent="confirmDeleteAll"
+        class="link-gray-dark link-offset-3 link-underline-gray link-underline-opacity-50">
+        清除瀏覽紀錄
+      </a>
     </div>
+    <swiper
+    :slidesPerView="2"
+      :spaceBetween="30"
+      :breakpoints="swiperBreakpoints"
+      :navigation="true"
+      :modules="swiperModules"
+      v-if="record.length"
+    >
+      <swiper-slide v-for="product in record" :key="product.id">
+        <RecordCard :product="product"/>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.imageMask{
-  opacity: 0;
-  transition: all 0.5s;
-}
-.card:hover .imageMask{
-  opacity: 1;
-}
-</style>

@@ -2,6 +2,7 @@
 import { mapState, mapActions } from 'pinia';
 import CartInfo from '@/components/user/CartInfo.vue';
 import userAccountStore from '@/stores/userAccountStore';
+import localStorageStore from '@/stores/localStorageStore';
 import cartStore from '@/stores/cartStore';
 import CheckLogin from '@/mixins/user/CheckLogin.vue';
 
@@ -34,6 +35,7 @@ export default {
   computed: {
     ...mapState(cartStore, ['cartInfo', 'cartItemNum']),
     ...mapState(userAccountStore, ['userSettings']),
+    ...mapState(localStorageStore, ['orderContactData']),
   },
   methods: {
     async init() {
@@ -47,6 +49,7 @@ export default {
         this.toastShow('error', errorRes);
         this.hasSettingsData = false;
       }
+      this.getStoreData();
       this.isLoading = false;
     },
     async setUserData() {
@@ -62,6 +65,7 @@ export default {
         this.toastShow('error', errorRes);
         this.isLoading = false;
       } else {
+        this.clearContactData();
         this.$router.push(`/user/cart/complete/${id}`);
       }
     },
@@ -74,8 +78,26 @@ export default {
         this.user.payment = '';
       }
     },
+    getStoreData() {
+      this.getContactData();
+      if (!this.orderContactData) {
+        return;
+      }
+      Object.keys(this.orderContactData).forEach((key) => {
+        this[key] = this.orderContactData[key];
+      });
+    },
+    storeContactData() {
+      const data = {
+        user: this.user,
+        useMemberData: this.useMemberData,
+      };
+      this.setContactData(data);
+      this.$router.push({ name: 'cart' });
+    },
     ...mapActions(cartStore, ['getCartInfo', 'sentOrder']),
     ...mapActions(userAccountStore, ['getUserSettings']),
+    ...mapActions(localStorageStore, ['getContactData', 'setContactData', 'clearContactData']),
   },
   created() {
     this.$emit('stepNum', 2);
@@ -89,11 +111,12 @@ export default {
     v-if="cartInfo.list?.length">
     <div class="col-lg-5">
       <CartInfo :cart-info="cartInfo" :cart-item-num="cartItemNum" :isEdit="false"/>
-      <router-link :to="{name: 'cart'}"
+      <button type="button"
         class="btn btn-primary mb-3"
-        style="margin-top: -2rem;">
+        style="margin-top: -2rem;"
+        @click="storeContactData">
         <i class="bi bi-caret-left-fill me-1"></i>回上一步
-      </router-link>
+      </button>
     </div>
     <div class="col-lg-6">
       <div class="card border-primary p-3 px-4">

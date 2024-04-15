@@ -1,6 +1,9 @@
 <script>
 export default {
   props: ['feedback'],
+  mounted() {
+    this.$emit('cardFinished');
+  },
 };
 </script>
 

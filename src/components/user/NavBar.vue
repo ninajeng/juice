@@ -168,7 +168,7 @@ export default {
                   <li class="dropdown-item">
                     <router-link class="link-primary text-decoration-none d-block py-2 py-lg-1 px-3"
                       :to="{name: 'orders'}">
-                      <i class="bi bi-list-ul me-2"></i>訂單查詢
+                      <i class="bi bi-list-ul me-2"></i>訂單紀錄
                     </router-link>
                   </li>
                   <li><hr class="dropdown-divider border-primary-subtle"></li>
@@ -230,7 +230,7 @@ export default {
             <router-link class="sm-nav-item"
               :to="{name: 'orders'}" @click="closeNav">
               <i class="bi bi-list-ul me-1"></i>
-              <span class="text-center">訂單<span class="d-inline-block">查詢</span></span>
+              <span class="text-center">訂單<span class="d-inline-block">紀錄</span></span>
             </router-link>
           </div>
           <div class="col-12">

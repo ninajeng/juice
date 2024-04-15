@@ -191,7 +191,7 @@ export default {
 
 <template>
   <ProductModal/>
-  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712726386491.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=nu345cuUbriiikB6KeXzidJET7wntZl2i0W9GT5j4MR7DTK9eSKUcNlPtUJUpYUyOXCE1Hn1czHb%2F%2Fh394E%2BJNNzCRek4bZ8i%2BM2sJGOPCnTl7W7j%2BcoK373TWO67EQJH4GOsTwb9qJPrZf0xoeRN%2BfEBvFsC0aWnatY7dgVa4d3lAJid3v5v7uuqDBVr1IhtqrF3MNa7IiDkQLjt3hNqU1kCJE3NsVsD%2FdqE%2F5NtFtkxJ4B4Q66UrOH0FJVp2wV8dQwTBskRZ3hfOXIhLTb8KRuEaZGBq1GVNpwEJOkpsBBgKx6RxMTM%2BOPZfroHDoTshcXZ4PqMgZi8Tq3%2BkgNJQ%3D%3D" alt="菜單頁背景圖" class="bgImage d-none d-lg-block"
+  <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712726386491.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=nu345cuUbriiikB6KeXzidJET7wntZl2i0W9GT5j4MR7DTK9eSKUcNlPtUJUpYUyOXCE1Hn1czHb%2F%2Fh394E%2BJNNzCRek4bZ8i%2BM2sJGOPCnTl7W7j%2BcoK373TWO67EQJH4GOsTwb9qJPrZf0xoeRN%2BfEBvFsC0aWnatY7dgVa4d3lAJid3v5v7uuqDBVr1IhtqrF3MNa7IiDkQLjt3hNqU1kCJE3NsVsD%2FdqE%2F5NtFtkxJ4B4Q66UrOH0FJVp2wV8dQwTBskRZ3hfOXIhLTb8KRuEaZGBq1GVNpwEJOkpsBBgKx6RxMTM%2BOPZfroHDoTshcXZ4PqMgZi8Tq3%2BkgNJQ%3D%3D" alt="菜單頁背景圖" class="bgImage"
     style="width: 100%; object-fit: cover; object-position: center center;">
   <nav class="container" style="--bs-breadcrumb-divider: '>'; margin-bottom: -0.5rem;">
     <ol class="breadcrumb mt-4">

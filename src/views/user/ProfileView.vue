@@ -242,7 +242,7 @@ export default {
       </v-form>
     </section>
     <section class="pt-2">
-      <SectionTitle :title="'常用設定：訂購人資料'">
+      <SectionTitle :title="'常用訂購人資料'">
         <template #button>
           <button type="button" class="btn btn-primary" title="修改設定"
             @click="isEditSettings = true" :disabled="isEditSettings">
@@ -376,7 +376,7 @@ export default {
                 <option disabled value="">請選擇付款方式</option>
                 <option value="線上刷卡">線上刷卡</option>
                 <option value="ATM轉帳">ATM轉帳</option>
-                <option value="門市付款" :disabled="tempSettings.Payment !== '門市取貨'">
+                <option value="門市付款" :disabled="tempSettings.delivery !== '門市取貨'">
                   門市付款(限門市取貨)</option>
               </v-field>
               <error-message name="payment" class="invalid-feedback"></error-message>

@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       offcanvas: null,
+      useDemoAccount: false,
       loginData: {
         email: '',
         password: '',
@@ -46,6 +47,12 @@ export default {
         this.clearRegisterData();
       }
     },
+    useDemoAccount(use) {
+      if (use) {
+        this.loginData.email = import.meta.env.VITE_DEMO_EMAIL;
+        this.loginData.password = import.meta.env.VITE_DEMO_PASSWORD;
+      }
+    },
   },
   computed: {
     ...mapState(userAccountStore, ['setUserData', 'loginWindowSignal']),
@@ -66,6 +73,7 @@ export default {
         password: '',
       };
       this.loginError = '';
+      this.useDemoAccount = false;
     },
     clearRegisterData() {
       this.registerData = {
@@ -142,7 +150,16 @@ export default {
           <div class="d-flex h-100">
             <div class="my-auto w-100">
               <div class="content">
-                <h3 class="mb-3 text-center">會員登入</h3>
+                <h3 class="mb-lg-0 text-center">會員登入</h3>
+                <div class="d-flex justify-content-center justify-content-lg-end mb-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                      id="useDemoAccount" v-model="useDemoAccount">
+                    <label class="form-check-label" for="useDemoAccount">
+                      使用 demo 帳號
+                    </label>
+                  </div>
+                </div>
                 <div class="alert alert-danger mb-3" v-if="loginError">
                   <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ loginError }}
                 </div>

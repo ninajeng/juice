@@ -81,7 +81,7 @@ const router = createRouter({
               path: 'orders',
               name: 'orders',
               meta: {
-                title: `${webName} - 訂單查詢`,
+                title: `${webName} - 訂單紀錄`,
               },
               component: UserOrdersView,
             },

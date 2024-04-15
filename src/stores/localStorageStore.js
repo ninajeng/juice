@@ -1,14 +1,16 @@
 import { defineStore } from 'pinia';
 
-const STORAGE_NAME = import.meta.env.VITE_USER_STORAGENAME;
+const RECORD_STORAGE_NAME = import.meta.env.VITE_USER_RECORD_STORAGE;
+const CONTACT_STORAGE_NAME = import.meta.env.VITE_ORDERER_CONTACT_STORAGE;
 
 export default defineStore('localStorageStore', {
   state: () => ({
     record: [],
+    orderContactData: null,
   }),
   actions: {
     getRecord() {
-      const record = JSON.parse(localStorage.getItem(STORAGE_NAME));
+      const record = JSON.parse(localStorage.getItem(RECORD_STORAGE_NAME));
       if (!record) {
         this.record = [];
       } else {
@@ -32,12 +34,29 @@ export default defineStore('localStorageStore', {
         }
       }
       record.unshift(productData);
-      localStorage.setItem(STORAGE_NAME, JSON.stringify(record));
+      localStorage.setItem(RECORD_STORAGE_NAME, JSON.stringify(record));
       this.getRecord();
     },
     clearRecord() {
-      localStorage.clear();
+      localStorage.removeItem(RECORD_STORAGE_NAME);
       this.getRecord();
+    },
+    getContactData() {
+      const data = JSON.parse(localStorage.getItem(CONTACT_STORAGE_NAME));
+      if (!data) {
+        this.orderContactData = null;
+      } else {
+        this.orderContactData = data;
+      }
+    },
+    setContactData(data) {
+      this.getContactData();
+      localStorage.setItem(CONTACT_STORAGE_NAME, JSON.stringify(data));
+      this.getContactData();
+    },
+    clearContactData() {
+      localStorage.removeItem(CONTACT_STORAGE_NAME);
+      this.getContactData();
     },
   },
 });
