@@ -1,6 +1,6 @@
-## Juice oasis 線上點餐系統
+## Juice oasis 線上訂餐系統
 
-實體門市搭配線上點餐系統，為用戶提供便捷、多元的訂餐體驗。除了瀏覽菜單與產品資訊、訂購餐點外，還提供了加入收藏、設定常用訂購資料等功能，讓用戶能快速又便利地完成訂單。
+實體門市搭配線上訂餐系統，為用戶提供便捷、多元的訂餐體驗。除了瀏覽菜單與產品資訊、訂購餐點外，還提供了加入收藏、設定常用訂購資料等功能，讓用戶能快速又便利地完成訂單。
 
 <br>
 
@@ -8,22 +8,30 @@
 - [Vue.js](https://vuejs.org/) Vue3 with Options API
 - [Vite](https://vitejs.dev/) 環境
 - [Node.js](https://nodejs.org/en) 環境
-- [Bootstrap5](https://getbootstrap.com/) CSS Framework 
+- [Bootstrap5](https://getbootstrap.com/) CSS Framework
 - [Pinia](https://pinia.vuejs.org/) 狀態管理
 - [Git](https://git-scm.com/) 版本管理
-- [GitHub](https://github.com/) 專案部屬 
-- [Render Server](https://render.com/) 模擬伺服器 
-- [Vue Router](https://router.vuejs.org/) 路由管理 
-- [Axios](https://github.com/axios/axios) 發送 HTTP 請求 
+- [GitHub](https://github.com/) 專案部屬
+- [Render Server](https://render.com/) 模擬伺服器
+- [Vue Router](https://router.vuejs.org/) 路由管理
+- [Axios](https://github.com/axios/axios) 發送 HTTP 請求
 - [VeeValidate](https://vee-validate.logaretm.com/v4/) 表單驗證
-- [json-server](https://www.npmjs.com/package/json-server) 用戶帳號註冊、登入  
-- [Swiper](https://swiperjs.com/) 輪播效果  
-- [SweetAlert2](https://sweetalert2.github.io/) 彈跳視窗 
+- [json-server](https://www.npmjs.com/package/json-server) 用戶帳號註冊、登入
+- [Swiper](https://swiperjs.com/) 輪播效果
+- [AOS](https://michalsnik.github.io/aos/) CSS 動畫
+- [SweetAlert2](https://sweetalert2.github.io/) 彈跳視窗
 - [vue-loading-overlay](https://www.npmjs.com/package/vue-loading-overlay) loading 效果
 
 <br>
 
-## 功能簡述
+## 特色功能
+- 訂餐系統
+- 會員功能、資料一鍵代入訂購表單
+- 訂單紀錄
+- 收藏產品
+- 瀏覽紀錄
+
+## User Story
 
 **前台**
 

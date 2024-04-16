@@ -62,7 +62,7 @@ export default {
         <div class="col"
           v-for="(fruit, key) in fruitIntroduce" :key="'introduce-image' + key">
           <div class="position-relative"
-            :class="{'border border-3 border-primary': introduceIndex === key}"
+            :class="{'border border-3 border-primary-subtle': introduceIndex === key}"
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === key ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
@@ -100,7 +100,7 @@ export default {
         <div class="col"
           v-for="(fruit, key) in fruitIntroduceTop" :key="'introduce-image-smTop' + key">
           <div class="position-relative"
-            :class="{'border border-3 border-primary': introduceIndex === key}"
+            :class="{'border border-3 border-primary-subtle': introduceIndex === key}"
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === key ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
@@ -153,7 +153,7 @@ export default {
         <div class="col"
           v-for="(fruit, key) in fruitIntroduceBottom" :key="'introduce-image-smBottom' + key">
           <div class="position-relative"
-            :class="{'border border-3 border-primary': introduceIndex === fruit.index}"
+            :class="{'border border-3 border-primary-subtle': introduceIndex === fruit.index}"
             style="transition: transform 0.5s;"
             :style="{'transform': introduceIndex === fruit.index ? 'scale(1.1)' : ''}">
             <img :src="fruit.imageUrl" :alt="fruit.title"
