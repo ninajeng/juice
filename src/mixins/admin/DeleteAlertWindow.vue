@@ -3,7 +3,7 @@ import Swal from 'sweetalert2/dist/sweetalert2';
 
 export default {
   methods: {
-    deleteConfirm(type, name, item) {
+    async deleteConfirm(type, name, item) {
       const swalButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-danger m-1',
@@ -11,19 +11,17 @@ export default {
         },
         buttonsStyling: false,
       });
-
-      swalButtons.fire({
+      const userRes = await swalButtons.fire({
         title: `刪除 "${item.title || item.name}" ${name}?`,
         text: '刪除後將無法恢復',
         icon: 'warning',
         confirmButtonText: '刪除',
         showCancelButton: true,
         cancelButtonText: '取消',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this[`delete${type}`](item.id);
-        }
       });
+      if (userRes.isConfirmed) {
+        this[`delete${type}`](item.id);
+      }
     },
   },
 };

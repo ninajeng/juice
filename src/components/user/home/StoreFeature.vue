@@ -1,6 +1,4 @@
 <script>
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import LoginOrRegisterFunction from '@/mixins/user/home/LoginOrRegisterFunction.vue';
 
 export default {
@@ -51,13 +49,6 @@ export default {
     };
   },
   mixins: [LoginOrRegisterFunction],
-  created() {
-    AOS.init({
-      offset: 200, // offset (in px) from the original trigger point
-      delay: 0, // values from 0 to 3000, with step 50ms
-      duration: 800, // values from 0 to 3000, with step 50ms
-    });
-  },
 };
 </script>
 
@@ -95,7 +86,12 @@ export default {
       </div>
     </div>
     <div class="text-center mt-3">
-      <button class="btn btn-primary" @click="login" data-aos="zoom-in" data-aos-duration="200">
+      <button class="btn btn-primary d-lg-none"
+        @click="login" data-aos="fade-down" data-aos-offset="50">
+        登入／加入會員<i class="bi bi-caret-right-fill ms-1"></i>
+      </button>
+      <button class="btn btn-primary d-none d-lg-inline-block"
+        @click="login">
         登入／加入會員<i class="bi bi-caret-right-fill ms-1"></i>
       </button>
     </div>

@@ -14,7 +14,7 @@
 - [GitHub](https://github.com/) 專案部屬
 - [Render Server](https://render.com/) 模擬伺服器
 - [Vue Router](https://router.vuejs.org/) 路由管理
-- [Axios](https://github.com/axios/axios) 發送 HTTP 請求
+- [Axios](https://github.com/axios/axios) 串接 API
 - [VeeValidate](https://vee-validate.logaretm.com/v4/) 表單驗證
 - [json-server](https://www.npmjs.com/package/json-server) 用戶帳號註冊、登入
 - [Swiper](https://swiperjs.com/) 輪播效果

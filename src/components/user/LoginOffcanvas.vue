@@ -191,13 +191,14 @@ export default {
                     <label for="floatingPassword">密碼*</label>
                     <error-message name="密碼" class="invalid-feedback text-start"/>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-lg w-100">登入</button>
+                  <div class="d-flex">
+                    <button type="button" class="btn btn-outline-primary btn-lg w-100 me-2"
+                      @click="isRegister = true">
+                      <span class="d-none d-md-inline">還不是會員，</span>前往註冊
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 ms-2">登入</button>
+                  </div>
                 </v-form>
-                <p class="my-4 fs-7 text-gray text-center divider">
-                  <span class="px-2">OR</span>
-                </p>
-                <button type="button" class="btn btn-outline-primary btn-lg w-100"
-                  @click="isRegister = true">還不是會員？前往註冊</button>
               </div>
             </div>
           </div>
@@ -248,13 +249,14 @@ export default {
                     <error-message name="再次確認密碼" class="invalid-feedback"/>
                     <label for="passwordDoubleCheck">再次確認密碼*</label>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-lg w-100">註冊</button>
+                  <div class="d-flex">
+                    <button type="button" class="btn btn-outline-primary btn-lg w-100 me-2"
+                      @click="isRegister = false">
+                      <span class="d-none d-md-inline">已有會員，</span>前往登入
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 ms-2">註冊</button>
+                  </div>
                 </v-form>
-                <p class="my-4 fs-7 text-gray text-center divider">
-                  <span class="px-2">OR</span>
-                </p>
-                <button type="button" class="btn btn-outline-primary btn-lg w-100"
-                  @click="isRegister = false">已有會員，前往登入</button>
               </div>
             </div>
           </div>

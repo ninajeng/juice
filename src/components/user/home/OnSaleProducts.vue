@@ -33,32 +33,30 @@ export default {
       });
       this.isLoading = false;
     },
-    copyCode(code, e) {
+    async copyCode(code, e) {
       const successDOM = '<i class="bi bi-check me-1"></i>已複製';
       const errorDOM = '<i class="bi bi-x"></i>複製失敗';
       e.target.classList.add('disabled');
       if (navigator.clipboard) {
-        navigator.clipboard
-          .writeText(code)
-          .then(() => {
-            this.toastShow('success', '已複製優惠碼！');
-            e.target.innerHTML = successDOM;
-            e.target.classList.add('btn-success');
-            e.target.classList.add('btn-outline-success');
-            const delay = 3;
-            for (let sec = 0; sec <= delay; sec += 1) {
-              setTimeout(() => {
-                if (sec !== delay) {
-                  e.target.innerHTML = `${successDOM} (${delay - sec})`;
-                } else {
-                  this.resetBtn(e.target);
-                }
-              }, 1000 * sec);
-            }
-          })
-          .catch(() => {
-            this.copyError(e.target, errorDOM);
-          });
+        try {
+          await navigator.clipboard.writeText(code);
+          this.toastShow('success', '已複製優惠碼！');
+          e.target.innerHTML = successDOM;
+          e.target.classList.add('btn-success');
+          e.target.classList.add('btn-outline-success');
+          const delay = 3;
+          for (let sec = 0; sec <= delay; sec += 1) {
+            setTimeout(() => {
+              if (sec !== delay) {
+                e.target.innerHTML = `${successDOM} (${delay - sec})`;
+              } else {
+                this.resetBtn(e.target);
+              }
+            }, 1000 * sec);
+          }
+        } catch (err) {
+          this.copyError(e.target, errorDOM);
+        }
       } else {
         this.copyError(e.target, errorDOM);
       }
@@ -97,7 +95,7 @@ export default {
       </h4>
       <p class="mt-4">結帳使用週年慶折扣碼，享九五折優惠。</p>
       <div class="d-flex justify-content-center mb-3 flex-wrap">
-        <p class="display-6 me-2 my-1 text-secondary">
+        <p class="display-6 me-2 my-1 text-secondary" data-aos="zoom-out">
           <i class="bi bi-ticket-perforated-fill fs-3"></i>
           {{ couponCode }}
         </p>
@@ -124,7 +122,7 @@ export default {
           v-for="(product, key) in onSaleData" :key="product.id">
           <div class="col-md-5 mb-4 mb-md-0"
             :class=" key % 2 === 0 ? 'text-end': 'text-start'">
-            <div class="position-relative onSaleImage">
+            <div class="position-relative onSaleImage" data-aos="fade-up">
               <img :src="product.imageUrl" :alt="product.title"
                 class="w-100" style="height: 250px; object-fit: cover;">
               <div class="position-absolute top-0 left-0 w-100 h-100

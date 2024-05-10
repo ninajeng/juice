@@ -20,16 +20,15 @@ export default {
         this.toastShow('success', '已複製連結');
       }
     },
-    navigatorCopy(link) {
+    async navigatorCopy(link) {
       let resError = null;
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(link)
-          .then(() => {
-            resError = false;
-          })
-          .catch(() => {
-            resError = true;
-          });
+        try {
+          await navigator.clipboard.writeText(link);
+          resError = false;
+        } catch (err) {
+          resError = true;
+        }
       } else {
         resError = true;
       }
