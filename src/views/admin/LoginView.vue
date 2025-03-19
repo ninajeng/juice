@@ -37,7 +37,7 @@ export default {
 
 <template>
   <loading-view :active="isLoading"/>
-  <div class="h-100 d-flex" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712023858426.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=QRRDqmbfBk4Admuoyv%2FZxd0b7y3VSiEtQrqq5Mk0lhCrqVgbwXPY55tS%2B5XBqCF9%2F0gb9%2BnGUnqYB0IenxvEsq1MiEstJOely6FhiVZDl4D%2Bpn3jwnjsz9XcaSzuA0E6BBW%2B2o8OSu%2F3AaFLTylVh18x2lE8mL9Bah5s6ZHsXkkxCg6RZtXqGdaYir3E4s3gJ1gy9Lxocqh8oC05Z%2B2dMy55J8i00j3jR1fTiF%2BAHG7xzXNXm8FjCMI9s1vdJJWiaEwgNpDrkTSKKoZwsLUhXeY5S3cMtaNA2k7KFeUhdVmFVmN%2FPFX%2BqOV2cXf3Kj%2BZphjVy16%2FpnqQpZBQzCHQmQ%3D%3D); background-size: cover; background-position: center left">
+  <div class="h-100 d-flex" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(https://res.cloudinary.com/derxrcfij/image/upload/v1742363595/admin-login_bgs3yq.jpg); background-size: cover; background-position: center left">
     <div class="container my-auto">
       <div class="row justify-content-center align-items-center">
         <div class="col-sm-8 col-md-6 col-lg-4">

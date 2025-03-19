@@ -36,7 +36,7 @@ export default {
         </div>
       </div>
       <div class="col-6 col-lg-4 d-none d-md-block align-self-stretch">
-        <img src="https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1712668168884.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=TaKC8Zs%2BxXk79wrgUEPtRNGhTlz2H4iIbeiGtwogBsP1EqBxyHz86QFfCCy%2BSQWiLmE9rxbeWDu5rVgFdeS5Fxf1TQoqmufpJJ7uoCOrlt7DTyyFsNWFQqQSCdGbWjYD5mvV2EuX%2FY3Q4t6tHRGqnUT7tcXe7onBvH4LBGIQO3LOoYB5F29D7R0UvZwkopyN4AZXpSd%2BikSdX42oHgMhNwmlemwRdUeg%2B2SHfSJ9GjtRWQAdwtff3oGErhmOFK%2F5Tv%2BBNU3s2s727rq8fDS0Z9jjnKQfv%2FKKg8HKhbyRnyX%2Ft08xSIxOd%2BaelMTp8hy1fTo0MGrCD6YSWp0IfB7iCg%3D%3D" alt="會員募集背景"
+        <img src="https://res.cloudinary.com/derxrcfij/image/upload/v1742290193/member_pfcx9e.jpg" alt="會員募集背景"
           class="img-fluid">
       </div>
     </div>

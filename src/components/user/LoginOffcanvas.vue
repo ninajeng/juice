@@ -143,7 +143,7 @@ export default {
       <LogoImageLink style="background-position: left" class="d-lg-none" @click="offcanvas.hide()"/>
       <button type="button" class="btn-close" @click="offcanvas.hide()"></button>
     </div>
-    <div class="offcanvas-body pb-5" style=" background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7)), url(https://storage.googleapis.com/vue-course-api.appspot.com/juiceoasis/1711982111486.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=HnPdSBNaKmoZfxVZbXNDrrMvD8tqK%2FqEWI%2FOwjTzW5stOuO1V1ldSWGfxepLBBepqd9g%2F6T9zkhluqF%2FmEsdxojN4rtzVdlIjVM0hCDCtbdSL5eIkO3T1h1P7onbXtuzwhyJnqRmLxLIvVlGZQVEtBh37I%2FkvcjD%2FWjfTkcz6BMEAvQAM8tp9qY6sk6OZeOrAopWDv8jvvAA9u6Vn9a%2Fx%2BUQMf9UXUBL06hC70kmTMidKZ2j10JLEznUZ%2FO%2Fi1IJKnqkV1vOQudRXCeBELtuMR1xSaVqN3OHU4ZMrQ7pwQ3hj5G4pzz8zgbN2jZNVRXKQauhRjxeNZ9buMD8XiRTQA%3D%3D); background-size: cover; background-position: right center">
+    <div class="offcanvas-body pb-5" style=" background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7)), url(https://res.cloudinary.com/derxrcfij/image/upload/v1742362870/login_hrmrvv.jpg); background-size: cover; background-position: right center">
       <div class="h-100 position-relative overflow-y-hidden" v-if="isAliveForm">
         <div class="position-absolute w-100 h-100 px-2"
           :class="isRegister ? 'hideContent' : 'showContent'">
