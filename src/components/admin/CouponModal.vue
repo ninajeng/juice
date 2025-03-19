@@ -17,6 +17,17 @@ export default {
   watch: {
     tempCoupon(data) {
       this.coupon = { ...data };
+      if (this.coupon.id) {
+        [this.dueDateLocal,
+          this.dueTimeHour,
+          this.dueTimeMinute,
+          this.dueTimeSec] = this.$filters.unixToDateTimeArray(this.coupon.dueDate);
+      } else {
+        this.dueDateLocal = '';
+        this.dueTimeHour = '23';
+        this.dueTimeMinute = '59';
+        this.dueTimeSec = '59';
+      }
     },
   },
   computed: {

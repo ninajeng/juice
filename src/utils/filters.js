@@ -11,6 +11,13 @@ export function currency(num) {
   return `${n.toFixed(0).replace(/./g, (c, i, a) => (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c))}`;
 }
 
+export function unixToDateTimeArray(unixTime) {
+  const dateTime = new Date(unixTime);
+  const date = dateFormat(dateTime);
+  const [hour, minute, sec] = timeFormat(dateTime).split(':');
+  return [date, hour, minute, sec];
+}
+
 export function unixToDateTime(unixTime) {
   const dateTime = new Date(unixTime);
   return `${dateFormat(dateTime)} ${timeFormat(dateTime)}`;
