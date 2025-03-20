@@ -11,7 +11,6 @@ export default {
   data() {
     return {
       offcanvas: null,
-      useDemoAccount: false,
       loginData: {
         email: '',
         password: '',
@@ -27,6 +26,10 @@ export default {
       isAliveForm: true,
       passwordDoubleCheck: '',
       isLoading: false,
+      demoAccount: {
+        email: import.meta.env.VITE_DEMO_EMAIL,
+        password: import.meta.env.VITE_DEMO_PASSWORD,
+      },
     };
   },
   mixins: [ToastMessage],
@@ -45,12 +48,6 @@ export default {
         this.clearLoginData();
       } else {
         this.clearRegisterData();
-      }
-    },
-    useDemoAccount(use) {
-      if (use) {
-        this.loginData.email = import.meta.env.VITE_DEMO_EMAIL;
-        this.loginData.password = import.meta.env.VITE_DEMO_PASSWORD;
       }
     },
   },
@@ -73,7 +70,6 @@ export default {
         password: '',
       };
       this.loginError = '';
-      this.useDemoAccount = false;
     },
     clearRegisterData() {
       this.registerData = {
@@ -84,9 +80,9 @@ export default {
       this.registerError = '';
       this.passwordDoubleCheck = '';
     },
-    async login() {
+    async login(userData) {
       this.isLoading = true;
-      const res = await login(this.loginData);
+      const res = await login(userData);
       if (res.success) {
         const { accessToken, user } = res.data;
         this.$cookie.setUserToken(accessToken);
@@ -152,18 +148,15 @@ export default {
               <div class="content">
                 <h3 class="mb-lg-0 text-center">會員登入</h3>
                 <div class="d-flex justify-content-center justify-content-lg-end mb-2">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox"
-                      id="useDemoAccount" v-model="useDemoAccount">
-                    <label class="form-check-label" for="useDemoAccount">
-                      使用 demo 帳號
-                    </label>
-                  </div>
+                  <button type="button" class="btn btn-outline-primary"
+                    @click="login(demoAccount)">
+                    使用 demo 帳號
+                  </button>
                 </div>
                 <div class="alert alert-danger mb-3" v-if="loginError">
                   <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ loginError }}
                 </div>
-                <v-form v-slot="{ errors }" @submit="login" v-if="!isRegister">
+                <v-form v-slot="{ errors }" @submit="login(loginData)" v-if="!isRegister">
                   <div class="form-floating mb-3">
                     <v-field type="email" class="form-control"
                       :class="{ 'is-invalid': errors['帳號'] }"
