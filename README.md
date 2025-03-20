@@ -5,26 +5,26 @@
 相關連結：[demo](https://ninajeng.github.io/juice/#/)、[sitemap](https://whimsical.com/juice-oasis-WmmKU4YeVz5AJFfFedVyog)
 
 > **首頁**
-<img src="dist/assets/readme/home.PNG">
+<img src="src/assets/image/readme/home.PNG">
 
 > **產品資訊**
-<img src="dist/assets/readme/product-modal.PNG">
+<img src="src/assets/image/readme/product-modal.PNG">
 
 > **餐點訂購**
-<img src="dist/assets/readme/cart.PNG">
-<img src="dist/assets/readme/cart-contact.PNG">
+<img src="src/assets/image/readme/cart.PNG">
+<img src="src/assets/image/readme/cart-contact.PNG">
 
 > **訂單紀錄**
-<img src="dist/assets/readme/user-orders.PNG">
+<img src="src/assets/image/readme/user-orders.PNG">
 
 > **產品收藏**
-<img src="dist/assets/readme/collection.PNG">
+<img src="src/assets/image/readme/collection.PNG">
 
 > **會員資料設定**
-<img src="dist/assets/readme/user-profile.PNG">
+<img src="src/assets/image/readme/user-profile.PNG">
 
 > **後台產品管理**
-<img src="dist/assets/readme/admin-products.PNG">
+<img src="src/assets/image/readme/admin-products.PNG">
 
 <br>
 
