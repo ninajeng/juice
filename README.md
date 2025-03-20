@@ -2,6 +2,30 @@
 
 實體門市搭配線上訂餐系統，為用戶提供便捷、多元的訂餐體驗。除了瀏覽菜單與產品資訊、訂購餐點外，還提供了加入收藏、設定常用訂購資料等功能，讓用戶能快速又便利地完成訂單。
 
+相關連結：[demo](https://ninajeng.github.io/juice/#/)、[sitemap](https://whimsical.com/juice-oasis-WmmKU4YeVz5AJFfFedVyog)
+
+> **首頁**
+<img src="dist/assets/readme/home.PNG">
+
+> **產品資訊**
+<img src="dist/assets/readme/product-modal.PNG">
+
+> **餐點訂購**
+<img src="dist/assets/readme/cart.PNG">
+<img src="dist/assets/readme/cart-contact.PNG">
+
+> **訂單紀錄**
+<img src="dist/assets/readme/user-orders.PNG">
+
+> **產品收藏**
+<img src="dist/assets/readme/collection.PNG">
+
+> **會員資料設定**
+<img src="dist/assets/readme/user-profile.PNG">
+
+> **後台產品管理**
+<img src="dist/assets/readme/admin-products.PNG">
+
 <br>
 
 ## 使用技術
@@ -25,11 +49,19 @@
 <br>
 
 ## 特色功能
+前台
 - 訂餐系統
 - 會員功能、資料一鍵代入訂購表單
 - 訂單紀錄
 - 收藏產品
 - 瀏覽紀錄
+
+後台
+- 產品管理
+- 優惠券管理
+- 訂單管理
+
+<br>
 
 ## User Story
 
