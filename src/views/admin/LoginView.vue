@@ -28,9 +28,11 @@ export default {
     },
     ...mapActions(adminAccountStore, ['checkAccountState', 'setLogoutState']),
   },
-  mounted() {
+  async mounted() {
+    this.isLoading = true;
     this.setLogoutState();
-    this.checkAccountState(this);
+    await this.checkAccountState(this);
+    this.isLoading = false;
   },
 };
 </script>
