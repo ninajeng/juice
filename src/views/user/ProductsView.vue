@@ -285,7 +285,7 @@ export default {
     height: 350px;
   }
   .navList{
-    top: 60px;
+    top: 55px;
   }
 }
 </style>
